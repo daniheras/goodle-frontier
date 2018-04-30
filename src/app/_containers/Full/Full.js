@@ -48,11 +48,11 @@ class Full extends Component{
                     <OffCanvasBody>
                         <Header handleOffCanvas={this.handleOffCanvas}/>
                         <div className={'container-fluid app-view'}>
-                            <Breadcrumb>
-                                <BreadcrumbItem><a href="#Link">Home</a></BreadcrumbItem>
-                                <BreadcrumbItem><a href="#Link">Bread</a></BreadcrumbItem>
-                                <BreadcrumbItem active>Crumb</BreadcrumbItem>
-                            </Breadcrumb>
+                            {/*<Breadcrumb>*/}
+                                {/*<BreadcrumbItem><a href="#Link">Home</a></BreadcrumbItem>*/}
+                                {/*<BreadcrumbItem><a href="#Link">Bread</a></BreadcrumbItem>*/}
+                                {/*<BreadcrumbItem active>Crumb</BreadcrumbItem>*/}
+                            {/*</Breadcrumb>*/}
                             <Switch>
                                 <Route exact path="/app/dashboard" name="Dashboard" component={Dashboard}/>
                                 <Route exact path="/app/profile" name="Profile" component={Profile}/>
