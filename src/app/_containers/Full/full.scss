@@ -4,7 +4,7 @@
   padding: 2rem;
   background: $gdle-bg-primary;
   border-top-left-radius: 5px;
-  height: calc( 100vh - 90px );
+  height: calc( 100vh - 58px );
   overflow-y: scroll;
 }
 
@@ -31,6 +31,7 @@
     .__thumbnail{
       width: 100%;
       padding-top: 2rem;
+      position: relative;
 
       img{
         display: block;
@@ -55,11 +56,13 @@
         justify-content: center;
         margin: 0 .5rem;
         cursor: pointer;
-        transition: .1s;
+        transition: .3s;
+        transform: scale(1);
 
         &:hover{
           background: $gdle-bg-primary;
           color: $gdle-pink;
+          transform: scale(1.2);
         }
       }
     }
