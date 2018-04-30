@@ -30,7 +30,7 @@ class Full extends Component{
     render(){
         return (
             <div>
-                <OffCanvas width={300} transitionDuration={300} isMenuOpened={this.state.isMenuOpened} position={"left"}>
+                <OffCanvas width={250} transitionDuration={300} isMenuOpened={this.state.isMenuOpened} position={"left"}>
                     <OffCanvasBody>
                         <Header handleOffCanvas={this.handleOffCanvas}/>
                         <div className={'container app-view'}>
