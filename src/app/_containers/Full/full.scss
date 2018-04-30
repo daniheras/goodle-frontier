@@ -5,18 +5,45 @@
 }
 
 .side-menu{
+  padding-top: 1rem;
   background: $gdle-purple;
   height: 100vh;
+
+  .__title{
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
+    text-shadow: 0 2px 0px rgba(0,0,0, .2);
+
+    span{
+      font-weight: 600;
+    }
+  }
 
   .__menu-item{
     display: inline-block;
     width: 100%;
-    padding: .5rem 0;
+    padding: .5rem 1rem;
     color: $gdle-white;
-    text-align: center;
+    transition: .2s;
+    border: 0 solid $gdle-pink;
+
+    svg{
+      margin-right: 1rem;
+    }
+
+    a{
+      color: white;
+      font-weight: 600;
+      
+      &:hover{
+        text-decoration: none;
+      }
+    }
   }
 
   .__menu-item:hover{
-    background: $gdle-pink;
+    border-left: 10px solid $gdle-pink;
   }
 }

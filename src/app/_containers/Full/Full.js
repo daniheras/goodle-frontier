@@ -11,6 +11,10 @@ import Dashboard from "../../_views/Dashboard/Dasshboard";
 import Profile from "../../_views/Profile/Profile";
 import Header from "../../_components/_structure/header/header";
 
+
+//Components
+import { FaDashboard, FaUser } from 'react-icons/lib/fa';
+
 import './full.scss';
 
 import { OffCanvas, OffCanvasBody, OffCanvasMenu } from 'react-offcanvas';
@@ -18,8 +22,19 @@ import { OffCanvas, OffCanvasBody, OffCanvasMenu } from 'react-offcanvas';
 class Full extends Component{
 
     state = {
-      isMenuOpened: false,
+      isMenuOpened: true,
     };
+
+    componentWillMount(){
+
+        //Si la pantalla tiene menos de 700px de ancho el menu lateral comienza cerrado
+        if( window.innerWidth < 700 ){
+            this.setState({
+                isMenuOpened: false
+            })
+        }
+
+    }
 
     handleOffCanvas = (event) => {
         this.setState({
@@ -43,9 +58,18 @@ class Full extends Component{
                         </div>
                     </OffCanvasBody>
                     <OffCanvasMenu className={"side-menu"}>
-                        <Link to={'/app/dashboard'} className={'__menu-item'}>Dashboard</Link>
-                        <br/>
-                        <Link to={'/app/profile'} className={'__menu-item'}>Profile</Link>
+                        <div className="__title">
+                            Main<span>Menu</span>
+                        </div>
+                        <div className={'__menu-item'}>
+                            <FaDashboard/>
+                            <Link to={'/app/dashboard'}> Dashboard</Link>
+                        </div>
+                        <div className={'__menu-item'}>
+                            <FaUser/>
+                            <Link to={'/app/profile'}> Profile</Link>
+                        </div>
+
                     </OffCanvasMenu>
                 </OffCanvas>
             </div>
