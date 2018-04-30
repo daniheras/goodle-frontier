@@ -1,0 +1,28 @@
+////COLORS
+
+//Usos principales
+$gdle-primary: #565aa1;
+$gdle-secondary: #fe6b88;
+$gdle-extra: #fea1b3;
+$gdle-accent: #49dcc0;
+
+//Paleta principal
+$gdle-white: #fff;
+$gdle-purple: $gdle-primary;
+$gdle-pink: $gdle-secondary;
+$gdle-yellow: #f7ba61;
+$gdle-blue: $gdle-accent;
+
+//Fondos
+$gdle-bg-primary: #f6f6f8;
+
+//Botones
+$gdle-button-primary: $gdle-accent;
+$gdle-button-danger: $gdle-secondary;
+
+//Degradados
+$gdle-gradient-primary: linear-gradient(135deg, $gdle-primary 0%,$gdle-secondary 100%);
+$gdle-gradient-purple: linear-gradient(90deg ,#6c5aab, #9f5cc3);
+
+
+////
