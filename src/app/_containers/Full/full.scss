@@ -1,0 +1,22 @@
+@import "../../../styles/vars";
+
+.app-view{
+  padding-top: 2rem;
+}
+
+.side-menu{
+  background: $gdle-purple;
+  height: 100vh;
+
+  .__menu-item{
+    display: inline-block;
+    width: 100%;
+    padding: .5rem 0;
+    color: $gdle-white;
+    text-align: center;
+  }
+
+  .__menu-item:hover{
+    background: $gdle-pink;
+  }
+}

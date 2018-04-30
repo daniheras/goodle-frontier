@@ -11,6 +11,8 @@ import Dashboard from "../../_views/Dashboard/Dasshboard";
 import Profile from "../../_views/Profile/Profile";
 import Header from "../../_components/_structure/header/header";
 
+import './full.scss';
+
 import { OffCanvas, OffCanvasBody, OffCanvasMenu } from 'react-offcanvas';
 
 class Full extends Component{
@@ -29,19 +31,21 @@ class Full extends Component{
         return (
             <div>
                 <OffCanvas width={300} transitionDuration={300} isMenuOpened={this.state.isMenuOpened} position={"left"}>
-                    <OffCanvasBody className={"my-body-class"} style={{fontSize: '18px'}}>
+                    <OffCanvasBody>
                         <Header handleOffCanvas={this.handleOffCanvas}/>
-                        <Switch>
-                            <Route exact path="/app/dashboard" name="Dashboard" component={Dashboard}/>
-                            <Route exact path="/app/profile" name="Profile" component={Profile}/>
-                            {/*<Route path={"/app/profile/settings"} name={"Settings"} component={Settings}/>*/}
-                            <Redirect from="/app" to="/app/dashboard"/>
-                        </Switch>
+                        <div className={'container app-view'}>
+                            <Switch>
+                                <Route exact path="/app/dashboard" name="Dashboard" component={Dashboard}/>
+                                <Route exact path="/app/profile" name="Profile" component={Profile}/>
+                                {/*<Route path={"/app/profile/settings"} name={"Settings"} component={Settings}/>*/}
+                                <Redirect from="/app" to="/app/dashboard"/>
+                            </Switch>
+                        </div>
                     </OffCanvasBody>
-                    <OffCanvasMenu className={"my-menu-class"} style={{fontWeight: 'bold'}}>
-                        <Link to={'/app/dashboard'}>Dashboard</Link>
+                    <OffCanvasMenu className={"side-menu"}>
+                        <Link to={'/app/dashboard'} className={'__menu-item'}>Dashboard</Link>
                         <br/>
-                        <Link to={'/app/profile'}>Profile</Link>
+                        <Link to={'/app/profile'} className={'__menu-item'}>Profile</Link>
                     </OffCanvasMenu>
                 </OffCanvas>
             </div>
