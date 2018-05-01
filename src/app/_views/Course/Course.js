@@ -24,11 +24,19 @@ class Course extends Component {
           });
         })
       .catch(error => {
-          console.log(error);
+          console.log(error.response.data.error);
+          if (error.response.data.error === 'This user is not registered in the required course') {
+            this.setState({
+              msg_error: 'You are not registered for this course',
+            });
+          }
         });
   }
 
   render() {
+    if (this.state.msg_error) {
+      return (<div>{this.state.msg_error}</div>);
+    }
     return (
       <div className="animated fadeIn">
         <h3>

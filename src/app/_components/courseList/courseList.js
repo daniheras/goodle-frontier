@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
-
-import { $api_URL } from "../../config/constants";
-
+import { $api_URL } from '../../config/constants';
 import './courseList.scss';
 
 class CourseList extends Component{
@@ -13,6 +11,8 @@ class CourseList extends Component{
     this.state = {
       visible: false,
       courses: [],
+      allCourses: [],
+      myCourses: [],
       ready: false,
       courseModal: {
           title: '',
@@ -27,36 +27,43 @@ class CourseList extends Component{
   }
 
   componentWillMount() {
-    if (this.state.type === 'allCourses') {
-      axios.get($api_URL+'/courses')
-        .then(data => {
-            let courses = [];
-            data.data.forEach(course => {
-                courses.push(course);
-              });
-            this.setState({
-                ready: true,
-                courses: courses,
-              });
-          })
-        .catch(error => {
-            console.log(error);
+    axios.get($api_URL + '/courses')
+     .then(data => {
+        let courses = [];
+        data.data.forEach(course => {
+          courses.push(course);
+        });
+        this.setState({
+          ready: true,
+          allCourses: courses,
+        });
+      })
+     .catch(error => {
+        console.log(error);
+      });
+    axios.get($api_URL + '/courses/' + JSON.parse(sessionStorage.getItem('user')).id)
+      .then(data => {
+        let courses = [];
+        data.data.forEach(course => {
+            courses.push(course);
           });
-    } else if (this.state.type === 'myCourses') {
-      axios.get($api_URL+'/courses/' + JSON.parse(sessionStorage.getItem('user')).id)
-        .then(data => {
-            let courses = [];
-            data.data.forEach(course => {
-                courses.push(course);
-              });
-            this.setState({
-                ready: true,
-                courses: courses,
-              });
-          })
-        .catch(error => {
-            console.log(error);
+        this.setState({
+            ready: true,
+            myCourses: courses,
+            courses: courses,
           });
+      })
+    .catch(error => {
+        console.log(error);
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.type !== this.state.type) {
+      this.setState({
+        courses: this.state[nextProps.type],
+        type: nextProps.type,
+      });
     }
   }
 
@@ -91,7 +98,7 @@ class CourseList extends Component{
 
     let courses = [];
     if (!this.state.ready) {
-      return (<div>No Courses</div>);
+      return (<div>Loading...</div>);
     } else {
       let coursess = this.state.courses;
       coursess.forEach((course, key) => {
@@ -101,6 +108,9 @@ class CourseList extends Component{
             <Button color="primary" onClick={(e) => this.showModal(course.id, course.name, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ')}>View</Button>
           </div>);
       });
+      if (courses.length === 0) {
+        courses = <div>No Courses</div>
+      }
     }
 
     return (
