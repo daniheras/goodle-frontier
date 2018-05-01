@@ -26,7 +26,7 @@ class Register extends Component {
             password: this.state.password,
         });
 
-        axios.post($api_URL+'register', data, {
+        axios.post($api_URL+'/register', data, {
             headers:{
             'Accept': 'application/json',
             }

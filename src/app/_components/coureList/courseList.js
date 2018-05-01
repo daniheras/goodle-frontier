@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
 
+import { $api_URL } from "../../config/constants";
+
 import './courseList.scss';
 
 class CourseList extends Component{
@@ -26,7 +28,7 @@ class CourseList extends Component{
 
   componentWillMount() {
     if (this.state.type === 'allCourses') {
-      axios.get('http://goodle-api.local/courses')
+      axios.get($api_URL+'/courses')
         .then(data => {
             let courses = [];
             data.data.forEach(course => {
@@ -41,7 +43,7 @@ class CourseList extends Component{
             console.log(error);
           });
     } else if (this.state.type === 'myCourses') {
-      axios.get('http://goodle-api.local/courses/' + JSON.parse(sessionStorage.getItem('user')).id)
+      axios.get($api_URL+'/courses/' + JSON.parse(sessionStorage.getItem('user')).id)
         .then(data => {
             let courses = [];
             data.data.forEach(course => {

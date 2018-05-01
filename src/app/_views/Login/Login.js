@@ -23,7 +23,7 @@ class Login extends Component {
             password: this.state.password
         });
 
-        axios.post($api_URL+"login", data, {
+        axios.post($api_URL+"/login", data, {
             headers:{
             'Accept': 'application/json',
             }

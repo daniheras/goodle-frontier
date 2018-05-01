@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Course.scss';
 
+import { $api_URL } from "../../config/constants";
+
 // import { Modal, Button } from 'antd';
 
 class Course extends Component {
@@ -15,7 +17,7 @@ class Course extends Component {
   }
 
   componentWillMount() {
-    axios.get('http://goodle-api.local/course/' + this.state.id)
+    axios.get($api_URL+'/course/' + this.state.id)
       .then(data => {
           this.setState({
             courseInfo: data.data[0],
