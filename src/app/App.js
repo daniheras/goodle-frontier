@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import Full from './_containers/Full/Full';
-import Login from './_containers/Login/Login';
+import Auth from './_containers/Auth/Auth';
 
 class App extends Component {
   render() {
@@ -16,9 +16,8 @@ class App extends Component {
           <HashRouter>
               <Switch>
                   <Route path="/app" name="App" component={Full}/>
-                  <Route path="/auth" name="Auth" component={Login}/>
-                  <Redirect from="/" to="/app"/>
-                  {/*<Redirect from="/" to="/auth"/>*/}
+                  <Route path="/auth" name="Auth" component={Auth}/>
+                  <Redirect from="/" to="/auth"/>
               </Switch>
           </HashRouter>
       </div>
