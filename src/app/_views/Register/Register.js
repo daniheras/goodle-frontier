@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import {Link, Switch, Route, Redirect} from 'react-router-dom';
 
+import { $api_URL } from "../../config/constants";
+
 
 class Register extends Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class Register extends Component {
             password: this.state.password,
         });
 
-        axios.post('http://goodle-api.local/register', data, {
+        axios.post($api_URL+'register', data, {
             headers:{
             'Accept': 'application/json',
             }

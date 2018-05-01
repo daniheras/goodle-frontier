@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import {Link, Switch, Route, Redirect} from 'react-router-dom';
 
+import { $api_URL } from "../../config/constants";
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +23,7 @@ class Login extends Component {
             password: this.state.password
         });
 
-        axios.post('http://goodle-api.local/login', data, {
+        axios.post($api_URL+"login", data, {
             headers:{
             'Accept': 'application/json',
             }
@@ -57,7 +59,7 @@ class Login extends Component {
             <div className="animated fadeIn">
                 <h1>Login</h1>
                 <div className="animated fadeIn">
-                    <form action="http://goodle-api.local/login" method="POST">
+                    <form action="http://goodle.test/login" method="POST">
                         <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleChange} />
                         <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} />
                         <button onClick={this.handleLogin} >Login</button>
