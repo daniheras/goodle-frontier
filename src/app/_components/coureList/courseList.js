@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Redirect } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
 
@@ -17,6 +17,8 @@ class CourseList extends Component{
           description: '',
         },
       type: props.type,
+      redirectId: 0,
+      redirect: false,
     };
     this.handleOk = this.handleOk.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
@@ -56,19 +58,21 @@ class CourseList extends Component{
     }
   }
 
-  showModal(name, description) {
+  showModal(id, name, description) {
     this.setState({
       visible: true,
       courseModal: {
           title: name,
           description: description,
         },
+      redirectId: id,
     });
   }
 
   handleOk(e) {
     this.setState({
       visible: false,
+      redirect: true,
     });
   }
 
@@ -79,6 +83,10 @@ class CourseList extends Component{
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to={'/app/course/' + this.state.redirectId } />;
+    }
+
     let courses = [];
     if (!this.state.ready) {
       return (<div>No Courses</div>);
@@ -88,7 +96,7 @@ class CourseList extends Component{
         courses.push(
           <div key={key} >
             {course.name}
-            <Button color="primary" onClick={(e) => this.showModal(course.name, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ')}>View</Button>
+            <Button color="primary" onClick={(e) => this.showModal(course.id, course.name, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ')}>View</Button>
           </div>);
       });
     }

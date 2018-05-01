@@ -3,6 +3,7 @@ import { Route, Link, Redirect, Switch } from 'react-router-dom';
 import Dashboard from '../../_views/Dashboard/Dasshboard';
 import Profile from '../../_views/Profile/Profile';
 import Courses from '../../_views/Courses/Courses';
+import Course from '../../_views/Course/Course';
 import Header from '../../_components/_structure/header/header';
 
 //Components
@@ -66,9 +67,10 @@ class Full extends Component {
               {/* </Breadcrumb> */}
               <Switch>
                 <Route exact="exact" path="/app/dashboard" name="Dashboard" component={Dashboard}/>
-                <Route exact="exact" path="/app/profile" name="Profile" component={Profile}/> 
+                <Route exact="exact" path="/app/profile" name="Profile" component={Profile}/>
                 {/* <Route path={"/app/profile/settings"} name={"Settings"} component={Settings}/> */}
                 <Route exact="exact" path="/app/courses" name="Courses" component={Courses}/>
+                <Route exact="exact" path="/app/course/:id" name="Course" component={Course}/>
                 <Redirect from="/app" to="/app/dashboard"/>
               </Switch>
             </div>
