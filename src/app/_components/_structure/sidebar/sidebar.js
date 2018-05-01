@@ -15,16 +15,16 @@ class Sidebar extends Component {
         return (
             <div>
                 <div className="__title">
-                    Main<span>Menu</span>
+                    <span>Goodle</span>
                 </div>
                 <div className="__profile-section">
+                    <div style={{textAlign: 'center', textTransform: 'capitalize', color: '#fff'}}>
+                        <span>{this.props.user.username}</span>
+                    </div>
                     <div className="__thumbnail">
                         <img
                             src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg"
                             alt="profile_pic"/>
-                    </div>
-                    <div>
-                        <span>{this.props.user.username}</span>
                     </div>
                     <div className="__info">
                         <div className="__item">
