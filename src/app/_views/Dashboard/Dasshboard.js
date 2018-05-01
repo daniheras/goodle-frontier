@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { Button } from 'reactstrap';
-
 //Components
 import { Row, Col } from 'reactstrap';
 import Card from '../../_components/card/card';
