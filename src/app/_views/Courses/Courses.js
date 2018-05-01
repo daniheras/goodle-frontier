@@ -35,14 +35,14 @@ class Courses extends Component {
                <NavLink
                  className={classnames({ active: this.state.activeTab === '1' })}
                  onClick={() => { this.toggle('1'); }} >
-                 My courses
+                 All Courses
                </NavLink>
              </NavItem>
              <NavItem>
                <NavLink
                  className={classnames({ active: this.state.activeTab === '2' })}
                  onClick={() => { this.toggle('2'); }} >
-                 All courses
+                 My Courses
                </NavLink>
              </NavItem>
            </Nav>
