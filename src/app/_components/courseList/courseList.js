@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
-
-import { $api_URL } from "../../config/constants";
-
+import { $api_URL } from '../../config/constants';
 import './courseList.scss';
 
 class CourseList extends Component{
@@ -29,36 +27,43 @@ class CourseList extends Component{
   }
 
   componentWillMount() {
-    if (this.state.type === 'allCourses') {
-      axios.get($api_URL+'/courses')
-        .then(data => {
-            let courses = [];
-            data.data.forEach(course => {
-                courses.push(course);
-              });
-            this.setState({
-                ready: true,
-                courses: courses,
-              });
-          })
-        .catch(error => {
-            console.log(error);
+    axios.get($api_URL + '/courses')
+     .then(data => {
+        let courses = [];
+        data.data.forEach(course => {
+          courses.push(course);
+        });
+        this.setState({
+          ready: true,
+          allCourses: courses,
+        });
+      })
+     .catch(error => {
+        console.log(error);
+      });
+    axios.get($api_URL + '/courses/' + JSON.parse(sessionStorage.getItem('user')).id)
+      .then(data => {
+        let courses = [];
+        data.data.forEach(course => {
+            courses.push(course);
           });
-    } else if (this.state.type === 'myCourses') {
-      axios.get($api_URL+'/courses/' + JSON.parse(sessionStorage.getItem('user')).id)
-        .then(data => {
-            let courses = [];
-            data.data.forEach(course => {
-                courses.push(course);
-              });
-            this.setState({
-                ready: true,
-                courses: courses,
-              });
-          })
-        .catch(error => {
-            console.log(error);
+        this.setState({
+            ready: true,
+            myCourses: courses,
+            courses: courses,
           });
+      })
+    .catch(error => {
+        console.log(error);
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.type !== this.state.type) {
+      this.setState({
+        courses: this.state[nextProps.type],
+        type: nextProps.type,
+      });
     }
   }
 
