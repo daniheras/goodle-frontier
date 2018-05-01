@@ -7,7 +7,14 @@ import { Row, Col } from 'reactstrap';
 import Card from '../../_components/card/card';
 import { MdUpdate } from 'react-icons/lib/md'
 
+import { $prueba } from '../../config/constants';
+
 class Dashboard extends Component{
+
+    componentWillMount(){
+        //Prueba de las variables de entorno
+        console.log($prueba)
+    }
 
     render(){
         return (
