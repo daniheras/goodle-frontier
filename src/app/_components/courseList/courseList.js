@@ -13,6 +13,8 @@ class CourseList extends Component{
     this.state = {
       visible: false,
       courses: [],
+      allCourses: [],
+      myCourses: [],
       ready: false,
       courseModal: {
           title: '',
@@ -91,7 +93,7 @@ class CourseList extends Component{
 
     let courses = [];
     if (!this.state.ready) {
-      return (<div>No Courses</div>);
+      return (<div>Loading...</div>);
     } else {
       let coursess = this.state.courses;
       coursess.forEach((course, key) => {
@@ -101,6 +103,9 @@ class CourseList extends Component{
             <Button color="primary" onClick={(e) => this.showModal(course.id, course.name, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ')}>View</Button>
           </div>);
       });
+      if (courses.length === 0) {
+        courses = <div>No Courses</div>
+      }
     }
 
     return (

@@ -1,2 +1,9 @@
 @import '../../../styles/vars';
 
+.link{
+  cursor: pointer;
+  color: $gdle-primary;
+  &:hover{
+    opacity: 0.8;
+  }
+}

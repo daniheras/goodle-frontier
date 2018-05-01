@@ -9,48 +9,40 @@ class Courses extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        activeTab: '2',
+        activeTab: '1',
+        typeCourse: 'myCourses',
+        titleCourses: 'My Courses',
       };
-
-    this.toggle = this.toggle.bind(this);
+    this.handleTypeCourses = this.handleTypeCourses.bind(this);
   }
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
+  handleTypeCourses() {
+    if (this.state.typeCourse === 'myCourses') {
       this.setState({
-        activeTab: tab,
+        typeCourse: 'allCourses',
+        titleCourses: 'All Courses',
+      });
+    } else {
+      this.setState({
+        typeCourse: 'myCourses',
+        titleCourses: 'My Courses',
       });
     }
   }
 
   render() {
+    let link;
+    if (this.state.typeCourse === 'myCourses') {
+      link = 'View all courses availables';
+    }else {
+      link = 'View my courses';
+    }
     return (
       <div className="animated fadeIn">
-          <div>
-           <Nav tabs>
-             <NavItem>
-               <NavLink
-                 className={classnames({ active: this.state.activeTab === '1' })}
-                 onClick={() => { this.toggle('1'); }} >
-                 All Courses
-               </NavLink>
-             </NavItem>
-             <NavItem>
-               <NavLink
-                 className={classnames({ active: this.state.activeTab === '2' })}
-                 onClick={() => { this.toggle('2'); }} >
-                 My Courses
-               </NavLink>
-             </NavItem>
-           </Nav>
-           <TabContent activeTab={this.state.activeTab}>
-             <TabPane tabId="1">
-               <CourseList type="allCourses"/>
-             </TabPane>
-             <TabPane tabId="2">
-               <CourseList type="myCourses"/>
-             </TabPane>
-           </TabContent>
+        <h3>{ this.state.titleCourses }</h3>
+         <CourseList type={this.state.typeCourse}/>
+         <div>
+           <span className="link" onClick={this.handleTypeCourses}>{link}</span>
          </div>
       </div>
     );
