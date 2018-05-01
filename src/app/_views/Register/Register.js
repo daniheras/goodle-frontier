@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import {Link, Switch, Route, Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { $api_URL } from "../../config/constants";
 
