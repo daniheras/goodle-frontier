@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
+import './register.scss';
 
 import { $api_URL } from "../../config/constants";
+import Card from "material-ui/es/Card/Card";
+import {TextField} from "material-ui";
+import Button from "material-ui/es/Button/Button";
 
 
 class Register extends Component {
@@ -60,14 +65,41 @@ class Register extends Component {
             return <Redirect push to="/auth/login" />;
         }
         return (
-            <div className="animated fadeIn">
-                <h1>Register</h1>
-                <form method="POST">
-                    <input type="text" placeholder="Username" name="username" value={this.state.username} onChange={this.handleChange} />
-                    <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange} />
-                    <input type="password" placeholder="Password" name="password" value={this.state.repeatPassword} onChange={this.handleChange} />
-                    <button onClick={this.handleRegister} >Register</button>
-                </form>
+            <div className="fade-in register-page">
+                <Card className="register-form">
+                    <h1>Sign<span>Up</span></h1>
+                    <form method="POST">
+                        <TextField
+                            type={'email'}
+                            name={'email'}
+                            label="Email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            margin="normal"
+                        />
+                        <TextField
+                            name={'username'}
+                            label="UserName"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                            margin="normal"
+                        />
+                        <TextField
+                            type={'password'}
+                            name={'password'}
+                            label="Password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            margin="normal"
+                        />
+                        <div className="tip">
+                            <Link to={'/auth/login'}>
+                                Have an account?
+                            </Link>
+                        </div>
+                        <Button color={'primary'} variant={'raised'} onClick={this.handleRegister}>Register</Button>
+                    </form>
+                </Card>
             </div>
         )
     }
