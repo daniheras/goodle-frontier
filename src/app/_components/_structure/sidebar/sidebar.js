@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 
 import { Link } from 'react-router-dom';
+import nav_links from '../../../config/nav-links';
+
 import {
-    FaDashboard,
-    FaUser,
     FaSliders,
     FaSignOut,
     FaBell,
-    FaBook
 } from 'react-icons/lib/fa';
 
 class Sidebar extends Component {
@@ -34,26 +33,20 @@ class Sidebar extends Component {
                         <div className="__item">
                             <FaBell/>
                         </div>
-                        <div className="__item" onClick={this.handleLogOut}>
+                        <div className="__item" onClick={this.props.handleLogOut}>
                             <FaSignOut/>
                         </div>
                     </div>
                 </div>
-                <div className={'__menu-item'}>
-                    <FaDashboard/>
-                    <Link to={'/app/dashboard'}>
-                        Dashboard</Link>
-                </div>
-                <div className={'__menu-item'}>
-                    <FaUser/>
-                    <Link to={'/app/profile'}>
-                        Profile</Link>
-                </div>
-                <div className={'__menu-item'}>
-                    <FaBook/>
-                    <Link to={'/app/courses'}>
-                        Courses</Link>
-                </div>
+                {
+                    nav_links.links.map( link => (
+                        <div className={'__menu-item'} key={link.key}>
+                            { link.icon }
+                            <Link to={link.link}>
+                                { link.name }</Link>
+                        </div>
+                    ) )
+                }
             </div>
         );
     }
