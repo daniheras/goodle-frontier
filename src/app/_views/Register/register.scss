@@ -1,0 +1,38 @@
+@import "../../../styles/custom";
+
+.register-page{
+  height: 100vh;
+  background: $gdle-gradient-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .register-form{
+    padding: 2rem;
+
+    .tip{
+      text-align: center;
+    }
+
+    form{
+
+      >*{
+        display: block;
+        margin: 1rem auto;
+      }
+
+      button{
+        margin: auto;
+      }
+    }
+
+    h1{
+      text-align: center;
+      font-weight: 300;
+
+      span{
+        font-weight: 400;
+      }
+    }
+  }
+}

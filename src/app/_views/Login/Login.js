@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import { $api_URL } from "../../config/constants";
+
+import './login.scss';
+
+//Components
+import TextField from 'material-ui/TextField';
+import Card from "material-ui/es/Card/Card";
+import Button from "material-ui/es/Button/Button";
 
 class Login extends Component {
     constructor(props) {
@@ -56,15 +63,40 @@ class Login extends Component {
             return <Redirect push to="/app/dashboard" />;
         }
         return (
-            <div className="animated fadeIn">
-                <h1>Login</h1>
-                <div className="animated fadeIn">
-                    <form action="http://goodle.test/login" method="POST">
-                        <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleChange} />
-                        <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} />
-                        <button onClick={this.handleLogin} >Login</button>
-                    </form>
-                </div>
+            <div className="fade-in login-page">
+                <Card className={'login-form'}>
+                    <h1>Goodle <span>Login</span></h1>
+                    <div className="animated fadeIn">
+                        <form action="http://goodle.test/login" method="POST">
+                            <TextField
+                                name={'username'}
+                                label="UserName"
+                                value={this.state.username}
+                                onChange={this.handleChange}
+                                margin="normal"
+                            />
+                            <TextField
+                                type={'password'}
+                                name={'password'}
+                                label="Password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                                margin="normal"
+                            />
+                            <div className="tip">
+                                <Link to={'#forgottenPassword'}>
+                                    Forgotten password?
+                                </Link>
+                            </div>
+                            <div className="tip">
+                                <Link to={'/auth/register'}>
+                                    Dont have an account yet?
+                                </Link>
+                            </div>
+                            <Button color={'primary'} variant={'raised'} onClick={this.handleLogin}>Login</Button>
+                        </form>
+                    </div>
+                </Card>
             </div>
         )
     }

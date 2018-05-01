@@ -23,7 +23,7 @@ class Dashboard extends Component{
                 <br/>
                 <Row>
                     <Col xs={12} sm={6} md={4} lg={3}>
-                        <Card title={'Javascript'} time={'5m'} type={'exercise'} color={'#e67e22'}>
+                        <Card title={'Javascript'} time={'5m'} type={'exercise'} color={'#f1c40f'}>
                             Ejercicio de Arrays
                         </Card>
                     </Col>
