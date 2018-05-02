@@ -5,6 +5,7 @@ import Profile from '../../_views/Profile/Profile';
 import Courses from '../../_views/Courses/Courses';
 import Course from '../../_views/Course/Course';
 import Header from '../../_components/_structure/header/header';
+import Cursos from '../../_views/Cursos/Cursos';
 
 //Components
 // import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
@@ -65,6 +66,7 @@ class Full extends Component {
                                 {/* <Route path={"/app/profile/settings"} name={"Settings"} component={Settings}/> */}
                                 <Route exact path="/app/courses" name="Courses" component={Courses}/>
                                 <Route exact path="/app/course/:id" name="Course" component={Course}/>
+                                <Route exact path="/app/cursos" name="Course" component={Cursos}/>
                                 <Redirect from="/app" to="/app/dashboard"/>
                             </Switch>
                         </div>
