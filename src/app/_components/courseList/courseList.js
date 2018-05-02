@@ -24,6 +24,7 @@ class CourseList extends Component{
     };
     this.handleOk = this.handleOk.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleRegisterCourse = this.handleRegisterCourse.bind(this);
   }
 
   componentWillMount() {
@@ -91,6 +92,30 @@ class CourseList extends Component{
     });
   }
 
+  handleRegisterCourse() {
+    axios.post($api_URL + '/addusercourse', { user_id: JSON.parse(sessionStorage.getItem('user')).id, course_id: this.state.redirectId })
+    .then(data => {
+      console.log(data);
+      axios.get($api_URL + '/courses/' + JSON.parse(sessionStorage.getItem('user')).id)
+        .then(data => {
+          let courses = [];
+          data.data.forEach(course => {
+              courses.push(course);
+            });
+          this.setState({
+              ready: true,
+              myCourses: courses,
+            });
+        })
+      .catch(error => {
+          console.log(error);
+        });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
   render() {
     if (this.state.redirect) {
       return <Redirect push to={'/app/course/' + this.state.redirectId } />;
@@ -122,7 +147,7 @@ class CourseList extends Component{
             {this.state.courseModal.description}
           </ModalBody>
           <ModalFooter>
-            {this.state.type === 'myCourses' ? <Button color="primary" onClick={this.handleOk}>OK</Button> : ''}
+            {this.state.type === 'myCourses' ? <Button color="primary" onClick={this.handleOk}>Enter Course</Button> : <Button color="primary" onClick={this.handleRegisterCourse}>Register Course</Button>}
             <Button color="secondary" onClick={this.handleCancel}>Cancel</Button>
           </ModalFooter>
         </Modal>
