@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+import { MdPerson } from 'react-icons/lib/md'
+
+
 class Profile extends Component{
 
     componentWillMount(){
@@ -9,7 +13,7 @@ class Profile extends Component{
     render(){
         return (
             <div className={'fade-in'}>
-                <h3>{ this.state.user.username }'s Profile</h3>
+                <h3><span><MdPerson/> </span>{ this.state.user.username }'s<span className={'bold'}>Profile</span></h3>
             </div>
         )
     }
