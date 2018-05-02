@@ -41,7 +41,7 @@ class Cursos extends Component{
                     {
                         this.state.courses.map( (course, key) => (
                             <Col xs={12} md={4} xl={3} key={key}>
-                                <CourseCard name={course.name} image={course.picture+key} description={course.description} category={course.category}/>
+                                <CourseCard course={course}/>
                             </Col>
                         ) )
                     }

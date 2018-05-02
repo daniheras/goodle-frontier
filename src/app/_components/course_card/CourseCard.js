@@ -10,6 +10,7 @@ import {
 } from "material-ui";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from "material-ui/es/Button/Button";
+import {Link} from "react-router-dom";
 
 const styles = {
     card: {
@@ -31,23 +32,25 @@ const CourseCard = props => {
                             <MoreVertIcon />
                         </IconButton>
                     }
-                    title={props.name}
-                    subheader={props.category}
+                    title={props.course.name}
+                    subheader={props.course.category}
                 />
                 <CardMedia
                     style={styles.media}
-                    image={props.image}
-                    title={props.name + ' image'}
+                    image={props.course.picture+props.course.id}
+                    title={props.course.name + ' image'}
                 />
                 <CardContent>
                     <Typography component="p">
-                        {props.description}
+                        {props.course.description}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        Enter
-                    </Button>
+                    <Link to={'/app/course/'+props.course.id}>
+                        <Button size="small" color="primary">
+                            Enter
+                        </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </div>
