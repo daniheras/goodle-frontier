@@ -24,7 +24,7 @@ const styles = {
 
 const CourseCard = props => {
     return (
-        <div style={{padding: '.5rem'}}>
+        <div style={{padding: '1rem 0'}}>
             <Card style={styles.card}>
                 <CardHeader
                     action={

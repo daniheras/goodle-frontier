@@ -63,7 +63,7 @@ class Course extends Component {
           {this.state.courseInfo.name}
         </h3>
         <br/>
-        <Button color="danger" onClick={this.handeleUnsubscribeCourse}>Unsubscribe Course</Button>
+        <Button color="secondary" variant={'raised'} onClick={this.handeleUnsubscribeCourse}>Unsubscribe Course</Button>
       </div>
     );
   }

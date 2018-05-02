@@ -23,6 +23,10 @@ body{
   outline: none !important;
 }
 
+a{
+  text-decoration: none !important;
+}
+
 .fade-in{
   animation: gdl-fade-in 1s forwards;
 }

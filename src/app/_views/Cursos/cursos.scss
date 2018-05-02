@@ -1,2 +1,13 @@
 @import "../../../styles/custom";
 
+.title{
+
+  >*{
+    display: inline-block;
+  }
+
+  .__search, label{
+    padding: 0 1rem;
+  }
+
+}
