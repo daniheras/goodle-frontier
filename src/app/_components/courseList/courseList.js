@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button } from 'material-ui';
 import axios from 'axios';
 import { $api_URL } from '../../config/constants';
 import './courseList.scss';
@@ -147,7 +148,7 @@ class CourseList extends Component{
             {this.state.courseModal.description}
           </ModalBody>
           <ModalFooter>
-            {this.state.type === 'myCourses' ? <Button color="primary" onClick={this.handleOk}>Enter Course</Button> : <Button color="primary" onClick={this.handleRegisterCourse}>Register Course</Button>}
+            {this.state.type === 'myCourses' ? <Button color="primary" onClick={this.handleOk}>Enter Course</Button> : <Button color="primary" onClick={this.handleRegisterCourse}>Join Course</Button>}
             <Button color="secondary" onClick={this.handleCancel}>Cancel</Button>
           </ModalFooter>
         </Modal>

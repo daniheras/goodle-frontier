@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 import './Course.scss';
-import { Button } from 'reactstrap';
+import { Button } from 'material-ui';
 import { Redirect } from 'react-router-dom';
 import { $api_URL } from "../../config/constants";
 

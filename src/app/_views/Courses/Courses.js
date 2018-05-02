@@ -38,7 +38,7 @@ class Courses extends Component {
       link = 'View my courses';
     }
     return (
-      <div className="animated fadeIn">
+      <div className="fade-in">
         <h3>{ this.state.titleCourses }</h3>
          <CourseList type={this.state.typeCourse}/>
          <div>

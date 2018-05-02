@@ -23,6 +23,15 @@ body{
   animation: gdl-fade-in 1s forwards;
 }
 
+h1, h2, h3, h4, h5{
+  color: $gdle-purple;
+  font-weight: 300;
+
+  .bold{
+    font-weight: 500;
+  }
+}
+
 @keyframes gdl-fade-in {
   from {
     opacity: 0;

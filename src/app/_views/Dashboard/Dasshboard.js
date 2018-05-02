@@ -18,7 +18,7 @@ class Dashboard extends Component{
         return (
             <div className={'fade-in'}>
                 <h3>
-                    <span><MdUpdate/></span> Recently Updated
+                    <span><MdUpdate/></span> Recently<span className={'bold'}>Updated</span>
                 </h3>
                 <br/>
                 <Row>
