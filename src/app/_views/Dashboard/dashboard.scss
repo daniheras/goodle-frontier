@@ -1,0 +1,38 @@
+@import '../../../styles/_vars';
+
+
+.card-content{
+
+    cursor: default;
+
+    &:hover{
+
+        .__body{
+            transform: scale(1.4);
+        }
+
+    }
+
+
+    .__title{
+        padding: 2rem;
+        text-align: center;
+        color: $gdle-secondary;
+        line-height: .7;
+        font-size: 1.5rem;
+
+        .__subtitle{
+            font-size: .7rem;
+        }
+    }
+
+    .__body{
+        line-height: 104px;
+        font-size: 2rem;
+        text-align: center;
+        font-weight: 600;
+        color: $gdle-primary;
+        transform: scale(1);
+        transition: .5s;
+    }
+}
