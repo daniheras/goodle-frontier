@@ -7,10 +7,6 @@
 
     &:hover{
 
-        .__body{
-            transform: scale(1.4);
-        }
-
     }
 
 
@@ -32,7 +28,5 @@
         text-align: center;
         font-weight: 600;
         color: $gdle-primary;
-        transform: scale(1);
-        transition: .5s;
     }
 }

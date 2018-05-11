@@ -8,6 +8,7 @@ import { MdUpdate } from 'react-icons/lib/md'
 import { FaBook, FaFile, FaFileText, FaThLarge, FaPercent } from 'react-icons/lib/fa';
 
 import MiniCard from './components/mini-card.js';
+import {Doughnut, Bar} from 'react-chartjs-2';
 
 
 import { $prueba } from '../../config/constants';
@@ -40,6 +41,34 @@ const cards = [
 class Dashboard extends Component{
 
     render(){
+
+        const data = (canvas) => {
+            const ctx = canvas.getContext("2d")
+            const gradient = ctx.createLinearGradient(0,0,100,0);
+            return {
+                labels: ["Javascript", "React"],
+                datasets: [{
+                    label: 'Average notes',
+                    data: [7, 9],
+                    backgroundColor: [
+                        'rgb(254,104,134)',
+                        'rgb(87,88,157)',
+                    ],
+                    borderWidth: 0,
+                }],
+                options: {
+                    scales: {
+                        xAxes: [{
+                            stacked: true
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            }
+        }
+
         return (
             <div className={'fade-in'}>
                 <h3>
@@ -57,6 +86,22 @@ class Dashboard extends Component{
                         />
                     ) )
                 }
+                </Row>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <Card>
+                            <div style={{padding: '1rem'}}>
+                                <Doughnut data={data} />
+                            </div>
+                        </Card>
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <Card>
+                            <div style={{padding: '1rem'}}>
+                                <Bar data={data} />
+                            </div>
+                        </Card>
+                    </Col>
                 </Row>
             </div>
         )
