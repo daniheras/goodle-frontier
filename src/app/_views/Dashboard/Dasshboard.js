@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 //Components
 import { Row, Col } from 'reactstrap';
 import Card from '../../_components/card/card';
-import { MdUpdate } from 'react-icons/lib/md'
 
 import DoughnutCard from './components/doughnut-card.js';
 import BarCard from './components/bar-card.js';
@@ -11,10 +10,6 @@ import BarCard from './components/bar-card.js';
 import { FaBook, FaFile, FaFileText, FaThLarge, FaPercent } from 'react-icons/lib/fa';
 
 import MiniCard from './components/mini-card.js';
-
-
-
-import { $prueba } from '../../config/constants';
 
 import './dashboard.scss';
 

@@ -4,9 +4,7 @@ import './cursos.scss';
 import axios from "axios/index";
 import {$api_URL} from "../../config/constants";
 import {Col, Row} from "reactstrap";
-import CourseCard from "../../_components/course_card/CourseCard";
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import Grid from 'material-ui/Grid';
 import {FaBook} from 'react-icons/lib/fa';
 import {
     Avatar,

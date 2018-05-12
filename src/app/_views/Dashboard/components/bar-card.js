@@ -6,8 +6,6 @@ import {FaPercent} from 'react-icons/lib/fa';
 const BarCard = (props) => {
 
     const data = (canvas) => {
-        const ctx = canvas.getContext("2d")
-        const gradient = ctx.createLinearGradient(0,0,100,0);
         return {
             labels: ["Javascript", "React", "Macramé"],
             datasets: [{

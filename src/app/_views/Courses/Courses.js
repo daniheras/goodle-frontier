@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 
-import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
 import CourseList from '../../_components/courseList/courseList';
 import './Courses.scss';
-import classnames from 'classnames';
 
 class Courses extends Component {
     constructor(props) {
