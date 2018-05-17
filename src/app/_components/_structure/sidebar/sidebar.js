@@ -9,6 +9,8 @@ import {
     FaBell,
 } from 'react-icons/lib/fa';
 
+import './sidebar.scss';
+
 class Sidebar extends Component {
 
     render() {
