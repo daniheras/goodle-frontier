@@ -40,11 +40,13 @@ class Sidebar extends Component {
                 </div>
                 {
                     nav_links.links.map( link => (
-                        <div className={'__menu-item'} key={link.key}>
-                            { link.icon }
-                            <Link to={link.link}>
-                                { link.name }</Link>
-                        </div>
+
+                        <Link to={link.link}>
+                            <div className={'__menu-item'} key={link.key}>
+                                { link.icon }
+                                    { link.name }
+                            </div>
+                        </Link>
                     ) )
                 }
             </div>

@@ -76,18 +76,15 @@
     color: $gdle-white;
     transition: .2s;
     border: 0 solid $gdle-pink;
-
-    svg{
-      margin-right: 1rem;
-    }
-
-    a{
-      color: white;
+    color: white;
       font-weight: 600;
       
       &:hover{
         text-decoration: none;
       }
+
+    svg{
+      margin-right: 1rem;
     }
   }
 
