@@ -93,7 +93,7 @@ class Login extends Component {
                                     Dont have an account yet?
                                 </Link>
                             </div>
-                            <Button color={'primary'} variant={'raised'} onClick={this.handleLogin}>Login</Button>
+                            <Button type={'submit'} color={'primary'} variant={'raised'} onClick={this.handleLogin}>Login</Button>
                         </form>
                     </div>
                 </Card>

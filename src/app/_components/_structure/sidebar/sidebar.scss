@@ -1,6 +1,26 @@
 @import "../../../../styles/_vars";
 
-.side-menu{
+.side-bar{
+  padding-top: 1rem;
+  background: $gdle-gradient-primary;
+  height: 100vh;
+  width: $side-bar-width;
+  animation: sidebarIn .3s forwards ease-in;
+  position: relative;
+
+  @keyframes sidebarIn {
+    0%{
+      left: -300px;
+    }
+
+    100%{
+      left: 0;
+    }
+  }
+
+  &.closed{
+    display: none;
+  }
   
     .__title{
       text-align: center;

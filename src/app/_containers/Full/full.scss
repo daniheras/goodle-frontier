@@ -1,15 +1,26 @@
-@import "../../../styles/vars";
+@import "../../../styles/_vars";
 
-.app-view{
-  padding: 2rem;
-  background: $gdle-bg-primary;
-  border-top-left-radius: 5px;
-  height: calc( 100vh - 58px );
-  overflow-y: scroll;
+.app-layout{
+  >div{
+    float: left;
+  }
 }
 
-.side-menu{
-  padding-top: 1rem;
-  background: $gdle-gradient-primary;
-  height: 100vh;
+.app-canvas{
+  width: 100vw;
+
+  &.opened{
+    width: calc(100vw - #{$side-bar-width});
+  }
+}
+
+.app-body{
+  padding: 2rem;
+  background: $gdle-bg-primary;
+  height: calc( 100vh - 58px );
+  overflow-y: scroll;
+
+  &.opened{
+    border-top-left-radius: 5px;
+  }
 }

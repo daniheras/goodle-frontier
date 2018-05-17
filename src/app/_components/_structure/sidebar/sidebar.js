@@ -14,8 +14,9 @@ import './sidebar.scss';
 class Sidebar extends Component {
 
     render() {
+
         return (
-            <div>
+            <div className={`side-bar ${ (!this.props.opened) && 'closed' }`}>
                 <div className="__title">
                     <span>Goodle</span>
                 </div>
@@ -43,8 +44,8 @@ class Sidebar extends Component {
                 {
                     nav_links.links.map( link => (
 
-                        <Link to={link.link}>
-                            <div className={'__menu-item'} key={link.key}>
+                        <Link to={link.link} key={link.key}>
+                            <div className={'__menu-item'}>
                                 { link.icon }
                                     { link.name }
                             </div>

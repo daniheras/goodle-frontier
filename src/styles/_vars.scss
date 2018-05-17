@@ -1,4 +1,4 @@
-////COLORS
+////COLORES
 
 //Usos principales
 $gdle-primary: #565aa1;
@@ -26,4 +26,10 @@ $gdle-gradient-primary: linear-gradient(180deg, $gdle-primary 10%,$gdle-secondar
 $gdle-gradient-purple: linear-gradient(90deg ,#565aa1, #9f5cc3);
 
 
-////
+////MEDIDAS
+$side-bar-width: 200px;
+
+$sm-media: 576px;
+$md-media: 768px;
+$lg-media: 992px;
+$xlg-media: 1200px;
