@@ -25,11 +25,5 @@ export default {
             link: '/app/courses',
             icon: <FaBook/>
         },
-        {
-            key: 4,
-            name: 'Cursos',
-            link: '/app/cursos',
-            icon: <FaBook/>
-        }
     ]
 }
