@@ -53,9 +53,44 @@ class Register extends Component {
     }
 
     handleChange(e) {
+        let isValid = true;
         var obj = [];
         obj[e.target.name] = e.target.value;
+        if (e.target.value !== '') {
+            document.querySelector("label[for=" + e.target.name + "]").classList.add('top');
+        } else {
+            document.querySelector("label[for=" + e.target.name + "]").classList.remove('top');
+        }
+        if (e.target.name === 'email') {
+            isValid = this._validateEmail(e.target.value);
+            let errorMessage = isValid ? "" : "Email invalid";
+            errorMessage = e.target.value === '' ? "Email required" : errorMessage;
+            this.setState({
+                emailError: errorMessage
+            })
+        } else if (e.target.name === 'password') {
+            let passwordMessage = this._validatePassword(e.target.value) ? "" : "Password invalid";
+            passwordMessage = e.target.value === '' ? "Password required" : passwordMessage;
+            isValid = e.target.value !== '' && this._validatePassword(e.target.value);
+            this.setState({
+                passwordError: passwordMessage
+            })
+        }
+        if (!isValid) {
+            document.querySelector(".form-group." + e.target.name).classList.add('error');
+        } else {
+            document.querySelector(".form-group." + e.target.name).classList.remove('error');
+        }
         this.setState(obj);
+    }
+
+    _validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    _validatePassword(password) {
+        return true;
     }
 
     // TODO: messages info errors (unique fields...)
@@ -66,7 +101,7 @@ class Register extends Component {
         }
         return (
             <div className="fade-in register-page">
-                <Card className="register-form">
+                {/*<Card className="register-form">
                     <h1>Sign<span>Up</span></h1>
                     <form method="POST">
                         <TextField
@@ -99,7 +134,32 @@ class Register extends Component {
                         </div>
                         <Button color={'primary'} variant={'raised'} onClick={this.handleRegister}>Register</Button>
                     </form>
-                </Card>
+                </Card>*/}
+                <div className="register-form">
+                    <h1>Sign<span>Up</span></h1>
+                    <form method="POST">
+                        <div className="form-group email">
+                            <label htmlFor="email">Email *</label>
+                            <input type="text" name="email" id="email" onChange={this.handleChange}/>
+                            <span>{this.state.emailError}</span>
+                        </div>
+                        <div className="form-group username">
+                            <label htmlFor="username">UserName *</label>
+                            <input type="text" id="username" name="username" name="username" onChange={this.handleChange}/>
+                        </div>
+                        <div className="form-group password">
+                            <label htmlFor="password">Password *</label>
+                            <input type="password" id="password" name="password" onChange={this.handleChange}/>
+                            <span>{this.state.passwordError}</span>
+                        </div>
+                        <div className="tip">
+                            <Link to={'/auth/login'}>
+                                Have an account?
+                            </Link>
+                        </div>
+                        <Button color={'primary'} variant={'raised'} onClick={this.handleRegister}>Register</Button>
+                    </form>
+                </div>
             </div>
         )
     }

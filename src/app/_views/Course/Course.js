@@ -18,19 +18,26 @@ class Course extends Component {
   }
 
   componentWillMount() {
-    axios.post($api_URL+'/course/' + this.state.id, { user_id: JSON.parse(sessionStorage.getItem('user')).id })
-      .then(data => {
+    let token =JSON.parse(sessionStorage.getItem('user')).token;
+    axios.get($api_URL + '/courses/user/' + this.state.id + '?current_user=1',
+        {
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': "bearer " + token
+            }
+        }).then(data => {
+          console.log(data);
+
           this.setState({
-            courseInfo: data.data[0],
+            courseInfo: data.data,
+            admin: data.data.admin,
           });
         })
       .catch(error => {
-          console.log(error.response.data.error);
-          if (error.response.data.error === 'This user is not registered in the required course') {
-            this.setState({
-              msg_error: 'You are not registered for this course',
-            });
-          }
+          console.log(error.response.data.message);
+          this.setState({
+            msg_error: 'You are not registered in this course',
+          });
         });
   }
 
@@ -62,6 +69,7 @@ class Course extends Component {
         <h3>
           {this.state.courseInfo.name}
         </h3>
+        {(this.state.admin) ? <h4>You are the admin of this course</h4> : ""}
         <br/>
         <Button color="danger" onClick={this.handeleUnsubscribeCourse}>Unsubscribe Course</Button>
       </div>
