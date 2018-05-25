@@ -5,10 +5,6 @@ import { Redirect, Link } from 'react-router-dom';
 import './register.scss';
 
 import { $api_URL } from "../../config/constants";
-import Card from "material-ui/es/Card/Card";
-import {TextField} from "material-ui";
-import Button from "material-ui/es/Button/Button";
-
 
 class Register extends Component {
     constructor(props) {
@@ -48,7 +44,6 @@ class Register extends Component {
             console.log(error.response.data.error);
             return error.response.data.error;
         })
-
 
     }
 
@@ -145,7 +140,7 @@ class Register extends Component {
                         </div>
                         <div className="form-group username">
                             <label htmlFor="username">UserName *</label>
-                            <input type="text" id="username" name="username" name="username" onChange={this.handleChange}/>
+                            <input type="text" id="username" name="username" onChange={this.handleChange}/>
                         </div>
                         <div className="form-group password">
                             <label htmlFor="password">Password *</label>
@@ -157,7 +152,7 @@ class Register extends Component {
                                 Have an account?
                             </Link>
                         </div>
-                        <Button color={'primary'} variant={'raised'} onClick={this.handleRegister}>Register</Button>
+                        <button className="register-btn" onClick={this.handleRegister}>Register</button>
                     </form>
                 </div>
             </div>
