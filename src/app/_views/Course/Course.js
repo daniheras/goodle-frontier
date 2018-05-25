@@ -19,7 +19,7 @@ class Course extends Component {
 
   componentWillMount() {
     // axios.post($api_URL+'/course/' + this.state.id, { user_id: JSON.parse(sessionStorage.getItem('user')).id })
-    axios.get('/courses/user/' + this.state.id + '?current_user=1')
+    axios.get('/courses/user/' + this.state.id + '?current_user=' + JSON.parse(sessionStorage.getItem('user')).id)
       .then(res => {
           this.setState({
             courseInfo: res.data,
