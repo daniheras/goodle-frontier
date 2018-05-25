@@ -1,52 +1,31 @@
 import React, {Component} from 'react';
 
-import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
-import CourseList from '../../_components/courseList/courseList';
+//import CourseList from '../../_components/courseList/courseList';
 import './Courses.scss';
-import classnames from 'classnames';
+import axios from '../../config/axios';
+
+import styled from 'styled-components';
+
+const CourseView = styled.div`
+    
+`;
 
 class Courses extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeTab: '1',
-            typeCourse: 'myCourses',
-            titleCourses: 'My Courses',
-        };
-        this.handleTypeCourses = this.handleTypeCourses.bind(this);
-    }
 
-    handleTypeCourses() {
-        if (this.state.typeCourse === 'myCourses') {
-            this.setState({
-                typeCourse: 'allCourses',
-                titleCourses: 'All Courses',
-            });
-        } else {
-            this.setState({
-                typeCourse: 'myCourses',
-                titleCourses: 'My Courses',
-            });
-        }
+    componentWillMount() {
+        axios.get('/courses');
     }
-
-    render() {
-        let link;
-        if (this.state.typeCourse === 'myCourses') {
-            link = 'View all courses availables';
-        } else {
-            link = 'View my courses';
-        }
+    
+    render(){
         return (
-            <div className="fade-in">
-                <h3>{this.state.titleCourses}</h3>
-                <CourseList type={this.state.typeCourse}/>
-                <div>
-                    <span className="link" onClick={this.handleTypeCourses}>{link}</span>
-                </div>
-            </div>
-        );
+            <CourseView>
+                <h2>
+                    Courses<span className={'bold'}>List</span>
+                </h2>
+            </CourseView>
+        )
     }
+
 }
 
 export default Courses;

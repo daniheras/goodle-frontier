@@ -24,6 +24,6 @@ export default {
             name: 'Courses',
             link: '/app/courses',
             icon: <FaBook/>
-        }
+        },
     ]
 }

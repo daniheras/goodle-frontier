@@ -48,31 +48,24 @@ class Full extends Component {
         }
 
         return (
-            <div className={'fade-in'}>
-                <OffCanvas width={250} transitionDuration={300} isMenuOpened={this.state.isMenuOpened}
-                           position={'left'}>
-                    <OffCanvasBody>
+            <div className={'fade-in app-layout'}>
+                    <Sidebar 
+                        user={this.state.user} 
+                        handleLogOut={this.handleLogOut}
+                        opened={this.state.isMenuOpened}
+                        />
+                    <div className={`app-canvas ${ (this.state.isMenuOpened) && 'opened' }`}>
                         <Header handleOffCanvas={this.handleOffCanvas}/>
-                        <div className={'container-fluid app-view'}>
-                            {/*<Breadcrumb>*/}
-                            {/*<BreadcrumbItem><a href="#Link">Home</a></BreadcrumbItem>*/}
-                            {/*<BreadcrumbItem><a href="#Link">Bread</a></BreadcrumbItem>*/}
-                            {/*<BreadcrumbItem active>Crumb</BreadcrumbItem>*/}
-                            {/*</Breadcrumb>*/}
+                        <div className={`container-fluid app-body ${ (this.state.isMenuOpened) && 'opened'}`}>
                             <Switch>
-                                <Route exact path="/app/dashboard" name="Dashboard" component={Dashboard}/>
+                                <Route path="/app/dashboard" name="Dashboard" component={Dashboard}/>
                                 <Route exact path="/app/profile" name="Profile" component={Profile}/>
-                                {/* <Route path={"/app/profile/settings"} name={"Settings"} component={Settings}/> */}
                                 <Route exact path="/app/courses" name="Courses" component={Courses}/>
                                 <Route exact path="/app/course/:id" name="Course" component={Course}/>
                                 <Redirect from="/app" to="/app/dashboard"/>
                             </Switch>
                         </div>
-                    </OffCanvasBody>
-                    <OffCanvasMenu className={'side-menu'}>
-                        <Sidebar user={this.state.user} handleLogOut={this.handleLogOut}/>
-                    </OffCanvasMenu>
-                </OffCanvas>
+                    </div>
             </div>
         );
     }

@@ -30,9 +30,9 @@ class Login extends Component {
             password: this.state.password
         });
 
-        axios.post($api_URL+"/login", data, {
+        axios.post($api_URL+"/auth/login", data, {
             headers:{
-            'Accept': 'application/json',
+            'Content-Type': 'application/json'
             }
         })
         .then(response => {
@@ -93,7 +93,7 @@ class Login extends Component {
                                     Dont have an account yet?
                                 </Link>
                             </div>
-                            <Button color={'primary'} variant={'raised'} onClick={this.handleLogin}>Login</Button>
+                            <Button type={'submit'} color={'primary'} variant={'raised'} onClick={this.handleLogin}>Login</Button>
                         </form>
                     </div>
                 </Card>
