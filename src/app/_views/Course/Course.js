@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
+import axios from '../../config/axios';
 import './Course.scss';
 import { Button } from 'material-ui';
 import { Redirect } from 'react-router-dom';
@@ -18,10 +18,11 @@ class Course extends Component {
   }
 
   componentWillMount() {
-    axios.post($api_URL+'/course/' + this.state.id, { user_id: JSON.parse(sessionStorage.getItem('user')).id })
-      .then(data => {
+    // axios.post($api_URL+'/course/' + this.state.id, { user_id: JSON.parse(sessionStorage.getItem('user')).id })
+    axios.get('/courses/user/' + this.state.id + '?current_user=1')
+      .then(res => {
           this.setState({
-            courseInfo: data.data[0],
+            courseInfo: res.data,
           });
         })
       .catch(error => {
@@ -37,12 +38,12 @@ class Course extends Component {
   handeleUnsubscribeCourse() {
     console.log(this.state);
     axios.post($api_URL + '/unsubscribeCourse', { course_id: this.state.id, user_id: JSON.parse(sessionStorage.getItem('user')).id })
-    .then(data => {
-      console.log(data);
-      this.setState({
-        redirect: true,
-      });
-    })
+      .then(data => {
+        console.log(data);
+        this.setState({
+          redirect: true,
+        });
+      })
     .catch(error => {
       console.log(error);
     });
