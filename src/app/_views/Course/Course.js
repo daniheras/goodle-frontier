@@ -62,7 +62,8 @@ class Course extends Component {
       <div className="animated fadeIn">
         <h3>
           {this.state.courseInfo.name}
-        </h3>
+          </h3>
+        {this.state.courseInfo.admin ? <h5>You are the admin of this course</h5>: null}
         <br/>
         <Button color="secondary" variant={'raised'} onClick={this.handeleUnsubscribeCourse}>Unsubscribe Course</Button>
       </div>
