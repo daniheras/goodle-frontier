@@ -71,9 +71,9 @@ class Full extends Component {
                     // </div>
             // </div>
             <div>
-              <nav class="menu" tabindex="0">
-              	<div class="smartphone-menu-trigger"></div>
-                <header class="avatar">
+              <nav className="menu">
+              	<div className="smartphone-menu-trigger"></div>
+                <header className="avatar">
               		<img src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" />
                   <h2>User</h2>
                 </header>
@@ -95,9 +95,9 @@ class Full extends Component {
               </nav>
 
               <main>
-                <div className={`app-canvas ${ (this.state.isMenuOpened) && 'opened' }`}>
-                    <Header handleOffCanvas={this.handleOffCanvas}/>
-                    <div className={`container-fluid app-body ${ (this.state.isMenuOpened) && 'opened'}`}>
+                <div className={`app-canvas`}>
+                    <Header/>
+                    <div className={`container-fluid app-body`}>
                         <Switch>
                             <Route path="/app/dashboard" name="Dashboard" component={Dashboard}/>
                             <Route exact path="/app/profile" name="Profile" component={Profile}/>
