@@ -1,26 +1,238 @@
 @import "../../../styles/_vars";
 
-.app-layout{
-  >div{
-    float: left;
-  }
+$color-1st: $gdle-accent;
+$color-2nd: $gdle-secondary;
+
+$menu-width-desktop: 240px;
+$menu-width-tablet: 90px;
+$menu-width-smartphone: 230px;
+
+$icon-url-base: "http://www.entypo.com/images/";
+$icon-url-dashboard: "${icon-url-base}/gauge.svg";
+$icon-url-customers: "${icon-url-base}/briefcase.svg";
+$icon-url-users: "${icon-url-base}/users.svg";
+$icon-url-settings: "${icon-url-base}/tools.svg";
+
+body{
+	background: $gdle-bg-primary;
+	margin:0;
+	font-family:"Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
+	color:#fff;
+	padding-left:$menu-width-desktop;
 }
+
+main{
+	position:relative;
+	height:100vh;
+}
+
+.menu{
+	background: $gdle-gradient-primary;
+	height:100vh;
+	width:$menu-width-desktop;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:5;
+	outline:none;
+
+	.avatar{
+		padding:2em 0.5em;
+		text-align:center;
+
+		img{
+			width:100px;
+			border-radius:50%;
+			overflow:hidden;
+			border:4px solid $color-1st;
+			box-shadow:0 0 0 4px rgba(255,255,255,0.2);
+		}
+
+		h2{
+			padding-top: 1rem;
+			font-weight:normal;
+			margin-bottom:0;
+			color: $gdle-bg-primary;
+			font-size: 1.5rem;
+		}
+
+		.__info{
+			padding: 1rem;
+			display: flex;
+			justify-content: center;
+
+			.__item{
+				color: $gdle-bg-primary;
+				border-radius: 50%;
+				padding: .5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 .5rem;
+				cursor: pointer;
+				transition: .3s;
+				transform: scale(1);
+
+				&:hover{
+					background: $gdle-bg-primary;
+					color: $gdle-pink;
+					transform: scale(1.2);
+				}
+			}
+		}
+	}
+
+	.nav_links{
+		list-style:none;
+		padding:0.5em 0;
+		margin:0;
+
+		.__menu-item{
+      padding: 1rem 2rem;
+      color: white;
+			font-size:0.95em;
+			font-weight:900;
+			background-repeat:no-repeat;
+			background-position:left 15px center;
+			background-size:auto 20px;
+			transition:all 0.15s linear;
+			cursor:pointer;
+      text-align: left;
+
+      svg{
+        margin-right: 1rem;
+      }
+
+			&:hover{
+				background-color:rgba(0,0,0,0.1);
+			}
+
+		}
+	}
+}
+
+@media screen and (max-width:900px) and (min-width:400px){
+	body{
+		padding-left:$menu-width-tablet;
+	}
+	.menu{
+		width:$menu-width-tablet;
+
+		.avatar{
+			padding:1rem 0;
+			position:relative;
+			img{
+				width:$menu-width-tablet - 30px;
+			}
+
+			.__info{
+				padding: 0;
+				display: flex;
+				flex-flow: row;
+
+				.__item{
+					color: $gdle-bg-primary;
+					border-radius: 50%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin: .5rem .3rem;
+					cursor: pointer;
+					transition: .3s;
+					transform: scale(1);
+					padding: 1rem 0;
+
+					&:hover{
+						background: none;
+						color: $gdle-pink;
+						transform: scale(1);
+					}
+				}
+			}
+		}
+
+		.nav_links{
+			.__menu-item{
+				height:$menu-width-tablet/1.5;
+				background-position:center center;
+				background-size:30px auto;
+				position:relative;
+        margin: 0;
+        text-align: center;
+        font-size: 1.5rem;
+
+				span{
+					display:none;
+				}
+
+				&:hover{
+					span{
+						opacity:1;
+						transform:translate3d(0px,-50%, 0);
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width:400px){
+	body{
+		padding-left:0;
+	}
+
+	.menu{
+		width:$menu-width-smartphone;
+		box-shadow:0 0 0 100em rgba(0,0,0,0);
+		transform:translate3d(-$menu-width-smartphone,0,0);
+		transition:all 0.3s ease-in-out;
+
+		.smartphone-menu-trigger{
+			width:40px;
+			height:40px;
+			position:absolute;
+			left:100%;
+			background:$color-2nd;
+
+			&:before, &:after{
+				content:'';
+				width:50%;
+				height:2px;
+				background:#fff;
+				border-radius:10px;
+				position:absolute;
+				top:45%;
+				left:50%;
+				transform:translate3d(-50%, -50%, 0);
+			}
+
+			&:after{
+				top:55%;
+				transform:translate3d(-50%, -50%, 0);
+			}
+		}
+
+		&:focus{
+			transform:translate3d(0,0,0);
+			box-shadow:0 0 0 100em rgba(0,0,0,0.6);
+
+			.smartphone-menu-trigger{
+				pointer-events:none;
+			}
+		}
+	}
+}
+
+// TODO: Añadir scroll vertical
 
 .app-canvas{
-  width: 100vw;
+	height: 100vh;
 
-  &.opened{
-    width: calc(100vw - #{$side-bar-width});
-  }
-}
+	.app-body{
+		padding: 0;
+		border-top-left-radius: 5px;
+		overflow-y: scroll;
+		height: calc( 100vh - 58px );
+	}
 
-.app-body{
-  padding: 2rem;
-  background: $gdle-bg-primary;
-  height: calc( 100vh - 58px );
-  overflow-y: scroll;
-
-  &.opened{
-    border-top-left-radius: 5px;
-  }
 }
