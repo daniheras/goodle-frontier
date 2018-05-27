@@ -17,6 +17,8 @@ import Sidebar from "../../_components/_structure/sidebar/sidebar";
 import { Link } from 'react-router-dom';
 import nav_links from '../../config/nav-links';
 
+import { FaSliders, FaSignOut, FaBell } from 'react-icons/lib/fa';
+
 class Full extends Component {
 
     state = {
@@ -51,31 +53,23 @@ class Full extends Component {
         }
 
         return (
-            // <div className={'fade-in app-layout'}>
-            //         <Sidebar
-            //             user={this.state.user}
-            //             handleLogOut={this.handleLogOut}
-            //             opened={this.state.isMenuOpened}
-            //             />
-                    // <div className={`app-canvas ${ (this.state.isMenuOpened) && 'opened' }`}>
-                    //     <Header handleOffCanvas={this.handleOffCanvas}/>
-                    //     <div className={`container-fluid app-body ${ (this.state.isMenuOpened) && 'opened'}`}>
-                    //         <Switch>
-                    //             <Route path="/app/dashboard" name="Dashboard" component={Dashboard}/>
-                    //             <Route exact path="/app/profile" name="Profile" component={Profile}/>
-                    //             <Route exact path="/app/courses" name="Courses" component={Courses}/>
-                    //             <Route exact path="/app/course/:id" name="Course" component={Course}/>
-                    //             <Redirect from="/app" to="/app/dashboard"/>
-                    //         </Switch>
-                    //     </div>
-                    // </div>
-            // </div>
             <div>
-              <nav className="menu">
+              <nav className="menu" tabIndex="0">
               	<div className="smartphone-menu-trigger"></div>
                 <header className="avatar">
               		<img src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" />
                   <h2>User</h2>
+                  <div className="__info">
+                      <div className="__item">
+                          <FaSliders/>
+                      </div>
+                      <div className="__item">
+                          <FaBell/>
+                      </div>
+                      <div className="__item" onClick={this.props.handleLogOut}>
+                          <FaSignOut/>
+                      </div>
+                  </div>
                 </header>
               	<div className={'nav_links'}>
                   {
