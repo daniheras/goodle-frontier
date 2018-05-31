@@ -25,7 +25,7 @@ class Courses extends Component {
 
     return (
       <div>
-
+        
       </div>
     )
   }
