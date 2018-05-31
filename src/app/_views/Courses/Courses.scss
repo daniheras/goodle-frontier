@@ -1,1 +1,54 @@
 @import '../../../styles/vars';
+
+$recents_sidebar_width: 300px;
+
+.courses_view{
+
+  &__content{
+    width: calc( 100% - #{$recents_sidebar_width} );
+    padding: 1rem;
+    background: $gdle-bg-primary;
+    float: left;
+    height: 100vh;
+    overflow-y: scroll;
+
+    @media( max-width: $media-xlg){
+      width: 100%;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+
+
+}
+
+.recents_sidebar{
+  width: $recents_sidebar_width;
+  float: left;
+  background: $gdle-bg-primary-darker;
+  height: 100vh;
+  overflow-y: scroll;
+
+  @media( max-width: $media-xlg){
+    display: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__header{
+    text-align: center;
+    background: $gdle-bg-primary;
+    padding: 1rem;
+  }
+
+  &__events{
+    &__event_wrapper{
+      padding: 1rem;
+    }
+  }
+}
