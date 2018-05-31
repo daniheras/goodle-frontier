@@ -33,3 +33,9 @@ $sm-media: 576px;
 $md-media: 768px;
 $lg-media: 992px;
 $xlg-media: 1200px;
+
+//aliases
+$media-sm: $sm-media;
+$media-md: $md-media;
+$media-lg: $lg-media;
+$media-xlg: $xlg-media;

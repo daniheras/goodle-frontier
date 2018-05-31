@@ -7,14 +7,7 @@ $menu-width-desktop: 240px;
 $menu-width-tablet: 90px;
 $menu-width-smartphone: 230px;
 
-$icon-url-base: "http://www.entypo.com/images/";
-$icon-url-dashboard: "${icon-url-base}/gauge.svg";
-$icon-url-customers: "${icon-url-base}/briefcase.svg";
-$icon-url-users: "${icon-url-base}/users.svg";
-$icon-url-settings: "${icon-url-base}/tools.svg";
-
 body{
-	background: $gdle-bg-primary;
 	margin:0;
 	font-family:"Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
 	color:#fff;
@@ -229,10 +222,13 @@ main{
 	height: 100vh;
 
 	.app-body{
-		padding: 0;
 		border-top-left-radius: 5px;
-		overflow-y: scroll;
+		padding: 0;
+		overflow-y: auto;
 		height: calc( 100vh - 58px );
+		color: $gdle-grey;
+		min-height: 100%;
+		background: $gdle-bg-primary;
 	}
 
 }
