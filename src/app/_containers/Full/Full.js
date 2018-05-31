@@ -6,12 +6,7 @@ import Courses from '../../_views/Courses/Courses';
 import Course from '../../_views/Course/Course';
 import Header from '../../_components/_structure/header/header';
 
-//Components
-// import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-
 import './full.scss';
-
-import {OffCanvas, OffCanvasBody, OffCanvasMenu} from 'react-offcanvas';
 import Sidebar from "../../_components/_structure/sidebar/sidebar";
 
 import { Link } from 'react-router-dom';
@@ -57,7 +52,7 @@ class Full extends Component {
               <nav className="menu" tabIndex="0">
               	<div className="smartphone-menu-trigger"></div>
                 <header className="avatar">
-              		<img src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" />
+              		<img src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" alt={'User'}/>
                   <h2>User</h2>
                   <div className="__info">
                       <div className="__item">
