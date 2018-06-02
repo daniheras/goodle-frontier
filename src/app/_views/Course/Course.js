@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
+import axios from '../../config/axios';
 import './Course.scss';
 import { Button } from 'material-ui';
 import { Redirect } from 'react-router-dom';
@@ -18,19 +18,11 @@ class Course extends Component {
   }
 
   componentWillMount() {
-    let token =JSON.parse(sessionStorage.getItem('user')).token;
-    axios.get($api_URL + '/courses/user/' + this.state.id + '?current_user=1',
-        {
-            headers:{
-                'Content-Type': 'application/json',
-                'Authorization': "bearer " + token
-            }
-        }).then(data => {
-          console.log(data);
-
+    // axios.post($api_URL+'/course/' + this.state.id, { user_id: JSON.parse(sessionStorage.getItem('user')).id })
+    axios.get('/courses/user/' + this.state.id + '?current_user=' + JSON.parse(sessionStorage.getItem('user')).id)
+      .then(res => {
           this.setState({
-            courseInfo: data.data,
-            admin: data.data.admin,
+            courseInfo: res.data,
           });
         })
       .catch(error => {
@@ -44,12 +36,12 @@ class Course extends Component {
   handeleUnsubscribeCourse() {
     console.log(this.state);
     axios.post($api_URL + '/unsubscribeCourse', { course_id: this.state.id, user_id: JSON.parse(sessionStorage.getItem('user')).id })
-    .then(data => {
-      console.log(data);
-      this.setState({
-        redirect: true,
-      });
-    })
+      .then(data => {
+        console.log(data);
+        this.setState({
+          redirect: true,
+        });
+      })
     .catch(error => {
       console.log(error);
     });
@@ -68,10 +60,10 @@ class Course extends Component {
       <div className="animated fadeIn">
         <h3>
           {this.state.courseInfo.name}
-        </h3>
-        {(this.state.admin) ? <h4>You are the admin of this course</h4> : ""}
+          </h3>
+        {this.state.courseInfo.admin ? <h5>You are the admin of this course</h5>: null}
         <br/>
-        <Button color="danger" onClick={this.handeleUnsubscribeCourse}>Unsubscribe Course</Button>
+        <Button color="secondary" variant={'raised'} onClick={this.handeleUnsubscribeCourse}>Unsubscribe Course</Button>
       </div>
     );
   }

@@ -5,9 +5,6 @@ import './header.scss';
 
 const Header = props => (
     <div className={'header'} style={{padding: '1rem'}}>
-        <button onClick={props.handleOffCanvas} style={{border: 'none', background: 'none', color: 'white'}}>
-            <FaBars/>
-        </button>
     </div>
 );
 

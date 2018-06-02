@@ -19,6 +19,14 @@ body{
   box-sizing: border-box;
 }
 
+*:focus{
+  outline: none !important;
+}
+
+a{
+  text-decoration: none !important;
+}
+
 .fade-in{
   animation: gdl-fade-in 1s forwards;
 }
@@ -39,5 +47,21 @@ h1, h2, h3, h4, h5{
 
   to{
     opacity: 1;
+  }
+}
+
+//Helpers
+
+//Show for lg only
+@media ( min-width: $xlg-media ){
+  .show-for-small-only{
+    display: none;
+  }
+}
+
+//Hide for lg only
+@media ( max-width: $xlg-media ){
+  .hide-for-small-only{
+    display: none;
   }
 }

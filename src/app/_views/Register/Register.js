@@ -29,7 +29,7 @@ class Register extends Component {
 
         axios.post($api_URL+'/register', data, {
             headers:{
-            'Accept': 'application/json',
+                'Content-Type': 'application/json',
             }
         })
         .then(response => {

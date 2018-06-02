@@ -1,0 +1,103 @@
+@import "../../../../styles/_vars";
+
+.side-bar{
+  padding-top: 1rem;
+  background: $gdle-gradient-primary;
+  height: 100vh;
+  width: $side-bar-width;
+  animation: sidebarIn .3s forwards ease-in;
+  position: relative;
+
+  @keyframes sidebarIn {
+    0%{
+      left: -300px;
+    }
+
+    100%{
+      left: 0;
+    }
+  }
+
+  &.closed{
+    display: none;
+  }
+  
+    .__title{
+      text-align: center;
+      color: white;
+      font-size: 1.5rem;
+      text-shadow: 0 2px 0px rgba(0,0,0, .2);
+      padding-bottom: 2rem;
+  
+      span{
+        font-weight: 600;
+      }
+    }
+  
+    .__profile-section{
+      border-bottom: 2px solid $gdle-bg-primary;
+      margin-bottom: 1rem;
+  
+      .__thumbnail{
+        padding-top: 1rem;
+        width: 100%;
+        position: relative;
+  
+        img{
+          display: block;
+          border-radius: 50%;
+          border: 5px solid $gdle-blue;
+          width: 100px;
+          margin: auto;
+        }
+      }
+  
+      .__info{
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+  
+        .__item{
+          color: $gdle-bg-primary;
+          border-radius: 50%;
+          padding: .5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 .5rem;
+          cursor: pointer;
+          transition: .3s;
+          transform: scale(1);
+  
+          &:hover{
+            background: $gdle-bg-primary;
+            color: $gdle-pink;
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+  
+    .__menu-item{
+      display: inline-block;
+      width: 100%;
+      padding: .5rem 1rem;
+      color: $gdle-white;
+      transition: .2s;
+      border: 0 solid $gdle-pink;
+      color: white;
+        font-weight: 600;
+        
+        &:hover{
+          text-decoration: none;
+        }
+  
+      svg{
+        margin-right: 1rem;
+      }
+    }
+  
+    .__menu-item:hover{
+      border-left: 10px solid $gdle-pink;
+    }
+  }

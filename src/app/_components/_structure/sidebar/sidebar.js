@@ -9,11 +9,14 @@ import {
     FaBell,
 } from 'react-icons/lib/fa';
 
+import './sidebar.scss';
+
 class Sidebar extends Component {
 
     render() {
+
         return (
-            <div>
+            <div className={`side-bar ${ (!this.props.opened) && 'closed' }`}>
                 <div className="__title">
                     <span>Goodle</span>
                 </div>
@@ -40,11 +43,13 @@ class Sidebar extends Component {
                 </div>
                 {
                     nav_links.links.map( link => (
-                        <div className={'__menu-item'} key={link.key}>
-                            { link.icon }
-                            <Link to={link.link}>
-                                { link.name }</Link>
-                        </div>
+
+                        <Link to={link.link} key={link.key}>
+                            <div className={'__menu-item'}>
+                                { link.icon }
+                                    { link.name }
+                            </div>
+                        </Link>
                     ) )
                 }
             </div>

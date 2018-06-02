@@ -14,6 +14,11 @@ import './full.scss';
 import {OffCanvas, OffCanvasBody, OffCanvasMenu} from 'react-offcanvas';
 import Sidebar from "../../_components/_structure/sidebar/sidebar";
 
+import { Link } from 'react-router-dom';
+import nav_links from '../../config/nav-links';
+
+import { FaSliders, FaSignOut, FaBell } from 'react-icons/lib/fa';
+
 class Full extends Component {
 
     state = {
@@ -48,31 +53,55 @@ class Full extends Component {
         }
 
         return (
-            <div className={'fade-in'}>
-                <OffCanvas width={250} transitionDuration={300} isMenuOpened={this.state.isMenuOpened}
-                           position={'left'}>
-                    <OffCanvasBody>
-                        <Header handleOffCanvas={this.handleOffCanvas}/>
-                        <div className={'container-fluid app-view'}>
-                            {/*<Breadcrumb>*/}
-                            {/*<BreadcrumbItem><a href="#Link">Home</a></BreadcrumbItem>*/}
-                            {/*<BreadcrumbItem><a href="#Link">Bread</a></BreadcrumbItem>*/}
-                            {/*<BreadcrumbItem active>Crumb</BreadcrumbItem>*/}
-                            {/*</Breadcrumb>*/}
-                            <Switch>
-                                <Route exact path="/app/dashboard" name="Dashboard" component={Dashboard}/>
-                                <Route exact path="/app/profile" name="Profile" component={Profile}/>
-                                {/* <Route path={"/app/profile/settings"} name={"Settings"} component={Settings}/> */}
-                                <Route exact path="/app/courses" name="Courses" component={Courses}/>
-                                <Route exact path="/app/course/:id" name="Course" component={Course}/>
-                                <Redirect from="/app" to="/app/dashboard"/>
-                            </Switch>
-                        </div>
-                    </OffCanvasBody>
-                    <OffCanvasMenu className={'side-menu'}>
-                        <Sidebar user={this.state.user} handleLogOut={this.handleLogOut}/>
-                    </OffCanvasMenu>
-                </OffCanvas>
+            <div>
+              <nav className="menu" tabIndex="0">
+              	<div className="smartphone-menu-trigger"></div>
+                <header className="avatar">
+              		<img src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" />
+                  <h2>User</h2>
+                  <div className="__info">
+                      <div className="__item">
+                          <FaSliders/>
+                      </div>
+                      <div className="__item">
+                          <FaBell/>
+                      </div>
+                      <div className="__item" onClick={this.props.handleLogOut}>
+                          <FaSignOut/>
+                      </div>
+                  </div>
+                </header>
+              	<div className={'nav_links'}>
+                  {
+                      nav_links.links.map( link => (
+
+                          <Link to={link.link} key={link.key}>
+                              <div className={'__menu-item'}>
+                                  { link.icon }
+                                  <span>
+                                    { link.name }
+                                  </span>
+                              </div>
+                          </Link>
+                      ) )
+                  }
+                </div>
+              </nav>
+
+              <main>
+                <div className={`app-canvas`}>
+                    <Header/>
+                    <div className={`container-fluid app-body`}>
+                        <Switch>
+                            <Route path="/app/dashboard" name="Dashboard" component={Dashboard}/>
+                            <Route exact path="/app/profile" name="Profile" component={Profile}/>
+                            <Route exact path="/app/courses" name="Courses" component={Courses}/>
+                            <Route exact path="/app/course/:id" name="Course" component={Course}/>
+                            <Redirect from="/app" to="/app/dashboard"/>
+                        </Switch>
+                    </div>
+                </div>
+              </main>
             </div>
         );
     }

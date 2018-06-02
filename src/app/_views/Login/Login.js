@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import axios from '../../config/axios';
 import { Redirect, Link } from 'react-router-dom';
 
 import { $api_URL } from "../../config/constants";
@@ -25,17 +25,16 @@ class Login extends Component {
             password: this.state.password
         });
 
-        axios.post($api_URL+"/auth/login", data, {
-            headers:{
-                'Content-Type': 'application/json',
-            }
-        })
+        axios.post("/auth/login", data)
         .then(response => {
             if (response.status === 200) {
                 var data = JSON.stringify(response.data);
-                sessionStorage.setItem('user', data);
-                this.setState({redirect: true});
-                return data;
+                sessionStorage.setItem('token', data);
+                axios.get('/user', {headers: {'Authorization': "bearer " + JSON.parse(sessionStorage.getItem('token')).token}})
+                    .then(info => {
+                        sessionStorage.setItem('user', JSON.stringify(info.data));
+                        this.setState({redirect: true});
+                        })
             }
         })
         .catch(error => {
