@@ -80,10 +80,7 @@ const EventCard = Card.extend`
 `;
 
 const CoursesCard = Card.extend`
-  height: 240px;
-  -webkit-box-shadow: 0px 10px 3px -6px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 10px 3px -6px rgba(0,0,0,0.75);
-box-shadow: 0px 10px 3px -6px rgba(0,0,0,0.75);
+  height: 100%;
 
   .__card_overlay{
     &__title{
@@ -120,7 +117,7 @@ box-shadow: 0px 10px 3px -6px rgba(0,0,0,0.75);
 
 const CourseCard = props => {
     return (
-        <div>
+        <div style={{height: '100%'}}>
             {
               ( props.variant === 'event' ) &&
                 <EventCard
