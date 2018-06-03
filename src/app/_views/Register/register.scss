@@ -11,6 +11,7 @@
     padding: 5em 2em 3em;
     background: #fff;
     border-radius: 6px;
+    width: 300px;
     position: relative;
 
     header {
@@ -95,7 +96,7 @@
         }
 
         input{
-          width: 250px;
+          width: 100%;
           border: 0;
           outline: 0;
           color: $gdle-grey;

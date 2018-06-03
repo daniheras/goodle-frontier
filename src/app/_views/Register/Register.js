@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import axios from '../../config/axios';
 import { Redirect, Link } from 'react-router-dom';
 
 import './register.scss';
-
-import { $api_URL } from "../../config/constants";
 
 class Register extends Component {
     constructor(props) {
@@ -27,11 +25,7 @@ class Register extends Component {
             password: this.state.password,
         });
 
-        axios.post($api_URL+'/register', data, {
-            headers:{
-                'Content-Type': 'application/json',
-            }
-        })
+        axios.post('/register', data)
         .then(response => {
             if (response.status === 201) {
                 var data = JSON.stringify(response.data);
@@ -95,8 +89,6 @@ class Register extends Component {
         return true;
     }
 
-    // TODO: messages info errors (unique fields...)
-    // TODO: repeat password confirm
     render() {
         if (this.state.redirect) {
             return <Redirect push to="/auth/login" />;

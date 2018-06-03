@@ -12,6 +12,7 @@
     background: #fff;
     border-radius: 6px;
     position: relative;
+    width: 300px;
 
     header {
       background: $gdle-accent;
@@ -95,7 +96,7 @@
         }
 
         input{
-          width: 250px;
+          width: 100%;
           border: 0;
           outline: 0;
           color: $gdle-grey;
