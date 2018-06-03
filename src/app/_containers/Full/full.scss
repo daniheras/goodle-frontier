@@ -104,7 +104,7 @@ main{
 	}
 }
 
-@media screen and (max-width:900px) and (min-width:400px){
+@media screen and (max-width:$media-xlg) and (min-width:$media-md){
 	body{
 		padding-left:$menu-width-tablet;
 	}
@@ -116,6 +116,10 @@ main{
 			position:relative;
 			img{
 				width:$menu-width-tablet - 30px;
+			}
+
+			h2{
+				display: none;
 			}
 
 			.__info{
@@ -169,7 +173,7 @@ main{
 	}
 }
 
-@media screen and (max-width:400px){
+@media screen and (max-width: $media-md){
 	body{
 		padding-left:0;
 	}

@@ -1,12 +1,13 @@
-export const themes = [
-  {
+export const themes = {
+  forest: {
     theme: 'forest',
     recomendedColors: [
       "rgba(55,202,118,.58)",
-      "rgba(39,186,156,.58)"
+      "rgba(39,186,156,.58)",
+      "rgba(57,150,215,.58)",
     ]
   },
-  {
+  city: {
     theme: 'city',
     recomendedColors: [
       "rgba(57,150,215,.58)",
@@ -14,7 +15,7 @@ export const themes = [
       "rgba(55,74,93,.58)"
     ]
   },
-  {
+  fantasy: {
     theme: 'fantasy',
     recomendedColors: [
       "rgba(229,79,67,.58)",
@@ -22,7 +23,7 @@ export const themes = [
       "rgba(57,150,215,.58)"
     ]
   },
-  {
+  firewatch: {
     theme: 'firewatch',
     recomendedColors: [
       "rgba(228,126,53,.58)",
@@ -32,15 +33,7 @@ export const themes = [
       "rgba(229,79,67,.58)",
     ]
   },
-  {
-    theme: 'forest',
-    recomendedColors: [
-      "rgba(55,202,118,.58)",
-      "rgba(57,150,215,.58)",
-      "rgba(39,186,156,.58)"
-    ]
-  },
-  {
+  mountains: {
     theme: 'mountains',
     recomendedColors: [
       "rgba(228,126,53,.58)",
@@ -52,7 +45,7 @@ export const themes = [
       "rgba(153,90,177,.58)",
     ]
   },
-  {
+  winter: {
     theme: 'winter',
     recomendedColors: [
       "rgba(57,150,215,.58)",
@@ -62,7 +55,7 @@ export const themes = [
       "rgba(39,186,156,.58)"
     ]
   },
-  {
+  wolf: {
     theme: 'wolf',
     recomendedColors: [
       "rgba(153,90,177,.58)",
@@ -70,7 +63,7 @@ export const themes = [
       "rgba(229,79,67,.58)",
     ]
   },
-  {
+  asia: {
     theme: 'asia',
     recomendedColors: [
       "rgba(55,202,118,.58)",
@@ -78,4 +71,4 @@ export const themes = [
       "rgba(39,186,156,.58)"
     ]
   }
-]
+};

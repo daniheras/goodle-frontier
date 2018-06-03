@@ -7,7 +7,7 @@ import {FaCalendarCheckO,FaStar, FaGroup} from 'react-icons/lib/fa';
 
 // Estilos comunes de todos los cards
 const Card = styled.div`
-  background: url("${$assets_URL}/themes/${props => props.theme}/background.jpg") center, url("${$assets_URL}/themes/${props => props.theme}/background.png") center;
+  background: url("${$assets_URL}/themes/${props => props.theme}.jpg") center, url("${$assets_URL}/themes/${props => props.theme}.png") center;
   background-size: cover;
   border-radius: 6px;
   overflow: hidden;
