@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaBars } from 'react-icons/lib/fa';
 
 import './header.scss';
 

@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import axios from '../../config/axios';
 import { Redirect, Link } from 'react-router-dom';
 
-import { $api_URL } from "../../config/constants";
-
 import './login.scss';
 
 class Login extends Component {

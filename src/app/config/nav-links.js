@@ -2,7 +2,8 @@ import React from "react";
 import {
     FaDashboard,
     FaUser,
-    FaBook
+    FaBook,
+    FaCalendarCheckO
 } from 'react-icons/lib/fa';
 
 export default {
@@ -24,6 +25,12 @@ export default {
             name: 'Courses',
             link: '/app/courses',
             icon: <FaBook/>
+        },
+        {
+            key: 4,
+            name: 'Calendar',
+            link: '/app/calendar',
+            icon: <FaCalendarCheckO/>
         },
     ]
 }
