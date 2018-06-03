@@ -87,29 +87,34 @@ class Login extends Component {
         return (
             <div className="fade-in login-page">
                 <div className="login-form">
-                    <h1>Goodle<span>Login</span></h1>
-                    <form method="POST">
-                        <div className="form-group username">
-                            <label htmlFor="username">UserName *</label>
-                            <input type="text" id="username" name="username" onChange={this.handleChange}/>
-                        </div>
-                        <div className="form-group password">
-                            <label htmlFor="password">Password *</label>
-                            <input type="password" id="password" name="password" onChange={this.handleChange}/>
-                            <span>{this.state.passwordError}</span>
-                        </div>
-                        <div className="tip">
-                            <Link to={'#forgottenPassword'}>
-                                Forgotten password?
-                            </Link>
-                        </div>
-                        <div className="tip">
-                            <Link to={'/auth/register'}>
-                                Dont have an account yet?
-                            </Link>
-                        </div>
-                        <button className="login-btn" onClick={this.handleLogin}>Login</button>
-                    </form>
+                <header>
+                    <h1>Login</h1>
+                </header>
+
+                <form method="POST">
+                    <div className="form-group username">
+                        <label htmlFor="username">UserName *</label>
+                        <input type="text" id="username" name="username" onChange={this.handleChange}/>
+                        <span>{this.state.usernameError}</span>
+                    </div>
+                    <div className="form-group password">
+                        <label htmlFor="password">Password *</label>
+                        <input type="password" id="password" name="password" onChange={this.handleChange}/>
+                        <span>{this.state.passwordError}</span>
+                    </div>
+                    <div className="tip">
+                        <Link to={'#forgottenPassword'}>
+                            Forgotten password?
+                        </Link>
+                    </div>
+                    <div className="tip">
+                        <Link to={'/auth/register'}>
+                            Dont have an account yet?
+                        </Link>
+                    </div>
+                    <button className="login-btn" onClick={this.handleLogin} disabled={ (this.state.username === '' || this.state.password === '') }>Login</button>
+                    <p className="error-message">{ this.state.errorMessage }</p>
+                </form>
                 </div>
             </div>
         )

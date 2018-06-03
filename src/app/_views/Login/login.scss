@@ -8,9 +8,25 @@
   justify-content: center;
 
   .login-form{
-    padding: 3rem;
+    padding: 5rem 2em 3em;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 6px;
+    position: relative;
+
+    header {
+      background: $gdle-accent;
+      border-radius: 6px;
+      position: absolute;
+      padding: 10px;
+      top: calc(-1.25em - 10px);
+      left: 3em;
+      width: calc(100% - 6em);
+
+      h1 {
+        margin: 0;
+        color: #fff;
+      }
+    }
 
     .tip{
       text-align: center;
@@ -33,7 +49,7 @@
 
       .form-group{
         position: relative;
-        margin: 35px 0 40px 0;
+        margin: 0px 0 40px 0;
 
         &.error{
           &:after, &:before{
@@ -51,7 +67,7 @@
           height: 1px;
           content: "";
           position: absolute;
-          transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+          transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0s;
           pointer-events: none;
           background-color: rgba(0, 0, 0, 0.42);
         }
@@ -63,7 +79,7 @@
           content: "";
           position: absolute;
           transform: scaleX(0);
-          transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+          transition: transform 0.3s cubic-bezier(0.0, 0, 0.2, 1) 0s;
           pointer-events: none;
           background-color: $gdle-primary;
         }
@@ -82,7 +98,7 @@
           width: 250px;
           border: 0;
           outline: 0;
-          color: $gdle-primary;
+          color: $gdle-grey;
           padding-left: 10px;
         }
 
@@ -91,6 +107,7 @@
           top: 0;
           cursor: text;
           transition: all 0.25s;
+          color: $gdle-primary;
 
           &.top{
             top: -20px;
@@ -122,6 +139,16 @@
         &:hover{
           opacity: 0.8;
         }
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 1;
+        }
+      }
+
+      .error-message {
+        text-align: center;
+        color: red;
       }
     }
 

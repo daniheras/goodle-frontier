@@ -8,9 +8,25 @@
   justify-content: center;
 
   .register-form{
-    padding: 3rem;
+    padding: 5em 2em 3em;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 6px;
+    position: relative;
+
+    header {
+      background: $gdle-accent;
+      border-radius: 6px;
+      position: absolute;
+      padding: 10px;
+      top: calc(-1.25em - 10px);
+      left: 3em;
+      width: calc(100% - 6em);
+
+      h1 {
+        margin: 0;
+        color: #fff;
+      }
+    }
 
     .tip{
       text-align: center;
@@ -33,7 +49,7 @@
 
       .form-group{
         position: relative;
-        margin: 35px 0 40px 0;
+        margin: 0px 0 40px 0;
 
         &.error{
           &:after, &:before{
@@ -82,7 +98,7 @@
           width: 250px;
           border: 0;
           outline: 0;
-          color: $gdle-primary;
+          color: $gdle-grey;
           padding-left: 10px;
         }
 
@@ -91,6 +107,7 @@
           top: 0;
           cursor: text;
           transition: all 0.25s;
+          color: $gdle-primary;
 
           &.top{
             top: -20px;
@@ -122,6 +139,16 @@
         &:hover{
           opacity: 0.8;
         }
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 1;
+        }
+      }
+
+      .error-message{
+        text-align: center;
+        color: red;
       }
     }
 

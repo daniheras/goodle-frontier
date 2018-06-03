@@ -37,12 +37,13 @@ class Register extends Component {
                 var data = JSON.stringify(response.data);
                 console.log(data);
                 this.setState({redirect: true});
-                return data;
             }
         })
         .catch(error => {
             console.log(error.response.data.error);
-            return error.response.data.error;
+            this.setState({
+                registerError: error.response.data.error
+            })
         })
 
     }
@@ -62,6 +63,12 @@ class Register extends Component {
             errorMessage = e.target.value === '' ? "Email required" : errorMessage;
             this.setState({
                 emailError: errorMessage
+            })
+        } else if (e.target.name === 'username') {
+            let usernameError = e.target.value === '' ? "Username required" : '';
+            isValid = e.target.value !== '' && this._validatePassword(e.target.value);
+            this.setState({
+                usernameError: usernameError
             })
         } else if (e.target.name === 'password') {
             let passwordMessage = this._validatePassword(e.target.value) ? "" : "Password invalid";
@@ -96,42 +103,10 @@ class Register extends Component {
         }
         return (
             <div className="fade-in register-page">
-                {/*<Card className="register-form">
-                    <h1>Sign<span>Up</span></h1>
-                    <form method="POST">
-                        <TextField
-                            type={'email'}
-                            name={'email'}
-                            label="Email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                            margin="normal"
-                        />
-                        <TextField
-                            name={'username'}
-                            label="UserName"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                            margin="normal"
-                        />
-                        <TextField
-                            type={'password'}
-                            name={'password'}
-                            label="Password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            margin="normal"
-                        />
-                        <div className="tip">
-                            <Link to={'/auth/login'}>
-                                Have an account?
-                            </Link>
-                        </div>
-                        <Button color={'primary'} variant={'raised'} onClick={this.handleRegister}>Register</Button>
-                    </form>
-                </Card>*/}
                 <div className="register-form">
-                    <h1>Sign<span>Up</span></h1>
+                    <header>
+                        <h1>SignUp</h1>
+                    </header>
                     <form method="POST">
                         <div className="form-group email">
                             <label htmlFor="email">Email *</label>
@@ -141,6 +116,7 @@ class Register extends Component {
                         <div className="form-group username">
                             <label htmlFor="username">UserName *</label>
                             <input type="text" id="username" name="username" onChange={this.handleChange}/>
+                            <span>{ this.state.usernameError }</span>
                         </div>
                         <div className="form-group password">
                             <label htmlFor="password">Password *</label>
@@ -152,7 +128,8 @@ class Register extends Component {
                                 Have an account?
                             </Link>
                         </div>
-                        <button className="register-btn" onClick={this.handleRegister}>Register</button>
+                        <button className="register-btn" onClick={this.handleRegister} disabled={ this.state.email === '' || this.state.username === '' || this.state.password === '' }>Register</button>
+                        <p className="error-message">{ this.state.registerError }</p>
                     </form>
                 </div>
             </div>
