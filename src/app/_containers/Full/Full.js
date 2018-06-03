@@ -61,7 +61,7 @@ class Full extends Component {
                       <div className="__item">
                           <FaBell/>
                       </div>
-                      <div className="__item" onClick={this.props.handleLogOut}>
+                      <div className="__item" onClick={this.handleLogOut}>
                           <FaSignOut/>
                       </div>
                   </div>
