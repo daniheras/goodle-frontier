@@ -72,7 +72,6 @@ const courses = [
     }
   },
 ]
-
 const recently = [
   {
     id: 1,

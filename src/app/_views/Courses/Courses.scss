@@ -39,6 +39,37 @@ $recents_sidebar_width: 300px;
       }
     }
 
+    &__manage_bar{
+      padding: .5rem 1rem;
+      background: #fff;
+      color: $gdle-grey;
+    }
+
+    &__settings_bar{
+      padding: .5rem 1rem;
+      background: #fff;
+      color: $gdle-grey;
+      hr{
+        margin: 0;
+      }
+
+      button{
+        float: right;
+      }
+
+      ul{
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        padding-left: .2rem;
+
+        li{
+          display: inline-block;
+          padding: 0 .5rem;
+        }
+      }
+    }
+
     &__my_courses{
       background: #fff;
       overflow: hidden;

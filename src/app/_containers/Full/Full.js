@@ -4,6 +4,7 @@ import Dashboard from '../../_views/Dashboard/Dasshboard';
 import Profile from '../../_views/Profile/Profile';
 import Courses from '../../_views/Courses/Courses';
 import Course from '../../_views/Course/Course';
+import CreateCourse from '../../_views/CreateCourse/CreateCourse';
 import Header from '../../_components/_structure/header/header';
 
 import './full.scss';
@@ -92,6 +93,7 @@ class Full extends Component {
                             <Route exact path="/app/profile" name="Profile" component={Profile}/>
                             <Route exact path="/app/courses" name="Courses" component={Courses}/>
                             <Route exact path="/app/course/:id" name="Course" component={Course}/>
+                            <Route exact path="/app/courses/create" name="Create Course" component={CreateCourse}/>
                             <Redirect from="/app" to="/app/dashboard"/>
                         </Switch>
                     </div>

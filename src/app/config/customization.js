@@ -72,3 +72,9 @@ export const themes = {
     ]
   }
 };
+export const colors = {
+  primary: '#565aa1',
+  secondary: '#fe6b88',
+  extra: '#fea1b3',
+  accent: '#49dcc0',
+}
