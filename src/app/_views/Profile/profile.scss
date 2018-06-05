@@ -1,0 +1,96 @@
+@import '../../../styles/vars';
+
+$recents_sidebar_width: 300px;
+
+.profile_view{
+
+  &__content{
+    width: calc( 100% - #{$recents_sidebar_width} );
+    background: $gdle-bg-primary;
+    float: left;
+    height: 100vh;
+    overflow-y: scroll;
+
+    @media( max-width: $media-xlg){
+      width: 100%;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__title{
+
+      background: url('https://pre00.deviantart.net/22f8/th/pre/f/2015/181/2/7/flat_mountains_landscape_by_ggiuliafilippini-d8zdbco.jpg') center;
+      background-size: cover;
+      position: relative;
+      text-align: center;
+      width: 100%;
+      height: 200px;
+
+      h2{
+        color: #fff;
+        line-height: 200px;
+      }
+
+      @media( max-width: $media-md ){
+        height: 75px;
+        h2{ line-height: 75px }
+      }
+    }
+  }
+
+
+  .personal_info {
+
+    width: 90%;
+    margin: 60px auto;
+    background: #fff;
+    position: relative;
+
+    header {
+        position: absolute;
+        top: -30px;
+        left: 10%;
+        border-radius: 6px;
+        text-align: center;
+        color: #fff;
+        padding: 15px;
+        background: $gdle-accent;
+        width: 80%;
+    }
+
+    article {
+        display: flex;
+        flex-direction: row;
+        padding-top: 60px;
+
+        .avatar{
+            padding: 2em 0.5em;
+            text-align: center;
+            width: 30%;
+
+            img{
+                width: 200px;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 4px solid $gdle-accent;
+                box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+            }
+
+            h2{
+                padding-top: 1rem;
+                font-weight: normal;
+                margin-bottom: 0;
+                color: $gdle-bg-primary;
+                font-size: 1.5rem;
+            }
+        }
+
+        .info_content {
+            width: 70%;
+        }
+    }
+
+  }
+}
