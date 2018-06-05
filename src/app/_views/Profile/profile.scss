@@ -41,8 +41,7 @@ $recents_sidebar_width: 300px;
   }
 
 
-  .personal_info {
-
+  .personal_info, .account_data{
     width: 90%;
     margin: 60px auto;
     background: #fff;
@@ -63,7 +62,7 @@ $recents_sidebar_width: 300px;
     article {
         display: flex;
         flex-direction: row;
-        padding-top: 60px;
+        padding: 100px 50px 50px;
 
         .avatar{
             padding: 2em 0.5em;
@@ -90,7 +89,11 @@ $recents_sidebar_width: 300px;
         .info_content {
             width: 70%;
         }
+
+
     }
 
   }
+
+
 }

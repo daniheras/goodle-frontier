@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { MdPerson } from 'react-icons/lib/md'
 
+import { Row, Col } from 'reactstrap';
 import Overlay from '../../_components/overlay/overlay';
 
 import './profile.scss';
@@ -32,25 +33,37 @@ class Profile extends Component{
                                 <img  src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" alt="avatar"/>
                             </div>
                             <div className="info_content">
-                                <div className="form-group">
-                                    <label>Name</label>
-                                    <input />
-                                </div>
+                                <Row>
+                                    <Col xl="6">
+                                        <div className="form-group">
+                                            <label htmlFor="name">Name</label>
+                                            <input id="name"/>
+                                        </div>
+                                    </Col>
+                                    <Col xl="6">
+                                        <div className="form-group">
+                                            <label htmlFor="surname">Surname Name</label>
+                                            <input id="surname"/>
+                                        </div>
+                                    </Col>
+                                </Row>
 
-                                <div className="form-group">
-                                    <label>Last Name</label>
-                                    <input />
-                                </div>
-
-                                <div className="form-group">
-                                    <label>Biography</label>
-                                    <input />
-                                </div>
-
-                                <div className="form-group">
-                                    <label>School / Organization</label>
-                                    <input />
-                                </div>
+                                <Row>
+                                    <Col xl="12">
+                                        <div className="form-group">
+                                            <label htmlFor="biography">Biography</label>
+                                            <input id="biography"/>
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xl="6">
+                                        <div className="form-group">
+                                            <label htmlFor="school">School / Organization</label>
+                                            <input id="school"/>
+                                        </div>
+                                    </Col>
+                                </Row>
 
 
 
@@ -58,31 +71,41 @@ class Profile extends Component{
                         </article>
                     </section>
 
-                    <section className="personal_info">
+                    <section className="account_data">
                         <header>
                             <h2>Peronal Info</h2>
                         </header>
                         <article>
                             <div className="account-data">
-                                <div className="form-group">
-                                    <label>UserName</label>
-                                    <input />
-                                </div>
+                                <Row>
+                                    <Col xl="3">
+                                        <div className="form-group">
+                                            <label htmlFor="username">UserName</label>
+                                            <input id="username"/>
+                                        </div>
+                                    </Col>
 
-                                <div className="form-group">
-                                    <label>Email</label>
-                                    <input />
-                                </div>
+                                    <Col xl="3">
+                                        <div className="form-group">
+                                            <label htmlFor="email">Email</label>
+                                            <input id="email"/>
+                                        </div>
+                                    </Col>
 
-                                <div className="form-group">
-                                    <label>Password</label>
-                                    <input />
-                                </div>
+                                    <Col xl="3">
+                                        <div className="form-group">
+                                            <label htmlFor="password">Password</label>
+                                            <input id="password"/>
+                                        </div>
+                                    </Col>
 
-                                <div className="form-group">
-                                    <label>Confirm Password</label>
-                                    <input />
-                                </div>
+                                    <Col xl="3">
+                                        <div className="form-group">
+                                            <label htmlFor="confirmpassword">Confirm Password</label>
+                                            <input id="confirmpassword"/>
+                                        </div>
+                                    </Col>
+                                </Row>
                             </div>
                         </article>
                     </section>
