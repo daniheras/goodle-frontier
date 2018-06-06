@@ -80,9 +80,16 @@ main{
 		padding:0.5em 0;
 		margin:0;
 
+		a.active {
+			.__menu-item {
+				background-color: rgba(0, 0, 0, 0.1);
+				padding-left: 50px;
+			}
+		}
+
 		.__menu-item{
-      padding: 1rem 2rem;
-      color: white;
+			padding: 1rem 2rem;
+			color: white;
 			font-size:0.95em;
 			font-weight:900;
 			background-repeat:no-repeat;
@@ -90,14 +97,14 @@ main{
 			background-size:auto 20px;
 			transition:all 0.15s linear;
 			cursor:pointer;
-      text-align: left;
+      		text-align: left;
 
-      svg{
-        margin-right: 1rem;
-      }
+			svg{
+				margin-right: 1rem;
+			}
 
 			&:hover{
-				background-color:rgba(0,0,0,0.1);
+				background-color:rgba(0,0,0,0.2);
 			}
 
 		}
