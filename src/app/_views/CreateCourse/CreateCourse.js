@@ -33,41 +33,41 @@ class CreateCourse extends Component {
 
         return (
             <Stepper.Provider value={{...this.state, handleInput: this.handleInput, prev: match, changeStep: this.changeStep}}>
-                <main className={'createCourse'}>
-                    <section className={'createCourse__stepper'}>
-                        <div className={'createCourse__stepper__steps'}>
-                            <div className={'createCourse__stepper__steps__step'}>
-                                <Bounce when={this.state.step >= 1} unmountOnExit={false}>
-                                    <div className={`circled-step ${( this.state.step === 1 ) && '--active'}`}>
-                                        1
-                                    </div>
-                                </Bounce>
+                    <main className={'createCourse'}>
+                        <section className={'createCourse__stepper'}>
+                            <div className={'createCourse__stepper__steps'}>
+                                <div className={'createCourse__stepper__steps__step'}>
+                                    <Bounce when={this.state.step >= 1} unmountOnExit={false}>
+                                        <div className={`circled-step ${( this.state.step === 1 ) && '--active'}`}>
+                                            1
+                                        </div>
+                                    </Bounce>
+                                </div>
+                                <div className={'createCourse__stepper__steps__step'}>
+                                    <Bounce when={this.state.step >= 2}>
+                                        <div className={`circled-step ${( this.state.step === 2 ) && '--active'}`}>
+                                            2
+                                        </div>
+                                    </Bounce>
+                                </div>
+                                <div className={'createCourse__stepper__steps__step'}>
+                                    <Bounce when={this.state.step === 3}>
+                                        <div className={`circled-step ${( this.state.step === 3 ) && '--active'}`}>
+                                            3
+                                        </div>
+                                    </Bounce>
+                                </div>
                             </div>
-                            <div className={'createCourse__stepper__steps__step'}>
-                                <Bounce when={this.state.step >= 2}>
-                                    <div className={`circled-step ${( this.state.step === 2 ) && '--active'}`}>
-                                        2
-                                    </div>
-                                </Bounce>
+                            <div className={'createCourse__stepper__content'}>
+                                <Switch>
+                                    <Route path={`${match.url}/stepOne`} component={StepOne}/>
+                                    <Route path={`${match.url}/stepTwo`} component={StepTwo}/>
+                                    <Route path={`${match.url}/stepThree`} component={StepThree}/>
+                                    <Redirect from={`${match.url}`} to={`${match.url}/stepOne`}/>
+                                </Switch>
                             </div>
-                            <div className={'createCourse__stepper__steps__step'}>
-                                <Bounce when={this.state.step === 3}>
-                                    <div className={`circled-step ${( this.state.step === 3 ) && '--active'}`}>
-                                        3
-                                    </div>
-                                </Bounce>
-                            </div>
-                        </div>
-                        <div className={'createCourse__stepper__content'}>
-                            <Switch>
-                                <Route path={`${match.url}/stepOne`} component={StepOne}/>
-                                <Route path={`${match.url}/stepTwo`} component={StepTwo}/>
-                                <Route path={`${match.url}/stepThree`} component={StepThree}/>
-                                <Redirect from={`${match.url}`} to={`${match.url}/stepOne`}/>
-                            </Switch>
-                        </div>
-                    </section>
-                </main>
+                        </section>
+                    </main>
             </Stepper.Provider>
         );
     }
