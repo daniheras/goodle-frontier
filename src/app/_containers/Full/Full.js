@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Redirect, Switch} from 'react-router-dom';
+import {Route, Redirect, Switch, Router} from 'react-router-dom';
 import Dashboard from '../../_views/Dashboard/Dasshboard';
 import Profile from '../../_views/Profile/Profile';
 import Courses from '../../_views/Courses/Courses';
@@ -48,6 +48,9 @@ class Full extends Component {
             return <Redirect push to="/login"/>;
         }
 
+        //Objeto que contiene la ruta actual
+        const { match } = this.props;
+
         return (
             <div>
               <nav className="menu" tabIndex="0">
@@ -89,12 +92,11 @@ class Full extends Component {
                     <Header/>
                     <div className={`container-fluid app-body`}>
                         <Switch>
-                            <Route path="/app/dashboard" name="Dashboard" component={Dashboard}/>
-                            <Route exact path="/app/profile" name="Profile" component={Profile}/>
-                            <Route exact path="/app/courses" name="Courses" component={Courses}/>
-                            <Route exact path="/app/course/:id" name="Course" component={Course}/>
-                            <Route exact path="/app/courses/create" name="Create Course" component={CreateCourse}/>
-                            <Redirect from="/app" to="/app/dashboard"/>
+                            <Route path={`${match.url}/dashboard`} name="Dashboard" component={Dashboard}/>
+                            <Route path={`${match.url}/profile`} name="Profile" component={Profile}/>
+                            <Route exact path={`${match.url}/courses`} name="Courses" component={Courses}/>
+                            <Route path={`${match.url}/courses/create`} name="Create Course" component={CreateCourse}/>
+                            <Redirect from={`${match.url}`} to={`${match.url}/dashboard`}/>
                         </Switch>
                     </div>
                 </div>

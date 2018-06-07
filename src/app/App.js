@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
+
+    BrowserRouter,
     Route,
-    HashRouter,
     Redirect,
     Switch,
-    BrowserRouter
+
 } from 'react-router-dom';
 
 import Full from './_containers/Full/Full';
