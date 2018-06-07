@@ -4,6 +4,7 @@ import { MdPerson } from 'react-icons/lib/md'
 
 import { Row, Col } from 'reactstrap';
 import Overlay from '../../_components/overlay/overlay';
+import Input from '../../_components/input/input';
 
 import './profile.scss';
 
@@ -19,7 +20,7 @@ class Profile extends Component{
             <div className={'profile_view fade-in'}>
                 <div className={'profile_view__content__title'}>
                     <Overlay color={'rgba(254, 107, 136, .6)'}>
-                            <h2><MdPerson/> { this.state.user.username }<span className={'bold'}>Profile</span></h2>
+                            <h2><MdPerson/> { this.state.user.username }<span className={'bold'}> Profile</span></h2>
                     </Overlay>
                 </div>
 
@@ -35,32 +36,30 @@ class Profile extends Component{
                             <div className="info_content">
                                 <Row>
                                     <Col xl="6">
-                                        <div className="form-group">
-                                            <label htmlFor="name">Name</label>
-                                            <input id="name"/>
-                                        </div>
+                                        <Input type="text" class="name active" name="name" id="name" label="Name" value={ this.state.user.name }/>
+
                                     </Col>
                                     <Col xl="6">
-                                        <div className="form-group">
+                                        <div className="form-group active">
                                             <label htmlFor="surname">Surname Name</label>
-                                            <input id="surname"/>
+                                            <input id="surname" defaultValue={ this.state.user.surname }/>
                                         </div>
                                     </Col>
                                 </Row>
 
                                 <Row>
                                     <Col xl="12">
-                                        <div className="form-group">
+                                        <div className="form-group active">
                                             <label htmlFor="biography">Biography</label>
-                                            <input id="biography"/>
+                                            <input id="biography" defaultValue={ this.state.user.biography }/>
                                         </div>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col xl="6">
-                                        <div className="form-group">
+                                        <div className="form-group active">
                                             <label htmlFor="school">School / Organization</label>
-                                            <input id="school"/>
+                                            <input id="school" defaultValue={ this.state.user.school }/>
                                         </div>
                                     </Col>
                                 </Row>
@@ -79,16 +78,16 @@ class Profile extends Component{
                             <div className="account-data">
                                 <Row>
                                     <Col xl="3">
-                                        <div className="form-group">
+                                        <div className="form-group active">
                                             <label htmlFor="username">UserName</label>
-                                            <input id="username"/>
+                                            <input id="username"  defaultValue={ this.state.user.username }/>
                                         </div>
                                     </Col>
 
                                     <Col xl="3">
-                                        <div className="form-group">
+                                        <div className="form-group active">
                                             <label htmlFor="email">Email</label>
-                                            <input id="email"/>
+                                            <input id="email" defaultValue={ this.state.user.email }/>
                                         </div>
                                     </Col>
 
