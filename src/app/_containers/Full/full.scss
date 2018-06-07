@@ -161,9 +161,19 @@ main{
 				background-position:center center;
 				background-size:30px auto;
 				position:relative;
-        margin: 0;
-        text-align: center;
-        font-size: 1.5rem;
+				margin: 0;
+				text-align: center;
+				font-size: 1.5rem;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				padding: 0;
+
+				svg {
+					margin: 0;
+				}
 
 				span{
 					display:none;
@@ -174,6 +184,12 @@ main{
 						opacity:1;
 						transform:translate3d(0px,-50%, 0);
 					}
+				}
+			}
+
+			a.active {
+				.__menu-item {
+					padding-left: 0px;
 				}
 			}
 		}

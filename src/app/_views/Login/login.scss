@@ -8,7 +8,7 @@
   justify-content: center;
 
   .login-form{
-    padding: 5rem 2em 3em;
+    padding: 2em;
     background: #fff;
     border-radius: 6px;
     position: relative;
@@ -46,6 +46,10 @@
       >*{
         display: block;
         margin: 1rem auto;
+      }
+
+      .form-group {
+        margin: 45px 0;
       }
 
       button{
