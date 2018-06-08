@@ -30,43 +30,44 @@ class Profile extends Component{
                             <h2>Peronal Info</h2>
                         </header>
                         <article>
-                            <div className="avatar">
-                                <img  src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" alt="avatar"/>
-                            </div>
-                            <div className="info_content">
-                                <Row>
-                                    <Col xl="6">
-                                        <Input type="text" class="name active" name="name" id="name" label="Name" value={ this.state.user.name }/>
+                            <Row>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                    <div className="avatar">
+                                        <img  src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" alt="avatar"/>
+                                    </div>
+                                </Col>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={6} className="info_content">
+                                        <Row>
+                                            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                <Input type="text" class="name active" name="name" id="name" label="Name" value={ this.state.user.name }/>
 
-                                    </Col>
-                                    <Col xl="6">
-                                        <div className="form-group active">
-                                            <label htmlFor="surname">Surname Name</label>
-                                            <input id="surname" defaultValue={ this.state.user.surname }/>
-                                        </div>
-                                    </Col>
-                                </Row>
+                                            </Col>
+                                            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                <div className="form-group active">
+                                                    <label htmlFor="surname">Surname Name</label>
+                                                    <input id="surname" defaultValue={ this.state.user.surname }/>
+                                                </div>
+                                            </Col>
+                                        </Row>
 
-                                <Row>
-                                    <Col xl="12">
-                                        <div className="form-group active">
-                                            <label htmlFor="biography">Biography</label>
-                                            <input id="biography" defaultValue={ this.state.user.biography }/>
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xl="6">
-                                        <div className="form-group active">
-                                            <label htmlFor="school">School / Organization</label>
-                                            <input id="school" defaultValue={ this.state.user.school }/>
-                                        </div>
-                                    </Col>
-                                </Row>
-
-
-
-                            </div>
+                                        <Row>
+                                            <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                                                <div className="form-group active">
+                                                    <label htmlFor="biography">Biography</label>
+                                                    <input id="biography" defaultValue={ this.state.user.biography }/>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                <div className="form-group active">
+                                                    <label htmlFor="school">School / Organization</label>
+                                                    <input id="school" defaultValue={ this.state.user.school }/>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                </Col>
+                            </Row>
                         </article>
                     </section>
 
@@ -75,37 +76,35 @@ class Profile extends Component{
                             <h2>Peronal Info</h2>
                         </header>
                         <article>
-                            <div className="account-data">
-                                <Row>
-                                    <Col xl="3">
-                                        <div className="form-group active">
-                                            <label htmlFor="username">UserName</label>
-                                            <input id="username"  defaultValue={ this.state.user.username }/>
-                                        </div>
-                                    </Col>
+                            <Row className="account-data">
+                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <div className="form-group active">
+                                        <label htmlFor="username">UserName</label>
+                                        <input id="username"  defaultValue={ this.state.user.username }/>
+                                    </div>
+                                </Col>
 
-                                    <Col xl="3">
-                                        <div className="form-group active">
-                                            <label htmlFor="email">Email</label>
-                                            <input id="email" defaultValue={ this.state.user.email }/>
-                                        </div>
-                                    </Col>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <div className="form-group active">
+                                        <label htmlFor="email">Email</label>
+                                        <input id="email" defaultValue={ this.state.user.email }/>
+                                    </div>
+                                </Col>
 
-                                    <Col xl="3">
-                                        <div className="form-group">
-                                            <label htmlFor="password">Password</label>
-                                            <input id="password"/>
-                                        </div>
-                                    </Col>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <div className="form-group">
+                                        <label htmlFor="password">Password</label>
+                                        <input id="password"/>
+                                    </div>
+                                </Col>
 
-                                    <Col xl="3">
-                                        <div className="form-group">
-                                            <label htmlFor="confirmpassword">Confirm Password</label>
-                                            <input id="confirmpassword"/>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
+                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <div className="form-group">
+                                        <label htmlFor="confirmpassword">Confirm Password</label>
+                                        <input id="confirmpassword"/>
+                                    </div>
+                                </Col>
+                            </Row>
                         </article>
                     </section>
                 </div>
