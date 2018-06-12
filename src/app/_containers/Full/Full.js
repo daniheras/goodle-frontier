@@ -4,6 +4,7 @@ import Dashboard from '../../_views/Dashboard/Dasshboard';
 import Profile from '../../_views/Profile/Profile';
 import Courses from '../../_views/Courses/Courses';
 import Course from '../../_views/Course/Course';
+import Messages from '../../_views/Messages/Messages';
 import CreateCourse from '../../_views/CreateCourse/CreateCourse';
 import Header from '../../_components/_structure/header/header';
 
@@ -59,15 +60,17 @@ class Full extends Component {
               		<img src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" alt={'User'}/>
                   <h2>User</h2>
                   <div className="__info">
-                      <div className="__item">
-                          <FaSliders/>
-                      </div>
-                      <div className="__item">
-                          <FaBell/>
-                      </div>
-                      <div className="__item" onClick={this.props.handleLogOut}>
-                          <FaSignOut/>
-                      </div>
+                    <div className="__item">
+                        <FaSliders/>
+                    </div>
+                    <div className="__item">
+                        <Link to='messages' key='messages'>
+                            <FaBell/>
+                        </Link>
+                    </div>
+                    <div className="__item" onClick={this.props.handleLogOut}>
+                        <FaSignOut/>
+                    </div>
                   </div>
                 </header>
               	<div className={'nav_links'}>
@@ -94,6 +97,7 @@ class Full extends Component {
                         <Switch>
                             <Route path={`${match.url}/dashboard`} name="Dashboard" component={Dashboard}/>
                             <Route path={`${match.url}/profile`} name="Profile" component={Profile}/>
+                            <Route path={`${match.url}/messages`} name="Messages" component={Messages}/>
                             <Route exact path={`${match.url}/courses`} name="Courses" component={Courses}/>
                             <Route path={`${match.url}/courses/create`} name="Create Course" component={CreateCourse}/>
                             <Redirect from={`${match.url}`} to={`${match.url}/dashboard`}/>
