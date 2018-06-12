@@ -71,6 +71,13 @@ main{
 					color: $gdle-pink;
 					transform: scale(1.2);
 				}
+				a {
+					color: $gdle-bg-primary;
+
+					&:hover{
+						color: $gdle-pink;
+					}
+				}
 			}
 		}
 	}
