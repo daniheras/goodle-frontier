@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from '../../config/axios';
 import { Redirect, Link } from 'react-router-dom';
+import Input from '../../_components/input/input';
 
 import './register.scss';
 
@@ -100,21 +101,10 @@ class Register extends Component {
                         <h1>SignUp</h1>
                     </header>
                     <form method="POST">
-                        <div className="form-group email">
-                            <label htmlFor="email">Email *</label>
-                            <input type="text" name="email" id="email" onChange={this.handleChange}/>
-                            <span>{this.state.emailError}</span>
-                        </div>
-                        <div className="form-group username">
-                            <label htmlFor="username">UserName *</label>
-                            <input type="text" id="username" name="username" onChange={this.handleChange}/>
-                            <span>{ this.state.usernameError }</span>
-                        </div>
-                        <div className="form-group password">
-                            <label htmlFor="password">Password *</label>
-                            <input type="password" id="password" name="password" onChange={this.handleChange}/>
-                            <span>{this.state.passwordError}</span>
-                        </div>
+                        <Input type="text" class="email active" name="email" id="email" label="Email" handleChange={this.handleChange} errorMessage={this.state.emailError}/>
+                        <Input type="text" class="username active" name="username" id="username" label="Username" handleChange={this.handleChange} errorMessage={this.state.usernameError}/>
+                        <Input type="password" class="password active" name="password" id="password" label="Password" handleChange={this.handleChange} errorMessage={this.state.passwordError}/>
+
                         <div className="tip">
                             <Link to={'/auth/login'}>
                                 Have an account?

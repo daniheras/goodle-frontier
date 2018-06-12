@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Redirect, Switch} from 'react-router-dom';
+import {Route, Redirect, Switch, NavLink} from 'react-router-dom';
 import Dashboard from '../../_views/Dashboard/Dasshboard';
 import Profile from '../../_views/Profile/Profile';
 import Courses from '../../_views/Courses/Courses';
@@ -70,14 +70,14 @@ class Full extends Component {
                   {
                       nav_links.links.map( link => (
 
-                          <Link to={link.link} key={link.key}>
+                          <NavLink to={link.link} key={link.key}>
                               <div className={'__menu-item'}>
                                   { link.icon }
                                   <span>
                                     { link.name }
                                   </span>
                               </div>
-                          </Link>
+                          </NavLink>
                       ) )
                   }
                 </div>
