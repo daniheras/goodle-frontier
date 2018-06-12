@@ -22,10 +22,11 @@
       background: $gdle-accent;
       display: flex;
       border-radius: 30px;
-      position: relative;
+      position: sticky;
       top: -25px;
       right: 2.5%;
       box-shadow: 0 0 15px $gdle-accent;
+      z-index: 99;
 
       @media( max-width: $media-md){
         width: 100%;
@@ -68,7 +69,6 @@
     &__content{
       font-size: 1rem;
       padding: 2rem;
-      text-align: center;
     }
   }
 }

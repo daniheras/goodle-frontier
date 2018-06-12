@@ -1,0 +1,19 @@
+@import '../../../../../styles/vars';
+
+.floating-next-step{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 2rem;
+}
+
+.course-preview{
+  width: 300px;
+  left: 0;
+  right: 0;
+  margin: 3rem auto;
+
+  &::before{
+    content: 'Course preview:';
+  }
+}
