@@ -92,7 +92,7 @@ class Login extends Component {
 
                 <form method="POST">
                     <Input type="text" class="username" name="username" id="username" label="UserName *" handleChange={this.handleChange} errorMessage={this.state.usernameError}/>
-                    <Input type="text" class="password" name="password" id="password" label="Password *" handleChange={this.handleChange} errorMessage={this.state.passwordError}/>
+                    <Input type="password" class="password" name="password" id="password" label="Password *" handleChange={this.handleChange} errorMessage={this.state.passwordError}/>
 
                     <div className="tip">
                         <Link to={'#forgottenPassword'}>

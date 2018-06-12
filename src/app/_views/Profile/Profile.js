@@ -43,27 +43,18 @@ class Profile extends Component{
 
                                             </Col>
                                             <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                <div className="form-group active">
-                                                    <label htmlFor="surname">Surname Name</label>
-                                                    <input id="surname" defaultValue={ this.state.user.surname }/>
-                                                </div>
+                                                <Input type="text" class="surname active" name="surname" id="surname" label="Surname" value={ this.state.user.surname }/>
                                             </Col>
                                         </Row>
 
                                         <Row>
                                             <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                                                <div className="form-group active">
-                                                    <label htmlFor="biography">Biography</label>
-                                                    <input id="biography" defaultValue={ this.state.user.biography }/>
-                                                </div>
+                                                <Input type="text" class="biography active" name="biography" id="biography" label="Biography" value={ this.state.user.biography }/>
                                             </Col>
                                         </Row>
                                         <Row>
                                             <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-                                                <div className="form-group active">
-                                                    <label htmlFor="school">School / Organization</label>
-                                                    <input id="school" defaultValue={ this.state.user.school }/>
-                                                </div>
+                                                <Input type="text" class="school active" name="school" id="school" label="School" value={ this.state.user.school }/>
                                             </Col>
                                         </Row>
                                 </Col>
@@ -78,31 +69,19 @@ class Profile extends Component{
                         <article>
                             <Row className="account-data">
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <div className="form-group active">
-                                        <label htmlFor="username">UserName</label>
-                                        <input id="username"  defaultValue={ this.state.user.username }/>
-                                    </div>
+                                    <Input type="text" class="username active" name="username" id="username" label="Username" value={ this.state.user.username }/>
                                 </Col>
 
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <div className="form-group active">
-                                        <label htmlFor="email">Email</label>
-                                        <input id="email" defaultValue={ this.state.user.email }/>
-                                    </div>
+                                    <Input type="text" class="email active" name="email" id="email" label="Email" value={ this.state.user.email }/>
                                 </Col>
 
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <div className="form-group">
-                                        <label htmlFor="password">Password</label>
-                                        <input id="password"/>
-                                    </div>
+                                    <Input type="password" class="password active" name="password" id="password" label="Password" value={ this.state.user.password }/>
                                 </Col>
 
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <div className="form-group">
-                                        <label htmlFor="confirmpassword">Confirm Password</label>
-                                        <input id="confirmpassword"/>
-                                    </div>
+                                    <Input type="password" class="confirmpassword active" name="confirmpassword" id="confirmpassword" label="Confirm Password" value={ this.state.user.confirmpassword }/>
                                 </Col>
                             </Row>
                         </article>
