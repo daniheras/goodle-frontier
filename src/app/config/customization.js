@@ -1,31 +1,37 @@
 export const themes = {
     forest: {
+        id: 1,
         theme: 'forest',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(55,202,118,.58)",
             "rgba(39,186,156,.58)",
             "rgba(57,150,215,.58)",
         ]
     },
     city: {
+        id: 2,
         theme: 'city',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(57,150,215,.58)",
             "rgba(153,90,177,.58)",
             "rgba(55,74,93,.58)"
         ]
     },
     fantasy: {
+        id: 3,
         theme: 'fantasy',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(229,79,67,.58)",
             "rgba(55,202,118,.58)",
-            "rgba(57,150,215,.58)"
+            "rgba(57,150,215,.58)",
+            "rgba(55,74,93,.58)",
+            "rgba(153,90,177,.58)"
         ]
     },
     firewatch: {
+        id: 4,
         theme: 'firewatch',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(228,126,53,.58)",
             "rgba(209,86,31,.58)",
             "rgba(240,195,58,.58)",
@@ -34,8 +40,9 @@ export const themes = {
         ]
     },
     mountains: {
+        id: 5,
         theme: 'mountains',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(228,126,53,.58)",
             "rgba(209,86,31,.58)",
             "rgba(240,195,58,.58)",
@@ -46,8 +53,9 @@ export const themes = {
         ]
     },
     winter: {
+        id: 6,
         theme: 'winter',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(57,150,215,.58)",
             "rgba(153,90,177,.58)",
             "rgba(55,74,93,.58)",
@@ -56,16 +64,18 @@ export const themes = {
         ]
     },
     wolf: {
+        id: 7,
         theme: 'wolf',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(153,90,177,.58)",
             "rgba(55,74,93,.58)",
             "rgba(229,79,67,.58)",
         ]
     },
     asia: {
+        id: 8,
         theme: 'asia',
-        recomendedColors: [
+        recommendedColors: [
             "rgba(55,202,118,.58)",
             "rgba(57,150,215,.58)",
             "rgba(39,186,156,.58)"

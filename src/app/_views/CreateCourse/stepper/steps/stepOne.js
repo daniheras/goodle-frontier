@@ -8,19 +8,16 @@ import Pulse from 'react-reveal/Pulse';
 import { colors } from "../../../../config/customization";
 import {Col, Form, FormGroup, Input, Label} from "reactstrap";
 import  EventCard from '../../../../_components/course_card/CourseCard'
+import {InputGroup, InputGroupAddon} from "reactstrap/dist/reactstrap";
+import {Redirect} from "react-router-dom";
 
 class StepOne extends Component {
 
     state={
         courseName: 'Name',
-        courseAvatar: 'https://yt3.ggpht.com/-Cg5Fj49ZlZg/AAAAAAAAAAI/AAAAAAAAAAA/rTNCQ4Rhloc/s100-mo-c-c0xffffffff-rj-k-no/photo.jpg'
-    }
-
-    handleChange = (e) => {
-        this.setState({
-            courseName: e.target.value
-        })
-    }
+        courseAvatar: 'https://yt3.ggpht.com/-Cg5Fj49ZlZg/AAAAAAAAAAI/AAAAAAAAAAA/rTNCQ4Rhloc/s100-mo-c-c0xffffffff-rj-k-no/photo.jpg',
+        courseCategory: 'Category'
+    };
 
     render() {
 
@@ -29,24 +26,27 @@ class StepOne extends Component {
         return (
             <Stepper.Consumer>
                 {
-                    ({content, handleInput, prev, changeStep}) => (
+                    ({content, handleName, handleCategory, handleAvatar, prev, handleSubmit, step}) => (
                         <div>
-                            <Form>
+                            {/*If the step received is not the correct one then redirects to correct step*/}
+                            <Redirect from={`${match.url}`} to={`${prev.url}/${step}`}/>
+                            <Form onSubmit={(e) => handleSubmit(e,2)}>
                                 <FormGroup row>
                                     <Label for="courseName" sm={2}>Course Name*</Label>
                                     <Col sm={10}>
-                                        <Input type="text" name="courseName" id="courseName" placeholder="Course Name" onChange={this.handleChange}/>
+                                        <Input type="text" name="courseName" id="courseName" placeholder="Course Name" onChange={handleName}/>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label for="courseCategory" sm={2}>Category*</Label>
                                     <Col sm={10}>
-                                        <Input type="select" name="courseCategory" id="courseCategory" placeholder="Category">
-                                            <option value="0">--Select Category--</option>
-                                            <option value="1">Programación</option>
-                                            <option value="2">Macramé</option>
-                                            <option value="3">Administración de empresas</option>
-                                            <option value="4">Otro</option>
+                                        <Input type="select" name="courseCategory" id="courseCategory" placeholder="Category" onChange={handleCategory}>
+                                            <option value="">--Select Category--</option>
+                                            <option value="Game Design">Game Design</option>
+                                            <option value="Programación">Programación</option>
+                                            <option value="Macramé">Macramé</option>
+                                            <option value="Administración de empresas">Administración de empresas</option>
+                                            <option value="Otro">Otro</option>
                                         </Input>
                                     </Col>
                                 </FormGroup>
@@ -58,27 +58,24 @@ class StepOne extends Component {
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label for="courseAvatar" sm={2}>Course Avatar</Label>
+                                    {/*<Col sm={10}>*/}
+                                        {/*<Input type="file" name="courseAvatar" id="courseAvatar" placeholder="Course avatar" onChange={this.handleAvatar}/>*/}
+                                    {/*</Col>*/}
                                     <Col sm={10}>
-                                        <Input type="file" name="courseAvatar" id="courseAvatar" placeholder="Course avatar" onChange={this.handleChange}/>
+                                        <InputGroup>
+                                            <InputGroupAddon addonType="prepend">URL</InputGroupAddon>
+                                            <Input type="text" name="courseAvatar" id="courseAvatar" placeholder="Place image url" onChange={handleAvatar}/>
+                                        </InputGroup>
                                     </Col>
                                 </FormGroup>
+
+
+                                <FormGroup row>
+                                    <button type={'submit'} className="btn btn-secondary text-light center">
+                                        Siguiente
+                                    </button>
+                                </FormGroup>
                             </Form>
-                            <div className="course-preview">
-                                <EventCard variant={'event'} data={{
-                                    id: 1,
-                                    course: {
-                                        name: this.state.courseName,
-                                        image: this.state.courseAvatar,
-                                        people: 16,
-                                        theme: 'city',
-                                        color: 'rgba(52, 73, 94, .58)'
-                                    },
-                                    event: {
-                                        date: '22/05/2018',
-                                        info: 'Exercise 2'
-                                    }
-                                }}/>
-                            </div>
                             {/*<Pulse>*/}
                                 {/*<div className={'floating-next-step'}>*/}
                                     {/*<Link onClick={() => changeStep(2)} to={`${prev.url}/stepTwo`}>*/}

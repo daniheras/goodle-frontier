@@ -33,6 +33,7 @@
     "global": "^4.3.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "lodash": "^4.17.10",
     "material-ui": "^1.0.0-beta.44",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
