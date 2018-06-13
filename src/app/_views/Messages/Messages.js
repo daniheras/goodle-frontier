@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { FaBell } from 'react-icons/lib/fa';
 import {Row, Col, Form, FormGroup, Input, Label} from "reactstrap";
-import CourseCard from '../../_components/course_card/CourseCard';
+import MessageCard from '../../_components/message_card/messageCard';
 
 
 import Overlay from '../../_components/overlay/overlay';
@@ -11,80 +11,126 @@ import Overlay from '../../_components/overlay/overlay';
 
 import './messages.scss';
 
-const courses = [
+const messages = [
     {
       id: 1,
-      course: {
+      message: {
         name: 'JavaScript',
-        image: 'https://yt3.ggpht.com/-Cg5Fj49ZlZg/AAAAAAAAAAI/AAAAAAAAAAA/rTNCQ4Rhloc/s100-mo-c-c0xffffffff-rj-k-no/photo.jpg',
-        users: 16,
+        from: 'jose@jose.com  |  JavaScript for dummies',
         theme: 'asia',
         color: 'rgba(220,126,47,.58)',
-        fav: true
-      }
+      },
+      text: {
+        title: "1 Title",
+        content: "1 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
+      },
+      accept: true
     },
     {
       id: 2,
-      course: {
+      message: {
         name: 'CSS',
-        image: 'http://soyfrontend.com/wp-content/uploads/2017/06/tutoriales-de-css.jpg',
-        users: 231,
+        from: 'jose@jose.com  |  JavaScript for dummies',
         theme: 'asia',
         color: 'rgba(47,148,220,.58)',
-        fav: false
-      }
+      },
+      text: {
+        title: "2 Title",
+        content: "2 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
+      },
+      accept: false
     },
     {
       id: 3,
-      course: {
+      message: {
         name: 'Laravel',
-        image: 'https://2.bp.blogspot.com/-yXkS3LFvqvo/WjnHC5gaoaI/AAAAAAAAHVY/j0VkVk6zbhko1GPfyCHg7DivDR6z-irsQCLcBGAs/s250-h200-c/a216-1.jpg',
-        users: 16,
+        from: 'jose@jose.com  |  JavaScript for dummies',
         theme: 'asia',
         color: 'rgba(248,105,91,.87)',
-        fav: false
-      }
+      },
+      text: {
+        title: "3 Title",
+        content: "3 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
+      },
+      accept: true
     },
     {
       id: 4,
-      course: {
+      message: {
         name: 'CSS',
-        image: 'http://soyfrontend.com/wp-content/uploads/2017/06/tutoriales-de-css.jpg',
-        users: 231,
+        from: 'jose@jose.com  |  JavaScript for dummies',
         theme: 'asia',
         color: 'rgba(47,148,220,.58)',
-        fav: false
-      }
+      },
+      text: {
+        title: "4 Title",
+        content: "4 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
+      },
+      accept: false
     },
     {
       id: 5,
-      course: {
+      message: {
         name: 'Laravel',
-        image: 'http://i.pravatar.cc/150?img=1',
-        users: 16,
+        from: 'jose@jose.com  |  JavaScript for dummies',
         theme: 'asia',
         color: 'rgba(248,105,91,.87)',
-        fav: false
-      }
+      },
+      text: {
+        title: "5 Title",
+        content: "5 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
+      },
+      accept: true
     },
     {
       id: 6,
-      course: {
+      message: {
         name: 'Macramé',
-        image: 'http://soyfrontend.com/wp-content/uploads/2017/06/tutoriales-de-css.jpg',
-        users: 231,
+        from: 'jose@jose.com  |  JavaScript for dummies',
         theme: 'asia',
         color: 'rgba(220,47,174,.58)',
-        fav: false
-      }
+      },
+      text: {
+        title: "6 Title",
+        content: "6 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
+      },
+      accept: true
     },
   ]
 
 class Messages extends Component{
 
-    componentWillMount(){
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeMessage: {
+                id: 0,
+                title: '',
+                content: '',
+                accept: false
+            }
+        }
     }
 
+    handleSelectMessage(i) {
+        Array.prototype.slice.call(document.getElementsByClassName('message')).map((message, index) => {
+            index === i ? message.classList.toggle('active') : message.classList.remove('active');
+        })
+
+        this.setState({
+            activeMessage: {
+                id: i,
+                title: messages[i].text.title,
+                content: messages[i].text.content,
+                accept: messages[i].accept
+            },
+        })
+    }
+
+    handleAccept(id) {
+        console.log("AXIOS: Accept invitation " + id);
+
+    }
 
     render(){
         return (
@@ -98,9 +144,9 @@ class Messages extends Component{
                         </header>
                         <div className="messages">
                             {
-                            courses.map( course => (
-                                <div className={'message'} key={course.id}>
-                                    <CourseCard variant={'course-card'} data={course}/>
+                            messages.map( (message, i) => (
+                                <div className={'message'} key={message.id} onClick={this.handleSelectMessage.bind(this, i)}> {/*TODO: pass id message*/}
+                                    <MessageCard variant={'message-card'} data={message}/>
                                 </div>
                             ))
                             }
@@ -109,20 +155,10 @@ class Messages extends Component{
 
                     <Col className="message_text" xs={12} sm={12} md={8} lg={8} xl={8}>
                         <header>
-                            <h2 className="subject">Asistencia al aula el dia 31</h2>
+                            <h2 className="subject">{this.state.activeMessage.title}</h2>
                         </header>
-                        <p>Buenos días,
-
-                            Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de
-                            FCT y revisión de proyectos.
-                            Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo
-                            y del 21 al 25 de mayo.
-                            Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis
-                            disponible en el aula virtual.
-                            A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las
-                            13:00 Prado os informará sobre la bolsa de empleo.
-                            Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés.
-                        </p>
+                        <p>{this.state.activeMessage.content}</p>
+                        {(this.state.activeMessage.accept) && <button onClick={this.handleAccept.bind(this, this.state.activeMessage.id)}>Accept</button>}
                     </Col>
                 </Row>
             </div>

@@ -38,6 +38,21 @@
     .message {
         padding: 10px;
 
+
+        .__card_overlay{
+            .__card_overlay__subject, .__card_overlay__from{
+                color: #fff;
+
+                span{
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            }
+
+        }
+
+
+
         &.active {
             position: relative;
             left: 10px;
@@ -46,10 +61,10 @@
                 content: "";
                 position: absolute;
                 width: 10px;
-                height: 80%;
+                height: 70%;
                 background: $gdle-accent;
                 left: -10px;
-                top: 10%;
+                top: 15%;
                 border-radius: 25px;
             }
         }
