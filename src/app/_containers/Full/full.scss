@@ -16,7 +16,7 @@ body{
 
 main{
 	position:relative;
-	height:100vh;
+	height: calc( 100vh - 50px );
 }
 
 .menu{
@@ -70,6 +70,13 @@ main{
 					background: $gdle-bg-primary;
 					color: $gdle-pink;
 					transform: scale(1.2);
+				}
+				a {
+					color: $gdle-bg-primary;
+
+					&:hover{
+						color: $gdle-pink;
+					}
 				}
 			}
 		}

@@ -7,8 +7,6 @@ import {FaCalendarCheckO,FaStar, FaGroup} from 'react-icons/lib/fa';
 
 // Estilos comunes de todos los cards
 const Card = styled.div`
-  background: url("${$assets_URL}/themes/${props => props.theme}.jpg") center, url("${$assets_URL}/themes/${props => props.theme}.png") center;
-  background-size: cover;
   border-radius: 6px;
   overflow: hidden;
   transition: .3s;
@@ -33,7 +31,12 @@ const Card = styled.div`
   }
 `;
 
-const EventCard = Card.extend`
+const CardBackground = Card.extend`
+  background: url("${$assets_URL}/themes/${props => props.theme}.jpg") center;
+  background-size: cover;
+`;
+
+const EventCard = CardBackground.extend`
   height: 150px;
   box-shadow: 0 0 15px ${props => props.color};
 
@@ -49,7 +52,7 @@ const EventCard = Card.extend`
       overflow: hidden;
 
       &:before{
-        content: 'New task: ';
+        content: '';
         font-weight: 700;
       }
     }
@@ -79,7 +82,7 @@ const EventCard = Card.extend`
   }
 `;
 
-const CoursesCard = Card.extend`
+const CoursesCard = CardBackground.extend`
   height: 100%;
 
   .__card_overlay{
@@ -115,6 +118,11 @@ const CoursesCard = Card.extend`
   }
 `;
 
+const ColorCard = Card.extend`
+    height: 150px;
+    box-shadow: 0 0 15px ${props => props.color};
+`;
+
 const CourseCard = props => {
     return (
         <div style={{height: '100%'}}>
@@ -139,6 +147,25 @@ const CourseCard = props => {
                     </div>
                   </div>
                 </EventCard>
+            }
+            {
+                ( props.variant === 'void' ) &&
+                <EventCard
+                    color={props.data.color}
+                    theme={props.data.theme}
+                >
+                    <div className={'__card_overlay'}>
+                    </div>
+                </EventCard>
+            }
+            {
+                ( props.variant === 'color' ) &&
+                <ColorCard
+                    color={props.data.color}
+                >
+                    <div className={'__card_overlay'}>
+                    </div>
+                </ColorCard>
             }
             {
               ( props.variant === 'course-card' ) &&
