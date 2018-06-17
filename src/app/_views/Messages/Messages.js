@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { FaBell } from 'react-icons/lib/fa';
-import {Row, Col, Form, FormGroup, Input, Label} from "reactstrap";
-import MessageCard from '../../_components/message_card/messageCard';
+import {Container, Row, Col, Form, FormGroup, Input, Label} from "reactstrap";
+import CourseCard from '../../_components/course_card/CourseCard';
 
 
 import Overlay from '../../_components/overlay/overlay';
@@ -17,8 +17,8 @@ const messages = [
       message: {
         name: 'JavaScript',
         from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'asia',
-        color: 'rgba(220,126,47,.58)',
+        theme: 'forest',
+        color: 'rgba(86,90,161,0.58)',
       },
       text: {
         title: "1 Title",
@@ -31,8 +31,8 @@ const messages = [
       message: {
         name: 'CSS',
         from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'asia',
-        color: 'rgba(47,148,220,.58)',
+        theme: 'city',
+        color: 'rgba(86,90,161,0.58)',
       },
       text: {
         title: "2 Title",
@@ -45,8 +45,8 @@ const messages = [
       message: {
         name: 'Laravel',
         from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'asia',
-        color: 'rgba(248,105,91,.87)',
+        theme: 'forest',
+        color: 'rgba(86,90,161,0.58)',
       },
       text: {
         title: "3 Title",
@@ -59,8 +59,8 @@ const messages = [
       message: {
         name: 'CSS',
         from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'asia',
-        color: 'rgba(47,148,220,.58)',
+        theme: 'city',
+        color: 'rgba(86,90,161,0.58)',
       },
       text: {
         title: "4 Title",
@@ -73,8 +73,8 @@ const messages = [
       message: {
         name: 'Laravel',
         from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'asia',
-        color: 'rgba(248,105,91,.87)',
+        theme: 'forest',
+        color: 'rgba(86,90,161,0.58)',
       },
       text: {
         title: "5 Title",
@@ -87,8 +87,8 @@ const messages = [
       message: {
         name: 'Macramé',
         from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'asia',
-        color: 'rgba(220,47,174,.58)',
+        theme: 'forest',
+        color: 'rgba(86,90,161,0.58)',
       },
       text: {
         title: "6 Title",
@@ -105,7 +105,7 @@ class Messages extends Component{
         this.state = {
             activeMessage: {
                 id: 0,
-                title: '',
+                title: 'Select a message',
                 content: '',
                 accept: false
             }
@@ -113,17 +113,23 @@ class Messages extends Component{
     }
 
     handleSelectMessage(i) {
+        let messageActive;
         Array.prototype.slice.call(document.getElementsByClassName('message')).map((message, index) => {
-            index === i ? message.classList.toggle('active') : message.classList.remove('active');
+            if (index === i) {
+                message.classList.toggle('active');
+                messageActive = message.classList.contains('active') ? {
+                    id: i,
+                    title: messages[i].text.title,
+                    content: messages[i].text.content,
+                    accept: messages[i].accept
+                } : { title: "Select a message" };
+            } else {
+                message.classList.remove('active');
+            }
         })
 
         this.setState({
-            activeMessage: {
-                id: i,
-                title: messages[i].text.title,
-                content: messages[i].text.content,
-                accept: messages[i].accept
-            },
+            activeMessage: messageActive
         })
     }
 
@@ -135,32 +141,38 @@ class Messages extends Component{
     render(){
         return (
             <div className={'fade-in'}>
-                <Row>
-                    <Col className={'messages_container'} xs={12} sm={12} md={4} lg={4} xl={4}>
-                        <header>
-                            <Overlay color={'rgba(254, 107, 136, .6)'}>
-                            </Overlay>
-                            <h1>Messages</h1>
-                        </header>
-                        <div className="messages">
-                            {
-                            messages.map( (message, i) => (
-                                <div className={'message'} key={message.id} onClick={this.handleSelectMessage.bind(this, i)}> {/*TODO: pass id message*/}
-                                    <MessageCard variant={'message-card'} data={message}/>
-                                </div>
-                            ))
-                            }
-                        </div>
-                    </Col>
+                <Container>
+                    <Row>
+                        <Col className={'messages_container'} xs={12} sm={12} md={4} lg={4} xl={4}>
+                            <header>
+                                <Overlay color={'rgba(254, 107, 136, .6)'}>
+                                </Overlay>
+                                <h1>Messages</h1>
+                            </header>
+                            <div className="messages">
+                                {
+                                messages.map( (message, i) => (
+                                    <div className={'message'} key={message.id} onClick={this.handleSelectMessage.bind(this, i)}> {/*TODO: pass id message*/}
+                                        <CourseCard variant={'message-card'} data={message}/>
+                                    </div>
+                                ))
+                                }
+                            </div>
+                        </Col>
 
-                    <Col className="message_text" xs={12} sm={12} md={8} lg={8} xl={8}>
-                        <header>
-                            <h2 className="subject">{this.state.activeMessage.title}</h2>
-                        </header>
-                        <p>{this.state.activeMessage.content}</p>
-                        {(this.state.activeMessage.accept) && <button onClick={this.handleAccept.bind(this, this.state.activeMessage.id)}>Accept</button>}
-                    </Col>
-                </Row>
+                        <Col className="message_text" xs={12} sm={12} md={8} lg={8} xl={8}>
+                            <header>
+                                <h2 className="subject">{this.state.activeMessage.title}</h2>
+                            </header>
+                            <article>
+                                <p>{this.state.activeMessage.content}</p>
+                                <div className="button-container">
+                                    {(this.state.activeMessage.accept) && <button onClick={this.handleAccept.bind(this, this.state.activeMessage.id)}>Accept</button>}
+                                </div>
+                            </article>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         )
     }

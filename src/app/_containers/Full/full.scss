@@ -65,18 +65,19 @@ main{
 				cursor: pointer;
 				transition: .3s;
 				transform: scale(1);
+				height: 32px;
 
 				&:hover{
 					background: $gdle-bg-primary;
 					color: $gdle-pink;
 					transform: scale(1.2);
+
+					a {
+						color: $gdle-pink;
+					}
 				}
 				a {
 					color: $gdle-bg-primary;
-
-					&:hover{
-						color: $gdle-pink;
-					}
 				}
 			}
 		}
@@ -254,6 +255,7 @@ main{
 
 .app-canvas{
 	height: 100vh;
+	padding-bottom: 50px;
 
 	.app-body{
 		border-top-left-radius: 5px;

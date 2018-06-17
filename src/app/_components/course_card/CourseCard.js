@@ -118,6 +118,42 @@ const CoursesCard = CardBackground.extend`
   }
 `;
 
+const MessagesCard = CardBackground.extend`
+  height: 100%;
+
+  .__card_overlay{
+    &__title{
+      text-align: center;
+      padding-top: 1rem;
+      font-size: 24px;
+    }
+
+    &__image{
+      text-align: center;
+      padding: 1rem;
+
+      img{
+        width: 75px;
+        border-radius: 50%;
+      }
+    }
+
+    &__users{
+      position: absolute;
+      left: 15px;
+      bottom: 5px;
+      color: #fff;
+    }
+
+    &__fav{
+      color: #fff;
+      position: absolute;
+      bottom: 5px;
+      right: 15px;
+    }
+  }
+`;
+
 const ColorCard = Card.extend`
     height: 150px;
     box-shadow: 0 0 15px ${props => props.color};
@@ -191,6 +227,22 @@ const CourseCard = props => {
                     }
                   </div>
               </CoursesCard>
+            }
+            {
+              ( props.variant === 'message-card' ) &&
+              <MessagesCard
+                color={props.data.message.color}
+                theme={props.data.message.theme}
+                >
+                  <div className={'__card_overlay'}>
+                    <div className={'__card_overlay__subject'}>
+                      <span>Subject: </span>{props.data.message.name}
+                    </div>
+                    <div className={'__card_overlay__from'}>
+                    <span>From: </span>{props.data.message.from}
+                    </div>
+                  </div>
+              </MessagesCard>
             }
         </div>
     );

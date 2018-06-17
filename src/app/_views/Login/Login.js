@@ -67,7 +67,7 @@ class Login extends Component {
             })
         }
 
-        !isValid ? document.querySelector(".form-group." + e.target.name).classList.add('error') : document.querySelector(".form-group." + e.target.name).classList.remove('error');
+        !isValid ? document.querySelector(".form-group-input." + e.target.name).classList.add('error') : document.querySelector(".form-group-input." + e.target.name).classList.remove('error');
 
         this.setState(obj);
     }

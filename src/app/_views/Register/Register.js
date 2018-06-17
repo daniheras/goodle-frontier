@@ -71,9 +71,9 @@ class Register extends Component {
             })
         }
         if (!isValid) {
-            document.querySelector(".form-group." + e.target.name).classList.add('error');
+            document.querySelector(".form-group-input." + e.target.name).classList.add('error');
         } else {
-            document.querySelector(".form-group." + e.target.name).classList.remove('error');
+            document.querySelector(".form-group-input." + e.target.name).classList.remove('error');
         }
         this.setState(obj);
     }
