@@ -79,7 +79,7 @@ class Task extends Component {
                     <p>Uploaded at</p>
                 </header>
                 <article>
-                    {(this.state.files) && this.state.files.map((file,key) => (<div className="item" key={key}><p>{file.name}</p> <p>{file.date}</p></div>))}
+                    {(this.state.files) && this.state.files.map((file,key) => (<div className="item" key={key}><p> {this.state.isAdmin ? <a href="#download">file.name</a> : file.name}</p> <p>{file.date}</p></div>))}
                     {(this.state.files.length === 0) && "No files uploaded."}
                 </article>
             </div>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from '../../config/axios';
 import { Redirect, Link } from 'react-router-dom';
 import Input from '../../_components/input/input';
+import { OrbitSpinner } from 'react-epic-spinners'
 
 import './login.scss';
 
@@ -11,6 +12,7 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            loading: false
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -18,6 +20,11 @@ class Login extends Component {
 
     handleLogin(e) {
         e.preventDefault();
+
+        this.setState({
+            errorMessage: "",
+            loading: true
+        })
 
         var data = JSON.stringify({
             username: this.state.username,
@@ -32,12 +39,22 @@ class Login extends Component {
                 axios.get('/user', {headers: {'Authorization': "bearer " + JSON.parse(sessionStorage.getItem('token')).token}})
                     .then(info => {
                         sessionStorage.setItem('user', JSON.stringify(info.data));
-                        this.setState({redirect: true});
+                        this.setState({redirect: true, loading: false});
                         })
             }
         })
         .catch(error => {
-            console.log(error);
+            if (error.response.status === 404) {
+                this.setState({
+                    errorMessage: "Username or password invalid",
+                    loading: false
+                })
+            } else if (error.response.status === 500) {
+                this.setState({
+                    errorMessage: "Server error, try again",
+                    loading: false
+                })
+            }
         })
 
 
@@ -102,6 +119,7 @@ class Login extends Component {
                         </Link>
                     </div>
                     <button className="login-btn" onClick={this.handleLogin} disabled={ (this.state.username === '' || this.state.password === '') }>Login</button>
+                    {(this.state.loading) && <OrbitSpinner color="#565aa1"/>}
                     <p className="error-message">{ this.state.errorMessage }</p>
                 </form>
                 </div>

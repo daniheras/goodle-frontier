@@ -82,4 +82,10 @@
       font-size: 12px;
       color: red;
     }
+
+    svg {
+      position: absolute;
+      color: $gdle-primary;
+      cursor: pointer;
+    }
   }
