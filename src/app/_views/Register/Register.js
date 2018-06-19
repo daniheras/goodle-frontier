@@ -43,8 +43,13 @@ class Register extends Component {
             }
         })
         .catch(error => {
-            console.log(error);
-            this.setState({registerError: "Register Error", loading: false});
+            let registerError = '';
+            if (error.response) {
+                registerError = "Register Error";
+            }else {
+                registerError =  "Register Error";
+            }
+            this.setState({registerError, loading: false});
         })
 
     }

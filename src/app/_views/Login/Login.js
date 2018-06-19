@@ -40,24 +40,27 @@ class Login extends Component {
                     .then(info => {
                         sessionStorage.setItem('user', JSON.stringify(info.data));
                         this.setState({redirect: true, loading: false});
-                        })
+                    })
             }
         })
         .catch(error => {
-            if (error.response.status === 404) {
-                this.setState({
-                    errorMessage: "Username or password invalid",
-                    loading: false
-                })
-            } else if (error.response.status === 500) {
-                this.setState({
-                    errorMessage: "Server error, try again",
-                    loading: false
-                })
+            let errorMessage = '';
+
+            if (error.response) {
+                if (error.response.status === 404) {
+                    errorMessage = "Username or password invalid"
+                } else if (error.response.status === 500) {
+                    errorMessage = "Server error, try again"
+                }
+            } else {
+                errorMessage = "Server error, try again"
             }
+
+            this.setState({
+                errorMessage,
+                loading: false
+            })
         })
-
-
     }
 
     handleChange(e) {

@@ -6,6 +6,8 @@ import {Container, Row, Col } from 'reactstrap';
 import Overlay from '../../_components/overlay/overlay';
 import Input from '../../_components/input/input';
 import _ from 'lodash';
+import axios from '../../config/axios';
+import { OrbitSpinner } from 'react-epic-spinners'
 
 import './profile.scss';
 
@@ -14,11 +16,13 @@ class Profile extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSaveUserInfo = this.handleSaveUserInfo.bind(this);
+        this.handleResetPassword = this.handleResetPassword.bind(this);
     }
 
     componentWillMount(){
         let user = JSON.parse(sessionStorage.getItem('user'));
-        this.setState({ user: user });
+        this.setState({ user: user, successResetPassword: false });
     }
 
     componentDidMount() {
@@ -28,7 +32,6 @@ class Profile extends Component{
                 input.getElementsByTagName('label')[0].classList.add('top');
             }
         })
-
     }
 
     handleChange(e) {
@@ -39,11 +42,64 @@ class Profile extends Component{
         } else {
             document.querySelector("label[for=" + e.target.name + "]").classList.remove('top');
         }
-        this.setState({user: input});
+
+        let isValid = true;
+        if (e.target.name === 'confirmPassword') {
+            let confirmPasswordMessage = this._validatePassword(e.target.value) ? "" : "Passwords not match";
+            confirmPasswordMessage = e.target.value === '' ? "Password required" : confirmPasswordMessage;
+            isValid = e.target.value !== '' && this._validatePassword(e.target.value);
+            this.setState({
+                confirmPasswordError: confirmPasswordMessage
+            })
+
+            this.setState({
+                restartPassword: isValid
+            })
+        }
+
+        if (!isValid) {
+            document.querySelector(".form-group-input." + e.target.name).classList.add('error');
+        } else {
+            document.querySelector(".form-group-input." + e.target.name).classList.remove('error');
+        }
+
+        this.setState({user:  input});
     }
 
-    handleSaveUserInfo() {
+    _validatePassword(password) {
+        return this.state.user.password === password;
+    }
+
+    handleSaveUserInfo(e) {
+        e.preventDefault();
+
         //AXIOS: save user info
+        let data = JSON.stringify({
+            name: this.state.user.name,
+            surname: this.state.user.surname,
+            biography: this.state.user.biography,
+            school: this.state.user.school
+        });
+        axios.post('/user/update', data)
+            .then(response => {
+                console.log("User updated");
+                sessionStorage.setItem('user', JSON.stringify(response.data));
+            })
+    }
+
+    handleResetPassword() {
+
+        this.setState({
+            loading: true
+        })
+
+        axios.post('/user/resetPassword', JSON.stringify({password: this.state.user.password}))
+            .then(response => {
+                this.setState({
+                    successResetPassword: true,
+                    loading: false
+                })
+            })
     }
 
     render(){
@@ -56,6 +112,7 @@ class Profile extends Component{
                 </div>
 
                 <div>
+                    <button onClick={this.handleSaveUserInfo}>Save</button>
                     <section className="personal_info">
                         <header>
                             <h2>Personal Info</h2>
@@ -102,11 +159,11 @@ class Profile extends Component{
                         <article>
                             <Row className="account-data">
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <Input type="text" class="username" name="username" id="username" label="Username" value={ this.state.user.username } handleChange={this.handleChange}/>
+                                    <Input type="text" class="username" name="username" id="username" label="Username" value={ this.state.user.username } handleChange={this.handleChange} readOnly="true"/>
                                 </Col>
 
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <Input type="text" class="email" name="email" id="email" label="Email" value={ this.state.user.email } handleChange={this.handleChange}/>
+                                    <Input type="text" class="email" name="email" id="email" label="Email" value={ this.state.user.email } handleChange={this.handleChange} readOnly="true"/>
                                 </Col>
 
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
@@ -114,8 +171,15 @@ class Profile extends Component{
                                 </Col>
 
                                 <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <Input type="password" class="confirmpassword" name="confirmpassword" id="confirmpassword" label="Confirm Password" value={ this.state.user.confirmpassword } handleChange={this.handleChange}/>
+                                    <Input type="password" class="confirmPassword" name="confirmPassword" id="confirmPassword" label="Confirm Password" value={ this.state.user.confirmpassword } handleChange={this.handleChange} errorMessage={this.state.confirmPasswordError}/>
                                 </Col>
+                                {(this.state.restartPassword) &&
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                        <button onClick={this.handleResetPassword}>Reset password</button>
+                                        {this.state.successResetPassword && <p>Password reset successful</p>}
+                                        {(this.state.loading)  && <OrbitSpinner color="#565aa1"/>}
+                                    </Col>}
+
                             </Row>
                         </article>
                     </section>
