@@ -3,100 +3,11 @@ import React, { Component } from 'react';
 import { FaBell } from 'react-icons/lib/fa';
 import {Container, Row, Col, Form, FormGroup, Input, Label} from "reactstrap";
 import CourseCard from '../../_components/course_card/CourseCard';
-
-
+import axios from '../../config/axios';
 import Overlay from '../../_components/overlay/overlay';
-
-
 
 import './messages.scss';
 
-const messages = [
-    {
-      id: 1,
-      message: {
-        name: 'JavaScript',
-        from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'forest',
-        color: 'rgba(86,90,161,0.58)',
-      },
-      text: {
-        title: "1 Title",
-        content: "1 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
-      },
-      accept: true
-    },
-    {
-      id: 2,
-      message: {
-        name: 'CSS',
-        from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'city',
-        color: 'rgba(86,90,161,0.58)',
-      },
-      text: {
-        title: "2 Title",
-        content: "2 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
-      },
-      accept: false
-    },
-    {
-      id: 3,
-      message: {
-        name: 'Laravel',
-        from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'forest',
-        color: 'rgba(86,90,161,0.58)',
-      },
-      text: {
-        title: "3 Title",
-        content: "3 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
-      },
-      accept: true
-    },
-    {
-      id: 4,
-      message: {
-        name: 'CSS',
-        from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'city',
-        color: 'rgba(86,90,161,0.58)',
-      },
-      text: {
-        title: "4 Title",
-        content: "4 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
-      },
-      accept: false
-    },
-    {
-      id: 5,
-      message: {
-        name: 'Laravel',
-        from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'forest',
-        color: 'rgba(86,90,161,0.58)',
-      },
-      text: {
-        title: "5 Title",
-        content: "5 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
-      },
-      accept: true
-    },
-    {
-      id: 6,
-      message: {
-        name: 'Macramé',
-        from: 'jose@jose.com  |  JavaScript for dummies',
-        theme: 'forest',
-        color: 'rgba(86,90,161,0.58)',
-      },
-      text: {
-        title: "6 Title",
-        content: "6 Buenos días, Os recuerdo que este jueves 31 de mayo tenéis que asistir al IES a las 8:30 para seguimiento de FCT y revisión de proyectos. Tenéis que traer las hojas de actividades de las semanas del 14 al 18 de mayo y del 21 al 25 de mayo. Paco y yo os revisaremos lo que figura en la plantilla de seguimiento número 3 que tenéis disponible en el aula virtual. A las 12:00 asistiremos a la charla de másteres gratuitos de Microsoft de Juan Bou y a las 13:00 Prado os informará sobre la bolsa de empleo. Os he incluido a los que no estáis en FCT pues las charlas pueden ser de vuestro interés."
-      },
-      accept: true
-    },
-  ]
 
 class Messages extends Component{
 
@@ -110,6 +21,45 @@ class Messages extends Component{
                 accept: false
             }
         }
+        this.getMessages = this.getMessages.bind(this);
+    }
+
+    componentWillMount() {
+        this.getMessages();
+    }
+
+    getMessages() {
+        this.setState({
+            loading: true,
+            activeMessage: {title: "Select a message"}
+        })
+
+        axios.get('/user/getInvitations')
+            .then(response => {
+                let messages = [];
+
+                response.data.map(invitation => {
+                    messages.push({
+                        id: invitation[0].id,
+                        message: {
+                            name: invitation[0].name,
+                            from: 'invitation to the course',
+                            theme: invitation[0].theme,
+                            color: invitation[0].color,
+                        },
+                        text: {
+                            title: "Accept the invitation for join the course",
+                            content: invitation[0].description
+                        },
+                        accept: true
+                    });
+                })
+
+                this.setState({
+                    messages: messages,
+                    loading: false
+                })
+            })
     }
 
     handleSelectMessage(i) {
@@ -118,10 +68,12 @@ class Messages extends Component{
             if (index === i) {
                 message.classList.toggle('active');
                 messageActive = message.classList.contains('active') ? {
-                    id: i,
-                    title: messages[i].text.title,
-                    content: messages[i].text.content,
-                    accept: messages[i].accept
+                    id: this.state.messages[i].id,
+                    course: this.state.messages[i].message.name,
+                    title: this.state.messages[i].text.title,
+                    content: this.state.messages[i].text.content,
+                    templateText: `Click on the button to accept the invitation to the course <strong>${this.state.messages[i].message.name}</strong>`,
+                    accept: this.state.messages[i].accept
                 } : { title: "Select a message" };
             } else {
                 message.classList.remove('active');
@@ -134,11 +86,17 @@ class Messages extends Component{
     }
 
     handleAccept(id) {
-        console.log("AXIOS: Accept invitation " + id);
-
+        axios.post('/courses/'+ id +'/accept_invite', JSON.stringify({current_user: JSON.parse(sessionStorage.getItem('user')).id}))
+            .then(response => {
+                console.log(response);
+                this.getMessages()
+            })
     }
 
     render(){
+        if (this.state.loading) {
+            return "";
+        }
         return (
             <div className={'fade-in'}>
                 <Container>
@@ -151,8 +109,8 @@ class Messages extends Component{
                             </header>
                             <div className="messages">
                                 {
-                                messages.map( (message, i) => (
-                                    <div className={'message'} key={message.id} onClick={this.handleSelectMessage.bind(this, i)}> {/*TODO: pass id message*/}
+                                this.state.messages.map( (message, i) => (
+                                    <div className={'message'} key={message.id} onClick={this.handleSelectMessage.bind(this, i)}>
                                         <CourseCard variant={'message-card'} data={message}/>
                                     </div>
                                 ))
@@ -165,6 +123,7 @@ class Messages extends Component{
                                 <h2 className="subject">{this.state.activeMessage.title}</h2>
                             </header>
                             <article>
+                                <p dangerouslySetInnerHTML={{__html: this.state.activeMessage.templateText}}></p>
                                 <p>{this.state.activeMessage.content}</p>
                                 <div className="button-container">
                                     {(this.state.activeMessage.accept) && <button onClick={this.handleAccept.bind(this, this.state.activeMessage.id)}>Accept</button>}

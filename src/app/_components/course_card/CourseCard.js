@@ -236,10 +236,10 @@ const CourseCard = props => {
                 >
                   <div className={'__card_overlay'}>
                     <div className={'__card_overlay__subject'}>
-                      <span>Subject: </span>{props.data.message.name}
+                      <span>Course: </span>{props.data.message.name}
                     </div>
                     <div className={'__card_overlay__from'}>
-                    <span>From: </span>{props.data.message.from}
+                    <span>Subject: </span>{props.data.message.from}
                     </div>
                   </div>
               </MessagesCard>
