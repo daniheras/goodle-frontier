@@ -7,6 +7,34 @@
         padding: 2rem .5rem;
     }
 
+    &__admin-button{
+        width: 100%;
+        height: 50px;
+        background: #fff;
+        margin: .5rem 0;
+        border-radius: 6px;
+        text-align: center;
+        font-size: 1.3rem;
+        line-height: 50px;
+        border: 1px solid $gdle-accent;
+        cursor: pointer;
+
+        .bold{
+            font-weight: 700;
+        }
+
+        &:hover{
+            color: #fff;
+            background: $gdle-accent;
+        }
+
+        .orbit-spinner{
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
+    }
+
     &__subjects{
         padding: 0 2rem;
 
@@ -30,10 +58,84 @@
                 border-radius: 6px;
                 color: #fff;
                 font-weight: 700;
+
+                .editable-text{
+                    border: none;
+                    background: #fff;
+                    color: $gdle-primary;
+                    font-weight: 700;
+                    margin-left: .5rem;
+                    padding: 0 .5rem;
+                    border: 2px solid $gdle-primary;
+                }
             }
 
             &__description{
                 padding: 1rem 0;
+                padding-top: 2rem;
+
+                &__editable{
+                    width: 100%;
+                    min-height: 100px;
+                    border: 2px solid $gdle-primary;
+                }
+            }
+
+            &__tasks{
+                padding: .5rem;
+                font-weight: 700;
+
+                &__task{
+                    border: 2px solid $gdle-accent;
+                    margin: .5rem 0;
+                    font-size: 1.2rem;
+                    border-radius: 6px;
+                    overflow: auto;
+
+                    &__title{
+                        float: left;
+                        width: 80%;
+                        background: #fff;
+                        padding: 1rem;
+                    }
+
+                    &__goin{
+                        float: left;
+                        width: 20%;
+                        background: $gdle-accent;
+                        color: #fff;
+                        text-align: center;
+                        padding: 1rem;
+                        cursor: pointer;
+                        transition: .3s;
+
+                        &:hover{
+                            background: #fff;
+                            color: $gdle-accent;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        &__create-subject{
+            margin: 1rem 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+            border-radius: 6px;
+            text-align: center;
+            line-height: 100px;
+            color: $gdle-accent;
+            font-size: 2rem;
+            background: #fff;
+            cursor: pointer;
+            transition: .2s;
+
+            &:hover{
+                background: $gdle-accent;
+                color: #fff;
             }
         }
     }
