@@ -123,6 +123,24 @@ const ColorCard = Card.extend`
     box-shadow: 0 0 15px ${props => props.color};
 `;
 
+const CourseTitleCard = CardBackground.extend`
+  cursor: default;
+
+  &:hover{
+    transform: scale(1);
+  }
+
+  height: 100%;
+
+  .__card_overlay{
+    &__title{
+      text-align: center;
+      font-size: 2.4rem;
+      padding: 2rem 0;
+    }
+  }
+`;
+
 const CourseCard = props => {
     return (
         <div style={{height: '100%'}}>
@@ -191,6 +209,19 @@ const CourseCard = props => {
                     }
                   </div>
               </CoursesCard>
+            }
+            {
+              ( props.variant === 'course-title' ) &&
+              <CourseTitleCard
+                color={props.data.color}
+                theme={props.data.theme}
+                >
+                  <div className={'__card_overlay'}>
+                    <div className={'__card_overlay__title'}>
+                      {props.data.name}
+                    </div>
+                  </div>
+              </CourseTitleCard>
             }
         </div>
     );

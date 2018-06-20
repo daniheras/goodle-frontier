@@ -1,2 +1,40 @@
 @import '../../../styles/vars';
 
+.course-view{
+    padding: 2rem 3rem;
+
+    @media (max-width: $media-md) {
+        padding: 2rem .5rem;
+    }
+
+    &__subjects{
+        padding: 0 2rem;
+
+        @media (max-width: $media-md) {
+            padding: 0;
+        }
+
+        &__subject{
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 6px;
+            position: relative;
+
+            &__title{
+                position: absolute;
+                background: $gdle-accent;
+                font-size: 20px;
+                top: -10px;
+                padding: .2rem 1rem;
+                border-radius: 6px;
+                color: #fff;
+                font-weight: 700;
+            }
+
+            &__description{
+                padding: 1rem 0;
+            }
+        }
+    }
+}
