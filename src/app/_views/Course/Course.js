@@ -1,71 +1,252 @@
 import React, { Component } from 'react';
-
-import axios from '../../config/axios';
 import './Course.scss';
-import { Button } from 'material-ui';
-import { Redirect } from 'react-router-dom';
-import { $api_URL } from "../../config/constants";
+import axios from '../../config/axios';
+import Fade from 'react-reveal/Fade';
+import Overlay from '../../_components/overlay/overlay';
+import { $assets_URL } from '../../config/constants';
+import Card from '../../_components/course_card/CourseCard';
+import { FaPlus, FaPencil, FaThumbsUp, FaArrowRight} from 'react-icons/lib/fa';
+import { Snackbar } from 'material-ui';
+import { Input } from 'reactstrap';
+import _ from 'lodash';
+import { OrbitSpinner } from 'react-epic-spinners';
+import { Link } from 'react-router-dom';
+
+import { SortablePane, Pane } from 'react-sortable-pane';
 
 class Course extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: props.match.params.id,
-      courseInfo: {},
-      redirect: false,
-    };
-    this.handeleUnsubscribeCourse = this.handeleUnsubscribeCourse.bind(this);
+
+  courseId = this.props.match.params.id;
+
+  state = {
+    course: {},
+    subjects: [],
+    editMode: false,
+    loadingEdit: false,
+    task: [],
+    taskIds: [],
+    loading: false
+  };
+
+  componentWillMount(){
+    axios.get(`/courses/${this.courseId}`)
+    .then( response => {
+      this.setState({
+        course: response.data
+      });
+    });
+
+    axios.get(`/courses/${this.courseId}/subjects`)
+    .then( response => {
+      this.setState({
+        subjects: response.data
+      });
+      for (let i = 0; i < this.state.subjects.length; i++) {
+        axios.get(`/courses/${this.courseId}/subjects/${this.state.subjects[i].id}/tasks`)
+          .then( response => {
+            let a = this.state.task;
+            let ids =this.state.taskIds;
+            a[this.state.subjects[i].id] = [];
+            ids[this.state.subjects[i].id] = [];
+            for (let j = 0; j < response.data.length; j++) {
+              a[this.state.subjects[i].id][j] = response.data[j].title;
+              ids[this.state.subjects[i].id][j] = response.data[j].id;
+            }
+            this.setState({
+              task: a,
+              taskIds: ids,
+              loading: true
+            })
+          })
+        }
+    })
+
+
   }
 
-  componentWillMount() {
-    // axios.post($api_URL+'/course/' + this.state.id, { user_id: JSON.parse(sessionStorage.getItem('user')).id })
-    axios.get('/courses/user/' + this.state.id + '?current_user=' + JSON.parse(sessionStorage.getItem('user')).id)
-      .then(res => {
+  editCourse = (e) => {
+    if (!this.state.editMode){
+      this.setState({
+        editMode: true,
+      });
+    } else {
+
+      this.setState({
+        loadingEdit: true,
+      });
+
+      this.state.subjects.map( (subject,i) => {
+        axios.put(`/courses/${this.courseId}/subjects/${subject.id}`,this.state.subjects[i])
+        .then( (response) => {
           this.setState({
-            courseInfo: res.data,
+            editMode: false,
+            loadingEdit: false
           });
         })
-      .catch(error => {
-          console.log(error.response.data.message);
+      })
+
+    }
+  };
+
+  createSubject = (e) => {
+
+    let newTask = {}
+
+    if (this.state.subjects.length === 0){
+      newTask = {
+        title: 'New Subject',
+        order: 1
+      };
+    } else {
+      newTask = {
+        title: 'New Subject',
+        order: this.state.subjects[this.state.subjects.length - 1].order + 1,
+      }
+    }
+
+
+
+    axios.post(`/courses/${this.courseId}/subjects`, newTask)
+    .then( response => {
+      axios.get(`/courses/${this.courseId}/subjects`)
+        .then( response => {
           this.setState({
-            msg_error: 'You are not registered in this course',
+            subjects: response.data
           });
         });
-  }
-
-  handeleUnsubscribeCourse() {
-    console.log(this.state);
-    axios.post($api_URL + '/unsubscribeCourse', { course_id: this.state.id, user_id: JSON.parse(sessionStorage.getItem('user')).id })
-      .then(data => {
-        console.log(data);
-        this.setState({
-          redirect: true,
-        });
-      })
-    .catch(error => {
-      console.log(error);
     });
-  }
+  };
 
-  render() {
-    if (this.state.redirect) {
-      return <Redirect push to={'/app/courses/' } />;
+  handleSubjectChange = (e, iteration, subjectId, input) => {
+
+    let inputValue = e.target.value;
+
+    let statusCopy = Object.assign({}, this.state);
+
+    if ( input === 'subjectName' ){
+      statusCopy.subjects[iteration].title = inputValue;
     }
 
-    if (this.state.msg_error) {
-      return (<div>{this.state.msg_error}</div>);
+    if ( input === 'subjectDescription' ){
+      statusCopy.subjects[iteration].description = inputValue;
     }
 
+    this.setState(statusCopy);
+  };
+
+  render(){
+
+    const {match} = this.props;
+
+    if(!this.state.loading) {
+      return <div className="full"><OrbitSpinner color="#565aa1"/></div>;
+    }
     return (
-      <div className="animated fadeIn">
-        <h3>
-          {this.state.courseInfo.name}
-          </h3>
-        {this.state.courseInfo.admin ? <h5>You are the admin of this course</h5>: null}
-        <br/>
-        <Button color="secondary" variant={'raised'} onClick={this.handeleUnsubscribeCourse}>Unsubscribe Course</Button>
-      </div>
-    );
+      <Fade>
+        <div className={'course-view'}>
+
+          {
+            ( this.state.course.admin ) &&
+            <div>
+              { (this.state.editMode) ?
+                <div className="course-view__admin-button" onClick={this.editCourse}>
+                  { (this.state.loadingEdit) &&
+                  <OrbitSpinner color={'#49dcc0'}/>
+                  }
+                  <FaThumbsUp/> Save <span className='bold'>Changes</span>
+                </div>
+                :
+                <div className="course-view__admin-button" onClick={this.editCourse}>
+                  <FaPencil/> Edit <span className='bold'>Course</span>
+                </div>
+              }
+            </div>
+          }
+          <Fade>
+            <div className="course-view__title">
+              <Card variant={'course-title'} data={this.state.course}/>
+            </div>
+          </Fade>
+
+          <Fade>
+            <div className="course-view__subjects">
+              { this.state.subjects.map( (subject, iteration) => (
+                <Fade key={subject.id}>
+                  <div className="course-view__subjects__subject">
+                    <div
+                    className="course-view__subjects__subject__title"
+                    style={
+                      (iteration % 2 === 0) ? {left: '1rem'} : {right: '1rem'}
+                    }
+                    >
+                      {subject.order}.
+                      {
+                        ( this.state.editMode )?
+                        <Fade>
+                          <input
+                            className={'editable-text'}
+                            type="text"
+                            value={subject.title}
+                            onChange={(e) => {
+                              this.handleSubjectChange(e, iteration, subject.id, 'subjectName');
+                            }}/>
+                        </Fade>
+                        :
+                        <Fade>
+                          <span>{subject.title}</span>
+                        </Fade>
+                      }
+                    </div>
+                    <div className="course-view__subjects__subject__description">
+                      {
+                        ( this.state.editMode )?
+                        <Fade>
+                          <textarea
+                          className="course-view__subjects__subject__description__editable"
+                          value={subject.description}
+                          onChange={(e) => {
+                            this.handleSubjectChange(e, iteration, subject.id, 'subjectDescription');
+                          }}
+                          />
+                        </Fade>
+                        :
+                        <div>
+                          {subject.description}
+                        </div>
+                      }
+                    </div>
+                    <div className="course-view__subjects__subject__tasks">
+                        { _.map(this.state.task[subject.id], (task, iteration) => (
+                          <div className="course-view__subjects__subject__tasks__task">
+                            <div className="course-view__subjects__subject__tasks__task__title">
+                            {
+                              task
+                            }
+                            </div>
+                           <Link to={`${this.props.match.params.id}/subject/${subject.id}/task/${this.state.taskIds[subject.id][iteration]}`} key='task' className="course-view__subjects__subject__tasks__task__goin">
+                              <FaArrowRight/>
+                          </Link>
+                          </div>
+                        )) }
+                    </div>
+                  </div>
+                </Fade>
+              )) }
+
+              {
+                ( this.state.course.admin ) &&
+                <div className="course-view__subjects__create-subject" onClick={this.createSubject}>
+                  <FaPlus/>
+                </div>
+              }
+            </div>
+          </Fade>
+
+
+
+        </div>
+      </Fade>
+    )
   }
 }
 

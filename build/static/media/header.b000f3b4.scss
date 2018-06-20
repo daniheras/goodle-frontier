@@ -1,0 +1,10 @@
+@import "../../../../styles/vars";
+
+.header{
+  background: $gdle-gradient-purple;
+  min-height: 58px;
+
+  @media( max-width: $media-md){
+    display:none;
+  }
+}

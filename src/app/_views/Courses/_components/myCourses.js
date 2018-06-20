@@ -6,7 +6,7 @@ import Button from '../../../_components/button/button';
 import { colors } from '../../../config/customization';
 import { Link } from 'react-router-dom';
 
-const MyCourses = (props) => (
+const MyCourses = (props, match) => (
   <div className={'courses_view__content fade-in'}>
     <div className={'courses_view__content__title'}>
       <Overlay color={'rgba(254, 107, 136, .6)'}>
@@ -33,7 +33,9 @@ const MyCourses = (props) => (
         {
           props.courses.map( course => (
             <div className={'courses_view__content__my_courses__slider__card'} key={course.id}>
-              <CourseCard variant={'course-card'} data={course}/>
+              <Link to={`${props.match.url}/${course.id}`}>
+                <CourseCard variant={'course-card'} data={course}/>
+              </Link>
             </div>
           ))
         }

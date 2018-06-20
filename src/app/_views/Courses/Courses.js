@@ -27,9 +27,11 @@ class Courses extends Component {
 
   render(){
 
+    const {match} = this.props;
+
     return (
       <section className={'courses_view fade-in'}>
-          <MyCourses courses={this.state.courses}/>
+          <MyCourses match={match} courses={this.state.courses}/>
           <Recents events={this.state.recently}/>
       </section>
     )

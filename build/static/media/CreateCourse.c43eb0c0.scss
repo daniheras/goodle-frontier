@@ -1,0 +1,84 @@
+@import '../../../styles/vars.scss';
+
+.createCourse{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__stepper{
+    width: 80%;
+    height: 80%;
+    background: #fff;
+    border-radius: 6px;
+    position: relative;
+
+    @media( max-width: $media-md){
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+    }
+
+    &__steps{
+      width: 105%;
+      background: $gdle-accent;
+      display: flex;
+      border-radius: 30px;
+      position: relative;
+      top: -25px;
+      right: 2.5%;
+      box-shadow: 0 0 15px $gdle-accent;
+      z-index: 99;
+
+      @media( max-width: $media-md){
+        position: sticky;
+        width: 100%;
+        top: 0;
+        right: 0;
+        border-radius: 0;
+        padding-top: 3rem;
+      }
+
+      &__step{
+        flex-grow: 1;
+        text-align: center;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .circled-step{
+          background: $gdle-bg-primary;
+          height: 75px;
+          width: 75px;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 75px;
+          border: 2px solid $gdle-accent;
+          font-weight: 700;
+          font-size: 2rem;
+          color: $gdle-grey;
+
+          &.--active{
+            border: 2px solid $gdle-primary;
+            box-shadow: 0 0 15px $gdle-primary;
+            background: $gdle-primary;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    &__content{
+      position: relative;
+      top: -25px;
+      padding: 2rem;
+      height: calc(100% - 25px);
+      width: 100%;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
