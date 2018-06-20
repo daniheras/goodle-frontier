@@ -64,11 +64,9 @@ class Full extends Component {
                     <div className="__item">
                         <FaSliders/>
                     </div>
-                    <div className="__item">
-                        <Link to='/app/messages' key='messages'>
-                            <FaBell/>
-                        </Link>
-                    </div>
+                    <Link className="__item" to='/app/messages' key='messages'>
+                        <FaBell/>
+                    </Link>
                     <div className="__item" onClick={this.handleLogOut}>
                         <FaSignOut/>
                     </div>
@@ -102,7 +100,7 @@ class Full extends Component {
                             <Route exact path={`${match.url}/courses`} name="Courses" component={Courses}/>
                             <Route path={`${match.url}/courses/create`} name="Create Course" component={CreateCourse}/>
                             <Route path={`${match.url}/courses/create_task`} name="Create CourseTask" component={CreateTask}/>
-                            <Route path={`${match.url}/courses/task/:id`} name="Task" component={Task}/>
+                            <Route path={`${match.url}/courses/:courseId/subject/:subjectId/task/:taskId`} name="Task" component={Task}/>
                             <Redirect from={`${match.url}`} to={`${match.url}/dashboard`}/>
                         </Switch>
                     </div>

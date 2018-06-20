@@ -157,30 +157,38 @@ class Profile extends Component{
                             <h2>Account Info</h2>
                         </header>
                         <article>
-                            <Row className="account-data">
-                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <Input type="text" class="username" name="username" id="username" label="Username" value={ this.state.user.username } handleChange={this.handleChange} readOnly="true"/>
-                                </Col>
-
-                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <Input type="text" class="email" name="email" id="email" label="Email" value={ this.state.user.email } handleChange={this.handleChange} readOnly="true"/>
-                                </Col>
-
-                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <Input type="password" class="password" name="password" id="password" label="Password" value={ this.state.user.password } handleChange={this.handleChange}/>
-                                </Col>
-
-                                <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                    <Input type="password" class="confirmPassword" name="confirmPassword" id="confirmPassword" label="Confirm Password" value={ this.state.user.confirmpassword } handleChange={this.handleChange} errorMessage={this.state.confirmPasswordError}/>
-                                </Col>
-                                {(this.state.restartPassword) &&
+                            <Container>
+                                <Row className="account-data">
                                     <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                        <button onClick={this.handleResetPassword}>Reset password</button>
-                                        {this.state.successResetPassword && <p>Password reset successful</p>}
-                                        {(this.state.loading)  && <OrbitSpinner color="#565aa1"/>}
-                                    </Col>}
+                                        <Input type="text" class="username" name="username" id="username" label="Username" value={ this.state.user.username } handleChange={this.handleChange} readOnly="true"/>
+                                    </Col>
 
-                            </Row>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                        <Input type="text" class="email" name="email" id="email" label="Email" value={ this.state.user.email } handleChange={this.handleChange} readOnly="true"/>
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                        <Input type="password" class="password" name="password" id="password" label="Password" value={ this.state.user.password } handleChange={this.handleChange}/>
+                                    </Col>
+
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                        <Input type="password" class="confirmPassword" name="confirmPassword" id="confirmPassword" label="Confirm Password" value={ this.state.user.confirmpassword } handleChange={this.handleChange} errorMessage={this.state.confirmPasswordError}/>
+                                    </Col>
+
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                        {(this.state.restartPassword) &&
+                                            <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                                <button onClick={this.handleResetPassword}>Reset password</button>
+                                                {(this.state.successResetPassword) && <p>Password reset successful</p>}
+                                                </Col>}
+                                        {(!this.state.loading)  && <OrbitSpinner color="#565aa1"/>}
+                                    </Col>
+
+
+                                </Row>
+                            </Container>
                         </article>
                     </section>
                 </div>
