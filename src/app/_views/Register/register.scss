@@ -8,7 +8,7 @@
   justify-content: center;
 
   .register-form{
-    padding: 5em 2em 3em;
+    padding: 2em 2em 3em;
     background: #fff;
     border-radius: 6px;
     width: 300px;
@@ -48,81 +48,8 @@
         margin: 1rem auto;
       }
 
-      .form-group{
-        position: relative;
-        margin: 0px 0 40px 0;
-
-        &.error{
-          &:after, &:before{
-            background: red;
-          }
-          label{
-            color: red;
-          }
-        }
-
-        &::before{
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 1px;
-          content: "";
-          position: absolute;
-          transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-          pointer-events: none;
-          background-color: rgba(0, 0, 0, 0.42);
-        }
-        &::after{
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 2px;
-          content: "";
-          position: absolute;
-          transform: scaleX(0);
-          transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-          pointer-events: none;
-          background-color: $gdle-primary;
-        }
-        &:focus-within{
-          &::after{
-            transform: scaleX(1);
-
-          }
-          label{
-            top: -20px;
-            font-size: 12px;
-          }
-        }
-
-        input{
-          width: 100%;
-          border: 0;
-          outline: 0;
-          color: $gdle-grey;
-          padding-left: 10px;
-        }
-
-        label{
-          position: absolute;
-          top: 0;
-          cursor: text;
-          transition: all 0.25s;
-          color: $gdle-primary;
-
-          &.top{
-            top: -20px;
-            font-size: 12px;
-          }
-        }
-
-        span{
-          position: absolute;
-          left: 0;
-          bottom: -20px;
-          font-size: 12px;
-          color: red;
-        }
+      .form-group-input {
+        margin: 45px 0;
       }
 
       button{
