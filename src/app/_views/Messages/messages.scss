@@ -3,7 +3,9 @@
 .row {
     margin: 0;
 }
-
+.container {
+    padding: 0;
+}
 .messages_container {
     height: 100vh;
     overflow-y: scroll;
@@ -24,11 +26,11 @@
 }
 
 .message_text{
-    padding: 50px 100px;
+    padding: 20px 100px;
 
     header {
         text-align: center;
-        padding-bottom: 50px;
+        padding-bottom: 20px;
     }
 }
 
@@ -60,10 +62,10 @@
             &:before {
                 content: "";
                 position: absolute;
-                width: 10px;
+                width: 7px;
                 height: 70%;
                 background: $gdle-accent;
-                left: -10px;
+                left: -7px;
                 top: 15%;
                 border-radius: 25px;
             }
