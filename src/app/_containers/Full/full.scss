@@ -11,7 +11,7 @@ body{
 	margin:0;
 	font-family:"Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
 	color:#fff;
-	padding-left:$menu-width-desktop;
+
 }
 
 main{
@@ -254,7 +254,7 @@ main{
 
 .app-canvas{
 	height: 100vh;
-
+	padding-left:$menu-width-desktop;
 	.app-body{
 		border-top-left-radius: 5px;
 		padding: 0;
@@ -267,3 +267,4 @@ main{
 	}
 
 }
+

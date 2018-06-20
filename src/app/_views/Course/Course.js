@@ -10,6 +10,7 @@ import { Snackbar } from 'material-ui';
 import { Input } from 'reactstrap';
 import _ from 'lodash';
 import { OrbitSpinner } from 'react-epic-spinners';
+import { Link } from 'react-router-dom';
 
 import { SortablePane, Pane } from 'react-sortable-pane';
 
@@ -21,7 +22,10 @@ class Course extends Component {
     course: {},
     subjects: [],
     editMode: false,
-    loadingEdit: false
+    loadingEdit: false,
+    task: [],
+    taskIds: [],
+    loading: false
   };
 
   componentWillMount(){
@@ -37,8 +41,27 @@ class Course extends Component {
       this.setState({
         subjects: response.data
       });
-      console.log(response.data);
-    });
+      for (let i = 0; i < this.state.subjects.length; i++) {
+        axios.get(`/courses/${this.courseId}/subjects/${this.state.subjects[i].id}/tasks`)
+          .then( response => {
+            let a = this.state.task;
+            let ids =this.state.taskIds;
+            a[this.state.subjects[i].id] = [];
+            ids[this.state.subjects[i].id] = [];
+            for (let j = 0; j < response.data.length; j++) {
+              a[this.state.subjects[i].id][j] = response.data[j].title;
+              ids[this.state.subjects[i].id][j] = response.data[j].id;
+            }
+            this.setState({
+              task: a,
+              taskIds: ids,
+              loading: true
+            })
+          })
+        }
+    })
+
+
   }
 
   editCourse = (e) => {
@@ -107,7 +130,7 @@ class Course extends Component {
     if ( input === 'subjectDescription' ){
       statusCopy.subjects[iteration].description = inputValue;
     }
-    
+
     this.setState(statusCopy);
   };
 
@@ -115,6 +138,9 @@ class Course extends Component {
 
     const {match} = this.props;
 
+    if(!this.state.loading) {
+      return <div className="full"><OrbitSpinner color="#565aa1"/></div>;
+    }
     return (
       <Fade>
         <div className={'course-view'}>
@@ -125,7 +151,7 @@ class Course extends Component {
               { (this.state.editMode) ?
                 <div className="course-view__admin-button" onClick={this.editCourse}>
                   { (this.state.loadingEdit) &&
-                  <OrbitSpinner color={'#49dcc0'}/> 
+                  <OrbitSpinner color={'#49dcc0'}/>
                   }
                   <FaThumbsUp/> Save <span className='bold'>Changes</span>
                 </div>
@@ -147,20 +173,20 @@ class Course extends Component {
               { this.state.subjects.map( (subject, iteration) => (
                 <Fade key={subject.id}>
                   <div className="course-view__subjects__subject">
-                    <div 
+                    <div
                     className="course-view__subjects__subject__title"
                     style={
                       (iteration % 2 === 0) ? {left: '1rem'} : {right: '1rem'}
                     }
                     >
-                      {subject.order}. 
+                      {subject.order}.
                       {
                         ( this.state.editMode )?
                         <Fade>
-                          <input 
-                            className={'editable-text'} 
-                            type="text" 
-                            value={subject.title} 
+                          <input
+                            className={'editable-text'}
+                            type="text"
+                            value={subject.title}
                             onChange={(e) => {
                               this.handleSubjectChange(e, iteration, subject.id, 'subjectName');
                             }}/>
@@ -175,8 +201,8 @@ class Course extends Component {
                       {
                         ( this.state.editMode )?
                         <Fade>
-                          <textarea 
-                          className="course-view__subjects__subject__description__editable" 
+                          <textarea
+                          className="course-view__subjects__subject__description__editable"
                           value={subject.description}
                           onChange={(e) => {
                             this.handleSubjectChange(e, iteration, subject.id, 'subjectDescription');
@@ -190,14 +216,16 @@ class Course extends Component {
                       }
                     </div>
                     <div className="course-view__subjects__subject__tasks">
-                        { [0,1,2].map( (task, iteration) => (
+                        { _.map(this.state.task[subject.id], (task, iteration) => (
                           <div className="course-view__subjects__subject__tasks__task">
                             <div className="course-view__subjects__subject__tasks__task__title">
-                              Task {task}
+                            {
+                              task
+                            }
                             </div>
-                            <div className="course-view__subjects__subject__tasks__task__goin">
+                           <Link to={`${this.props.match.params.id}/subject/${subject.id}/task/${this.state.taskIds[subject.id][iteration]}`} key='task' className="course-view__subjects__subject__tasks__task__goin">
                               <FaArrowRight/>
-                            </div>
+                          </Link>
                           </div>
                         )) }
                     </div>
@@ -214,7 +242,7 @@ class Course extends Component {
             </div>
           </Fade>
 
-          
+
 
         </div>
       </Fade>
