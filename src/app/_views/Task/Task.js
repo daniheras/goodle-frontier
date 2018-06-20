@@ -73,9 +73,7 @@ class Task extends Component {
         })
     }
 
-    handleSave() {
-        return true;
-    }
+
 
   render(){
       if (this.state.loading) {
@@ -91,7 +89,6 @@ class Task extends Component {
 
     return (
       <section className={'task_view fade-in'}>
-        {(this.state.isAdmin) && <div className="save-task-info"><button onClick={this.handleSave}>Save</button></div>}
         <h1>{this.state.title}</h1>
         <p className="task-description" dangerouslySetInnerHTML={{__html: this.state.description}}></p>
 
