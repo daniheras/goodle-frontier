@@ -38,6 +38,9 @@ class Login extends Component {
                 sessionStorage.setItem('token', data);
                 axios.get('/user', {headers: {'Authorization': "bearer " + JSON.parse(sessionStorage.getItem('token')).token}})
                     .then(info => {
+                        axios.defaults.headers.common = {
+                            'Authorization': "bearer " + JSON.parse(sessionStorage.getItem('token')).token
+                        }
                         sessionStorage.setItem('user', JSON.stringify(info.data));
                         this.setState({redirect: true, loading: false});
                     })
