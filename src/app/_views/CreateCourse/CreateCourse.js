@@ -7,6 +7,8 @@ import StepThree from "./stepper/steps/stepThree";
 import Bounce from 'react-reveal/Bounce';
 import CourseCard from "../../_components/course_card/CourseCard";
 
+import axios from '../../config/axios';
+
 export const Stepper = React.createContext();
 
 class CreateCourse extends Component {
@@ -64,6 +66,22 @@ class CreateCourse extends Component {
 
     //This function is the only one able to change the step.
     handleSubmit = (e,step) => {
+
+        if ( step === 'end' ){
+            const courseData = {
+                name: this.state.courseName,
+                category: 'Developing',
+                picture: this.state.courseAvatar,
+                theme: this.state.courseTheme.theme,
+                color: this.state.courseColor
+            }
+
+            axios.post('/courses', courseData)
+            .then( response => {
+                //TODO: Manage errors
+            })
+        }
+
         e.preventDefault();
 
         this.setState({
@@ -117,6 +135,7 @@ class CreateCourse extends Component {
                                     <Route path={`${match.url}/${1}`} component={StepOne}/>
                                     <Route path={`${match.url}/${2}`} component={StepTwo}/>
                                     <Route path={`${match.url}/${3}`} component={StepThree}/>
+                                    <Route path={`${match.url}/end`} component={() => <div>Finished! </div>}/>
                                     <Redirect from={`${match.url}`} to={`${match.url}/${this.state.step}`}/>
                                 </Switch>
                                 <div className="course-preview">

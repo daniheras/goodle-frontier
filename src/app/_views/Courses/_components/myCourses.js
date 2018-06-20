@@ -38,12 +38,7 @@ const MyCourses = (props) => (
           ))
         }
       </div>
-    </div>
-    {/* <div className={'courses_view__content__title'}>
-      <Overlay color={'rgba(254, 107, 136, .6)'}>
-        <h2><FaBook/> Public<span className={'bold'}>Courses</span></h2>
-      </Overlay>
-    </div> */}
+    </div>  
   </div>
 );
 
