@@ -5,6 +5,10 @@ import axios from '../../config/axios';
 
 class Task extends Component {
 
+    state={
+        dropMessage: 'Drop here the files to upload...'
+    }
+
     componentWillMount() {
         this.setState({
             loading: true
@@ -64,6 +68,9 @@ class Task extends Component {
 
     handleDrop = (files, event) => {
         console.log(files, event);
+        this.setState({
+            dropMessage: 'Files succesfully uploaded'
+        })
     }
 
     handleSave() {
@@ -92,7 +99,7 @@ class Task extends Component {
             <div className="timer">{timer}</div>
             <div  className="drag-files-container file-drop-target">
                 <FileDrop onDrop={this.handleDrop}>
-                    Drop files here to upload...
+                    {this.state.dropMessage}
                 </FileDrop>
             </div>
             <div className="files-container">

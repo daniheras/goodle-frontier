@@ -123,7 +123,7 @@ class Full extends Component {
                                 <Route path={`${match.url}/courses/create`} name="Create Course" component={CreateCourse}/>
                                 <Route path={`${match.url}/courses/create_task`} name="Create CourseTask" component={CreateTask}/>
                                 <Route path={`${match.url}/courses/:courseId/subject/:subjectId/task/:taskId`} name="Task" component={Task}/>
-                                <Route path={`${match.url}/cookies`} name="Task" component={CookiesPage}/>
+                                <Route path={`${match.url}/cookies`} name="Cookies" component={CookiesPage}/>
                                 <Redirect from={`${match.url}`} to={`${match.url}/dashboard`}/>
                             </Switch>
                         </div>
