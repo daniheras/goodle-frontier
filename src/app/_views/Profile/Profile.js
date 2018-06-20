@@ -79,7 +79,8 @@ class Profile extends Component{
             name: this.state.user.name,
             surname: this.state.user.surname,
             biography: this.state.user.biography,
-            school: this.state.user.school
+            school: this.state.user.school,
+            avatar: this.state.user.avatar
         });
         axios.post('/user/update', data)
             .then(response => {
@@ -137,9 +138,10 @@ class Profile extends Component{
                             <Container>
                                 <Row>
                                     <Col xs={12} sm={12} md={4} lg={4} xl={4}>
-                                        <div className="avatar">
-                                            <img  src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" alt="avatar"/>
+                                        <div className="avatar-image">
+                                            <img  src={this.state.user.avatar} alt="avatar"/>
                                         </div>
+                                        <Input type="text" class="avatar" name="avatar" id="avatar" label="Avatar" value={ this.state.user.avatar } handleChange={this.handleChange}/>
                                     </Col>
                                     <Col xs={12} sm={12} md={8} lg={8} xl={8} className="info_content">
                                             <Row>

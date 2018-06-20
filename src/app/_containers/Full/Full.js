@@ -77,12 +77,9 @@ class Full extends Component {
                 <nav className="menu" tabIndex="0">
                     <div className="smartphone-menu-trigger"></div>
                     <header className="avatar">
-                        <img src="https://menhairstylist.com/wp-content/uploads/2017/04/chris-hemsworth-long-hairstyles-for-men.jpg" alt={'User'}/>
-                    <h2>User</h2>
+                        <img src={this.state.user.avatar} alt={'User'}/>
+                    <h2>{this.state.user.username}</h2>
                     <div className="__info">
-                        <div className="__item">
-                            <FaSliders/>
-                        </div>
                         <Link className="__item" to='/app/messages' key='messages'>
                             <FaBell/>
                         </Link>
@@ -116,7 +113,6 @@ class Full extends Component {
                         <Header/>
                         <div className={`container-fluid app-body`}>
                             <Switch>
-                                <Route path={`${match.url}/dashboard`} name="Dashboard" component={Dashboard}/>
                                 <Route path={`${match.url}/profile`} name="Profile" component={Profile}/>
                                 <Route path={`${match.url}/messages`} name="Messages" component={Messages}/>
                                 <Route exact path={`${match.url}/courses`} name="Courses" component={Courses}/>
@@ -125,7 +121,7 @@ class Full extends Component {
                                 <Route path={`${match.url}/courses/:courseId/subject/:subjectId/task/:taskId`} name="Task" component={Task}/>
                                 <Route path={`${match.url}/cookies`} name="Cookies" component={CookiesPage}/>
                                 <Route path={`${match.url}/courses/:id`} name="Create Course" component={Course}/>
-                                <Redirect from={`${match.url}`} to={`${match.url}/dashboard`}/>
+                                <Redirect from={`${match.url}`} to={`${match.url}/courses`}/>
                             </Switch>
                         </div>
                     </div>
