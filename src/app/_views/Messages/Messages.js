@@ -5,6 +5,7 @@ import {Container, Row, Col, Form, FormGroup, Input, Label} from "reactstrap";
 import CourseCard from '../../_components/course_card/CourseCard';
 import axios from '../../config/axios';
 import Overlay from '../../_components/overlay/overlay';
+import { OrbitSpinner } from 'react-epic-spinners'
 
 import './messages.scss';
 
@@ -95,7 +96,7 @@ class Messages extends Component{
 
     render(){
         if (this.state.loading) {
-            return "Server error, try again later";
+            return <div className="full"><OrbitSpinner color="#565aa1"/></div>;
         }
         return (
             <div className={'fade-in'}>
