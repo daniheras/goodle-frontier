@@ -1,0 +1,57 @@
+@import "../../../styles/custom";
+
+.create_task_view {
+    margin-top: 50px;
+    position: relative;
+
+    header{
+        position: absolute;
+        top: -25px;
+        left: 30%;
+        width: 40%;
+        background: $gdle-accent;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 800;
+        border-radius: 25px;
+        text-align: center;
+        z-index: 100;
+
+        @media( max-width: $media-lg){
+            width: 60%;
+            left: 20%;
+
+            h2 {
+                font-size: 28px;
+            }
+        }
+
+        h2 {
+            color: $gdle-white;
+            margin: 0;
+        }
+    }
+
+    form {
+        background: $gdle-white;
+        padding: 50px 50px;
+        margin-top: 50px;
+        position: relative;
+        border-radius: 6px;
+        width: 60%;
+        margin: auto;
+
+        @media( max-width: $media-lg){
+            width: 80%;
+        }
+
+
+        .confirm-button {
+            margin: auto;
+            display: block;
+        }
+    }
+}

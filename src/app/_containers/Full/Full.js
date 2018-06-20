@@ -4,10 +4,11 @@ import Dashboard from '../../_views/Dashboard/Dasshboard';
 import Profile from '../../_views/Profile/Profile';
 import Courses from '../../_views/Courses/Courses';
 import Course from '../../_views/Course/Course';
+import Task from '../../_views/Task/Task';
 import Messages from '../../_views/Messages/Messages';
 import CreateCourse from '../../_views/CreateCourse/CreateCourse';
 import Header from '../../_components/_structure/header/header';
-
+import CreateTask from '../../_views/CreateTask/CreateTask'
 import './full.scss';
 import Sidebar from "../../_components/_structure/sidebar/sidebar";
 
@@ -63,12 +64,10 @@ class Full extends Component {
                     <div className="__item">
                         <FaSliders/>
                     </div>
-                    <div className="__item">
-                        <Link to='messages' key='messages'>
-                            <FaBell/>
-                        </Link>
-                    </div>
-                    <div className="__item" onClick={this.props.handleLogOut}>
+                    <Link className="__item" to='/app/messages' key='messages'>
+                        <FaBell/>
+                    </Link>
+                    <div className="__item" onClick={this.handleLogOut}>
                         <FaSignOut/>
                     </div>
                   </div>
@@ -100,6 +99,8 @@ class Full extends Component {
                             <Route path={`${match.url}/messages`} name="Messages" component={Messages}/>
                             <Route exact path={`${match.url}/courses`} name="Courses" component={Courses}/>
                             <Route path={`${match.url}/courses/create`} name="Create Course" component={CreateCourse}/>
+                            <Route path={`${match.url}/courses/create_task`} name="Create CourseTask" component={CreateTask}/>
+                            <Route path={`${match.url}/courses/:courseId/subject/:subjectId/task/:taskId`} name="Task" component={Task}/>
                             <Redirect from={`${match.url}`} to={`${match.url}/dashboard`}/>
                         </Switch>
                     </div>
