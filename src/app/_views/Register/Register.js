@@ -137,7 +137,7 @@ class Register extends Component {
                                 Have an account?
                             </Link>
                         </div>
-                        <button className="register-btn" onClick={this.handleRegister} disabled={ this.state.email === '' || this.state.username === '' || this.state.password === '' || this.state.confirmPassword === '' }>Register</button>
+                        <button className="register-btn custom-button" onClick={this.handleRegister} disabled={ this.state.email === '' || this.state.username === '' || this.state.password === '' || this.state.confirmPassword === '' }>Register</button>
                         <p className="error-message">{ this.state.registerError }</p>
                         {(this.state.loading)  && <OrbitSpinner color="#565aa1"/>}
                     </form>

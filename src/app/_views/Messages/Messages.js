@@ -17,7 +17,7 @@ class Messages extends Component{
             activeMessage: {
                 id: 0,
                 title: 'Select a message',
-                content: '',
+                description: '',
                 accept: false
             }
         }
@@ -71,7 +71,7 @@ class Messages extends Component{
                     id: this.state.messages[i].id,
                     course: this.state.messages[i].message.name,
                     title: this.state.messages[i].text.title,
-                    content: this.state.messages[i].text.content,
+                    description: this.state.messages[i].text.content,
                     templateText: `Click on the button to accept the invitation to the course <strong>${this.state.messages[i].message.name}</strong>`,
                     accept: this.state.messages[i].accept
                 } : { title: "Select a message" };
@@ -95,7 +95,7 @@ class Messages extends Component{
 
     render(){
         if (this.state.loading) {
-            return "";
+            return "Server error, try again later";
         }
         return (
             <div className={'fade-in'}>
@@ -124,9 +124,9 @@ class Messages extends Component{
                             </header>
                             <article>
                                 <p dangerouslySetInnerHTML={{__html: this.state.activeMessage.templateText}}></p>
-                                <p>{this.state.activeMessage.content}</p>
+                                <p>{this.state.activeMessage.description ? "Course Description: " + this.state.activeMessage.description : ""}</p>
                                 <div className="button-container">
-                                    {(this.state.activeMessage.accept) && <button onClick={this.handleAccept.bind(this, this.state.activeMessage.id)}>Accept</button>}
+                                    {(this.state.activeMessage.accept) && <button className="custom-button" onClick={this.handleAccept.bind(this, this.state.activeMessage.id)}>Accept</button>}
                                 </div>
                             </article>
                         </Col>

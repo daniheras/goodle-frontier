@@ -46,7 +46,6 @@ class Profile extends Component{
         let isValid = true;
         if (e.target.name === 'confirmPassword') {
             let confirmPasswordMessage = this._validatePassword(e.target.value) ? "" : "Passwords not match";
-            confirmPasswordMessage = e.target.value === '' ? "Password required" : confirmPasswordMessage;
             isValid = e.target.value !== '' && this._validatePassword(e.target.value);
             this.setState({
                 confirmPasswordError: confirmPasswordMessage
@@ -72,7 +71,9 @@ class Profile extends Component{
 
     handleSaveUserInfo(e) {
         e.preventDefault();
-
+        this.setState({
+            saveLoading: true
+        })
         //AXIOS: save user info
         let data = JSON.stringify({
             name: this.state.user.name,
@@ -83,21 +84,37 @@ class Profile extends Component{
         axios.post('/user/update', data)
             .then(response => {
                 console.log("User updated");
+                this.setState({
+                    successsaveUserInfo: true,
+                    saveLoading: false,
+                })
                 sessionStorage.setItem('user', JSON.stringify(response.data));
+            })
+            .catch(error => {
+                this.setState({
+                    saveErrorMessage: "Server error, try again later",
+                    saveLoading: false
+                })
             })
     }
 
     handleResetPassword() {
 
         this.setState({
-            loading: true
+            resetLoading: true
         })
 
         axios.post('/user/resetPassword', JSON.stringify({password: this.state.user.password}))
             .then(response => {
                 this.setState({
                     successResetPassword: true,
-                    loading: false
+                    resetLoading: false
+                })
+            })
+            .catch(error => {
+                this.setState({
+                    resetErrorMessage: "Server error, try again later",
+                    resetLoading: false
                 })
             })
     }
@@ -112,7 +129,6 @@ class Profile extends Component{
                 </div>
 
                 <div>
-                    <button onClick={this.handleSaveUserInfo}>Save</button>
                     <section className="personal_info">
                         <header>
                             <h2>Personal Info</h2>
@@ -142,8 +158,16 @@ class Profile extends Component{
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                                                <Col xs={12} sm={12} md={12} lg={6} xl={6}>
                                                     <Input type="text" class="school" name="school" id="school" label="School" value={ this.state.user.school } handleChange={this.handleChange}/>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <button className="custom-button" onClick={this.handleSaveUserInfo}>Save</button>
+                                                <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                                                        {(this.state.successsaveUserInfo) && <p className="text-center good">Update user info successful</p>}
+                                                        <p className="text-center red">{this.state.saveErrorMessage}</p>
+                                                    {(this.state.saveLoading)  && <OrbitSpinner color="#565aa1"/>}
                                                 </Col>
                                             </Row>
                                     </Col>
@@ -159,34 +183,32 @@ class Profile extends Component{
                         <article>
                             <Container>
                                 <Row className="account-data">
-                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={4}>
                                         <Input type="text" class="username" name="username" id="username" label="Username" value={ this.state.user.username } handleChange={this.handleChange} readOnly="true"/>
                                     </Col>
 
-                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={4}>
                                         <Input type="text" class="email" name="email" id="email" label="Email" value={ this.state.user.email } handleChange={this.handleChange} readOnly="true"/>
                                     </Col>
                                 </Row>
 
+                                <p className="text-center">Fill the following fields and click the button to reset the password</p>
                                 <Row>
-                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={4}>
                                         <Input type="password" class="password" name="password" id="password" label="Password" value={ this.state.user.password } handleChange={this.handleChange}/>
                                     </Col>
 
-                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
+                                    <Col xs={12} sm={12} md={6} lg={6} xl={4}>
                                         <Input type="password" class="confirmPassword" name="confirmPassword" id="confirmPassword" label="Confirm Password" value={ this.state.user.confirmpassword } handleChange={this.handleChange} errorMessage={this.state.confirmPasswordError}/>
                                     </Col>
-
-                                    <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                        {(this.state.restartPassword) &&
-                                            <Col xs={12} sm={12} md={6} lg={6} xl={3}>
-                                                <button onClick={this.handleResetPassword}>Reset password</button>
-                                                {(this.state.successResetPassword) && <p>Password reset successful</p>}
-                                                </Col>}
-                                        {(!this.state.loading)  && <OrbitSpinner color="#565aa1"/>}
+                                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                                        <div>
+                                            <button disabled={!this.state.restartPassword} className="custom-button" onClick={this.handleResetPassword}>Reset password</button>
+                                            {(this.state.successResetPassword) && <p className="text-center good">Password reset successful</p>}
+                                            <p className="text-center red">{this.state.resetErrorMessage}</p>
+                                        </div>
+                                        {(this.state.resetLoading)  && <OrbitSpinner color="#565aa1"/>}
                                     </Col>
-
-
                                 </Row>
                             </Container>
                         </article>

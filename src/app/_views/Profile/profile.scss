@@ -42,6 +42,12 @@ $recents_sidebar_width: 300px;
     }
   }
 
+  .account_data {
+
+    [class*="col-"]{
+      margin: auto;
+    }
+  }
 
   .personal_info, .account_data{
     width: 90%;
@@ -49,14 +55,25 @@ $recents_sidebar_width: 300px;
     background: #fff;
     position: relative;
 
+    .text-center {
+      text-align: center;
+      padding-bottom: 10px;
+      &.red {
+        color: red
+      }
+      &.good {
+        color: $gdle-accent;
+      }
+    }
+
     header {
-        position: absolute;
-        top: -30px;
-        left: 10%;
-        border-radius: 6px;
-        text-align: center;
-        color: #fff;
-        padding: 15px;
+      position: absolute;
+      top: -30px;
+      left: 10%;
+      border-radius: 6px;
+      text-align: center;
+      color: #fff;
+      padding: 15px;
         background: $gdle-accent;
         width: 80%;
 
@@ -64,8 +81,18 @@ $recents_sidebar_width: 300px;
           margin: 0;
           color: #fff;
         }
+      }
+
+    @media( max-width: $media-sm ){
+        [class*="col-"]{
+          padding-left: 0;
+          padding-right: 0;
+        }
     }
 
+    .info_content{
+      padding-top: 20px;
+    }
     article {
         display: flex;
         flex-direction: row;
@@ -75,7 +102,7 @@ $recents_sidebar_width: 300px;
             padding: 1em 0.5em;
             text-align: center;
             img{
-                width: 200px;
+                width: 100%;
                 border-radius: 50%;
                 overflow: hidden;
                 border: 4px solid $gdle-accent;

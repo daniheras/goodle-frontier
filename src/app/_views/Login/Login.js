@@ -116,7 +116,7 @@ class Login extends Component {
                             Dont have an account yet?
                         </Link>
                     </div>
-                    <button className="login-btn" onClick={this.handleLogin} disabled={ (this.state.username === '' || this.state.password === '') }>Login</button>
+                    <button className="login-btn custom-button" onClick={this.handleLogin} disabled={ (this.state.username === '' || this.state.password === '') }>Login</button>
                     {(this.state.loading) && <OrbitSpinner color="#565aa1"/>}
                     <p className="error-message">{ this.state.errorMessage }</p>
                 </form>
