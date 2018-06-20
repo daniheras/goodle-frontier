@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import axios from '../../config/axios';
 import { Redirect, Link } from 'react-router-dom';
+import Input from '../../_components/input/input';
 
 import './login.scss';
-
-//Components
-import TextField from 'material-ui/TextField';
-import Card from "material-ui/es/Card/Card";
-import Button from "material-ui/es/Button/Button";
 
 class Login extends Component {
     constructor(props) {
@@ -47,11 +43,37 @@ class Login extends Component {
 
     }
 
-
     handleChange(e) {
+        let isValid = true;
         var obj = [];
         obj[e.target.name] = e.target.value;
+        if (e.target.value !== '') {
+            document.querySelector("label[for=" + e.target.name + "]").classList.add('top');
+        } else {
+            document.querySelector("label[for=" + e.target.name + "]").classList.remove('top');
+        }
+        if ((e.target.name === 'username')) {
+            let passwordMessage = e.target.value === '' ? "UserName required" : "";
+            isValid = e.target.value !== '';
+            this.setState({
+                usernameError: passwordMessage
+            })
+        } else if (e.target.name === 'password') {
+            let passwordMessage = this._validatePassword(e.target.value) ? "" : "Password invalid";
+            passwordMessage = e.target.value === '' ? "Password required" : passwordMessage;
+            isValid = e.target.value !== '' && this._validatePassword(e.target.value);
+            this.setState({
+                passwordError: passwordMessage
+            })
+        }
+
+        !isValid ? document.querySelector(".form-group." + e.target.name).classList.add('error') : document.querySelector(".form-group." + e.target.name).classList.remove('error');
+
         this.setState(obj);
+    }
+
+    _validatePassword(password) {
+        return true;
     }
 
     render() {
@@ -60,39 +82,29 @@ class Login extends Component {
         }
         return (
             <div className="fade-in login-page">
-                <Card className={'login-form'}>
-                    <h1>Goodle <span>Login</span></h1>
-                    <div className="animated fadeIn">
-                        <form action="http://goodle.test/login" method="POST">
-                            <TextField
-                                name={'username'}
-                                label="UserName"
-                                value={this.state.username}
-                                onChange={this.handleChange}
-                                margin="normal"
-                            />
-                            <TextField
-                                type={'password'}
-                                name={'password'}
-                                label="Password"
-                                value={this.state.password}
-                                onChange={this.handleChange}
-                                margin="normal"
-                            />
-                            <div className="tip">
-                                <Link to={'#forgottenPassword'}>
-                                    Forgotten password?
-                                </Link>
-                            </div>
-                            <div className="tip">
-                                <Link to={'/auth/register'}>
-                                    Dont have an account yet?
-                                </Link>
-                            </div>
-                            <Button type={'submit'} color={'primary'} variant={'raised'} onClick={this.handleLogin}>Login</Button>
-                        </form>
+                <div className="login-form">
+                <header>
+                    <h1>Login</h1>
+                </header>
+
+                <form method="POST">
+                    <Input type="text" class="username" name="username" id="username" label="UserName *" handleChange={this.handleChange} errorMessage={this.state.usernameError}/>
+                    <Input type="password" class="password" name="password" id="password" label="Password *" handleChange={this.handleChange} errorMessage={this.state.passwordError}/>
+
+                    <div className="tip">
+                        <Link to={'#forgottenPassword'}>
+                            Forgotten password?
+                        </Link>
                     </div>
-                </Card>
+                    <div className="tip">
+                        <Link to={'/auth/register'}>
+                            Dont have an account yet?
+                        </Link>
+                    </div>
+                    <button className="login-btn" onClick={this.handleLogin} disabled={ (this.state.username === '' || this.state.password === '') }>Login</button>
+                    <p className="error-message">{ this.state.errorMessage }</p>
+                </form>
+                </div>
             </div>
         )
     }

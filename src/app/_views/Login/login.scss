@@ -8,10 +8,37 @@
   justify-content: center;
 
   .login-form{
-    padding: 2rem;
+    padding: 2em;
+    background: #fff;
+    border-radius: 6px;
+    position: relative;
+    width: 300px;
+
+    header {
+      background: $gdle-accent;
+      border-radius: 6px;
+      position: absolute;
+      padding: 10px;
+      top: calc(-1.25em - 10px);
+      left: 3em;
+      width: calc(100% - 6em);
+
+      h1 {
+        margin: 0;
+        color: #fff;
+      }
+    }
 
     .tip{
       text-align: center;
+      a{
+        color: $gdle-primary;
+        transition: color 0.5s;
+
+        &:hover{
+          opacity: 0.8;
+        }
+      }
     }
 
     form{
@@ -21,8 +48,35 @@
         margin: 1rem auto;
       }
 
+      .form-group {
+        margin: 45px 0;
+      }
+
       button{
         margin: auto;
+      }
+      .login-btn{
+        background: $gdle-primary;
+        color: #fff;
+        outline: 0;
+        border: 0;
+        padding: 8px 20px;
+        cursor: pointer;
+        transition: 0.6s;
+
+        &:hover{
+          opacity: 0.8;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 1;
+        }
+      }
+
+      .error-message {
+        text-align: center;
+        color: red;
       }
     }
 

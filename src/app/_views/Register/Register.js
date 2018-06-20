@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import axios from '../../config/axios';
 import { Redirect, Link } from 'react-router-dom';
+import Input from '../../_components/input/input';
 
 import './register.scss';
-
-import { $api_URL } from "../../config/constants";
-import Card from "material-ui/es/Card/Card";
-import {TextField} from "material-ui";
-import Button from "material-ui/es/Button/Button";
-
 
 class Register extends Component {
     constructor(props) {
@@ -31,74 +26,91 @@ class Register extends Component {
             password: this.state.password,
         });
 
-        axios.post($api_URL+'/register', data, {
-            headers:{
-                'Content-Type': 'application/json',
-            }
-        })
+        axios.post('/register', data)
         .then(response => {
             if (response.status === 201) {
                 var data = JSON.stringify(response.data);
                 console.log(data);
                 this.setState({redirect: true});
-                return data;
             }
         })
         .catch(error => {
             console.log(error);
         })
 
-
     }
 
     handleChange(e) {
+        let isValid = true;
         var obj = [];
         obj[e.target.name] = e.target.value;
+        if (e.target.value !== '') {
+            document.querySelector("label[for=" + e.target.name + "]").classList.add('top');
+        } else {
+            document.querySelector("label[for=" + e.target.name + "]").classList.remove('top');
+        }
+        if (e.target.name === 'email') {
+            isValid = this._validateEmail(e.target.value);
+            let errorMessage = isValid ? "" : "Email invalid";
+            errorMessage = e.target.value === '' ? "Email required" : errorMessage;
+            this.setState({
+                emailError: errorMessage
+            })
+        } else if (e.target.name === 'username') {
+            let usernameError = e.target.value === '' ? "Username required" : '';
+            isValid = e.target.value !== '' && this._validatePassword(e.target.value);
+            this.setState({
+                usernameError: usernameError
+            })
+        } else if (e.target.name === 'password') {
+            let passwordMessage = this._validatePassword(e.target.value) ? "" : "Password invalid";
+            passwordMessage = e.target.value === '' ? "Password required" : passwordMessage;
+            isValid = e.target.value !== '' && this._validatePassword(e.target.value);
+            this.setState({
+                passwordError: passwordMessage
+            })
+        }
+        if (!isValid) {
+            document.querySelector(".form-group." + e.target.name).classList.add('error');
+        } else {
+            document.querySelector(".form-group." + e.target.name).classList.remove('error');
+        }
         this.setState(obj);
     }
 
-    // TODO: messages info errors (unique fields...)
-    // TODO: repeat password confirm
+    _validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    _validatePassword(password) {
+        return true;
+    }
+
     render() {
         if (this.state.redirect) {
             return <Redirect push to="/auth/login" />;
         }
         return (
             <div className="fade-in register-page">
-                <Card className="register-form">
-                    <h1>Sign<span>Up</span></h1>
+                <div className="register-form">
+                    <header>
+                        <h1>SignUp</h1>
+                    </header>
                     <form method="POST">
-                        <TextField
-                            type={'email'}
-                            name={'email'}
-                            label="Email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                            margin="normal"
-                        />
-                        <TextField
-                            name={'username'}
-                            label="UserName"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                            margin="normal"
-                        />
-                        <TextField
-                            type={'password'}
-                            name={'password'}
-                            label="Password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            margin="normal"
-                        />
+                        <Input type="text" class="email active" name="email" id="email" label="Email" handleChange={this.handleChange} errorMessage={this.state.emailError}/>
+                        <Input type="text" class="username active" name="username" id="username" label="Username" handleChange={this.handleChange} errorMessage={this.state.usernameError}/>
+                        <Input type="password" class="password active" name="password" id="password" label="Password" handleChange={this.handleChange} errorMessage={this.state.passwordError}/>
+
                         <div className="tip">
                             <Link to={'/auth/login'}>
                                 Have an account?
                             </Link>
                         </div>
-                        <Button color={'primary'} variant={'raised'} onClick={this.handleRegister}>Register</Button>
+                        <button className="register-btn" onClick={this.handleRegister} disabled={ this.state.email === '' || this.state.username === '' || this.state.password === '' }>Register</button>
+                        <p className="error-message">{ this.state.registerError }</p>
                     </form>
-                </Card>
+                </div>
             </div>
         )
     }

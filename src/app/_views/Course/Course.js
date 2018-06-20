@@ -26,12 +26,10 @@ class Course extends Component {
           });
         })
       .catch(error => {
-          console.log(error.response.data.error);
-          if (error.response.data.error === 'This user is not registered in the required course') {
-            this.setState({
-              msg_error: 'You are not registered for this course',
-            });
-          }
+          console.log(error.response.data.message);
+          this.setState({
+            msg_error: 'You are not registered in this course',
+          });
         });
   }
 

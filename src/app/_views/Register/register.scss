@@ -8,10 +8,37 @@
   justify-content: center;
 
   .register-form{
-    padding: 2rem;
+    padding: 5em 2em 3em;
+    background: #fff;
+    border-radius: 6px;
+    width: 300px;
+    position: relative;
+
+    header {
+      background: $gdle-accent;
+      border-radius: 6px;
+      position: absolute;
+      padding: 10px;
+      top: calc(-1.25em - 10px);
+      left: 3em;
+      width: calc(100% - 6em);
+
+      h1 {
+        margin: 0;
+        color: #fff;
+      }
+    }
 
     .tip{
       text-align: center;
+      a{
+        color: $gdle-primary;
+        transition: color 0.5s;
+
+        &:hover{
+          opacity: 0.8;
+        }
+      }
     }
 
     form{
@@ -21,8 +48,108 @@
         margin: 1rem auto;
       }
 
+      .form-group{
+        position: relative;
+        margin: 0px 0 40px 0;
+
+        &.error{
+          &:after, &:before{
+            background: red;
+          }
+          label{
+            color: red;
+          }
+        }
+
+        &::before{
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 1px;
+          content: "";
+          position: absolute;
+          transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+          pointer-events: none;
+          background-color: rgba(0, 0, 0, 0.42);
+        }
+        &::after{
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 2px;
+          content: "";
+          position: absolute;
+          transform: scaleX(0);
+          transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+          pointer-events: none;
+          background-color: $gdle-primary;
+        }
+        &:focus-within{
+          &::after{
+            transform: scaleX(1);
+
+          }
+          label{
+            top: -20px;
+            font-size: 12px;
+          }
+        }
+
+        input{
+          width: 100%;
+          border: 0;
+          outline: 0;
+          color: $gdle-grey;
+          padding-left: 10px;
+        }
+
+        label{
+          position: absolute;
+          top: 0;
+          cursor: text;
+          transition: all 0.25s;
+          color: $gdle-primary;
+
+          &.top{
+            top: -20px;
+            font-size: 12px;
+          }
+        }
+
+        span{
+          position: absolute;
+          left: 0;
+          bottom: -20px;
+          font-size: 12px;
+          color: red;
+        }
+      }
+
       button{
         margin: auto;
+      }
+      .register-btn{
+        background: $gdle-primary;
+        color: #fff;
+        outline: 0;
+        border: 0;
+        padding: 8px 20px;
+        cursor: pointer;
+        transition: 0.6s;
+
+        &:hover{
+          opacity: 0.8;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 1;
+        }
+      }
+
+      .error-message{
+        text-align: center;
+        color: red;
       }
     }
 
