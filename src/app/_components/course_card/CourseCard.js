@@ -170,21 +170,21 @@ const CourseCard = props => {
             {
               ( props.variant === 'course-card' ) &&
               <CoursesCard
-                color={props.data.course.color}
-                theme={props.data.course.theme}
+                color={props.data.color}
+                theme={props.data.theme}
                 >
                   <div className={'__card_overlay'}>
                     <div className={'__card_overlay__title'}>
-                      {props.data.course.name}
+                      {props.data.name}
                     </div>
                     <div className={'__card_overlay__image'}>
-                      <img src={props.data.course.image} alt="Course"/>
+                      <img src={props.data.picture} alt="Course"/>
                     </div>
                     <div className={'__card_overlay__users'}>
-                      <FaGroup/> {props.data.course.users}
+                      <FaGroup/> {props.data.users}
                     </div>
                     {
-                      ( props.data.course.fav ) &&
+                      ( props.data.fav ) &&
                       <div className={'__card_overlay__fav'}>
                         <FaStar/>
                       </div>

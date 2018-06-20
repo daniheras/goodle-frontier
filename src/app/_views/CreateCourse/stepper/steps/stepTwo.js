@@ -5,7 +5,7 @@ import Redirect from "react-router-dom/es/Redirect";
 import { themes } from '../../../../config/customization';
 import CourseCard from "../../../../_components/course_card/CourseCard";
 import _ from 'lodash';
-import {Col, Row} from "reactstrap";
+import {Button, Col, Row} from "reactstrap";
 import {Fade} from "react-reveal";
 
 class StepTwo extends Component {
@@ -17,7 +17,7 @@ class StepTwo extends Component {
         return (
             <Stepper.Consumer>
                 {
-                    ({prev,step, handleTheme, courseTheme, handleColor}) => (
+                    ({prev,step, handleTheme, courseTheme, handleColor, handleSubmit}) => (
                         <div>
                             {/*If the step received is not the correct one then redirects to correct step*/}
                             <Redirect from={`${match.url}`} to={`${prev.url}/${step}`}/>
@@ -62,6 +62,9 @@ class StepTwo extends Component {
                                         }
                                     </Row>
                                 </div>
+                                <Button color={'secondary'} onClick={(e) => handleSubmit(e,3)}>
+                                    Next step
+                                </Button>
                             </div>
                         </div>
                     )

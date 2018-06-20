@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Stepper} from "../../CreateCourse";
 import {Redirect} from "react-router-dom";
+import {Button} from "reactstrap";
 
 class StepThree extends Component {
 
@@ -11,10 +12,14 @@ class StepThree extends Component {
         return (
             <Stepper.Consumer>
                 {
-                    ({prev, step}) => (
+                    ({prev, step, handleSubmit}) => (
                         <div>
                             {/*If the step received is not the correct one then redirects to correct step*/}
                             <Redirect from={`${match.url}`} to={`${prev.url}/${step}`}/>
+
+                            <Button color={'primary'} onClick={(e) => handleSubmit(e, 'end')}>
+                                Create Course
+                            </Button>
                         </div>
                     )
                 }
