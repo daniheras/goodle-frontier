@@ -13,6 +13,7 @@ import { OrbitSpinner } from 'react-epic-spinners';
 import { Link } from 'react-router-dom';
 
 import { SortablePane, Pane } from 'react-sortable-pane';
+import Button from '../../_components/button/button';
 
 class Course extends Component {
 
@@ -90,15 +91,15 @@ class Course extends Component {
 
   createSubject = (e) => {
 
-    let newTask = {}
+    let newSubject = {}
 
     if (this.state.subjects.length === 0){
-      newTask = {
+      newSubject = {
         title: 'New Subject',
         order: 1
       };
     } else {
-      newTask = {
+      newSubject = {
         title: 'New Subject',
         order: this.state.subjects[this.state.subjects.length - 1].order + 1,
       }
@@ -106,15 +107,50 @@ class Course extends Component {
 
 
 
-    axios.post(`/courses/${this.courseId}/subjects`, newTask)
-    .then( response => {
-      axios.get(`/courses/${this.courseId}/subjects`)
-        .then( response => {
-          this.setState({
-            subjects: response.data
+    axios.post(`/courses/${this.courseId}/subjects`, newSubject)
+      .then( response => {
+        axios.get(`/courses/${this.courseId}/subjects`)
+          .then( response => {
+            this.setState({
+              subjects: response.data
+            });
           });
-        });
-    });
+      });
+    };
+
+  createTask = (e, subjectId) => {
+
+    const newTask = {
+      title: "Nueva tarea",
+      order: 1,
+      finish_date: "2018-06-30 00:00:00",
+      text_content: "Descripcion de tarea"
+    };
+
+    axios.post(`/courses/${this.courseId}/subjects/${subjectId}/tasks`, newTask)
+      .then( () => {
+        axios.get(`/courses/${this.courseId}/subjects/${subjectId}/tasks`)
+          .then( response => {
+            for (let i = 0; i < this.state.subjects.length; i++) {
+              axios.get(`/courses/${this.courseId}/subjects/${subjectId}/tasks`)
+                .then( response => {
+                  let a = this.state.task;
+                  let ids =this.state.taskIds;
+                  a[subjectId] = [];
+                  ids[subjectId] = [];
+                  for (let j = 0; j < response.data.length; j++) {
+                    a[subjectId][j] = response.data[j].title;
+                    ids[subjectId][j] = response.data[j].id;
+                  }
+                  this.setState({
+                    task: a,
+                    taskIds: ids,
+                    loading: true
+                  })
+                })
+              }
+          });
+      });
   };
 
   handleSubjectChange = (e, iteration, subjectId, input) => {
@@ -131,6 +167,11 @@ class Course extends Component {
       statusCopy.subjects[iteration].description = inputValue;
     }
 
+    // TODO PERMITIR EDITAR ESTO
+    if( input === 'taskName' ){
+      statusCopy.subjects[iteration].description = inputValue;
+    }
+
     this.setState(statusCopy);
   };
 
@@ -138,9 +179,9 @@ class Course extends Component {
 
     const {match} = this.props;
 
-    if(!this.state.loading) {
+    /* if(!this.state.loading) {
       return <div className="full"><OrbitSpinner color="#565aa1"/></div>;
-    }
+    } */
     return (
       <Fade>
         <div className={'course-view'}>
@@ -219,15 +260,35 @@ class Course extends Component {
                         { _.map(this.state.task[subject.id], (task, iteration) => (
                           <div className="course-view__subjects__subject__tasks__task">
                             <div className="course-view__subjects__subject__tasks__task__title">
-                            {
-                              task
+                            { 
+                              (this.state.editMode) ?
+                              
+                              <div>
+                                <input 
+                                type="text" 
+                                value={task}
+                                onChange={(e) => {
+                                  this.handleSubjectChange(e, iteration, subject.id, 'taskName');
+                                }}
+                                />
+                                <input type="date"/>
+                              </div>
+                              :
+                              <span>{task}</span>
+                              
                             }
                             </div>
-                           <Link to={`${this.props.match.params.id}/subject/${subject.id}/task/${this.state.taskIds[subject.id][iteration]}`} key='task' className="course-view__subjects__subject__tasks__task__goin">
+                            <Link to={`${this.props.match.params.id}/subject/${subject.id}/task/${this.state.taskIds[subject.id][iteration]}`} key='task' className="course-view__subjects__subject__tasks__task__goin">
                               <FaArrowRight/>
-                          </Link>
+                            </Link>
                           </div>
                         )) }
+                        {
+                          ( this.state.editMode && this.state.course.admin ) &&
+                          <div className="course-view__subjects__subject__tasks__create-task" onClick={(e) => this.createTask(e,subject.id)}>
+                            <FaPlus/> Add task
+                          </div>
+                        }
                     </div>
                   </div>
                 </Fade>
@@ -236,7 +297,7 @@ class Course extends Component {
               {
                 ( this.state.course.admin ) &&
                 <div className="course-view__subjects__create-subject" onClick={this.createSubject}>
-                  <FaPlus/>
+                  <FaPlus/> Add Subject
                 </div>
               }
             </div>

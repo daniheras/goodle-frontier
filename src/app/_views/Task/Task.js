@@ -75,11 +75,11 @@ class Task extends Component {
         var formData = new FormData();
         var imagefile = document.querySelector('#file');
         formData.append("image", imagefile.files[0]);
-        axios.post(`/courses/${}/subjects/1/tasks/1`, formData, {
+        /* axios.post(`/courses/${}/subjects/1/tasks/1`, formData, {
             headers: {
             'Content-Type': 'multipart/form-data'
             }
-        })
+        }) */
     }
 
 

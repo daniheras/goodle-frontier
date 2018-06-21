@@ -115,6 +115,21 @@
                         }
                     }
                 }
+
+                &__create-task{
+                    background: #fff;
+                    padding: 1rem;
+                    border: 1px solid $gdle-accent;
+                    text-align: center;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    transition: .3s;
+
+                    &:hover{
+                        background: $gdle-accent;
+                        color: #fff;
+                    }
+                }
             }
         }
 
