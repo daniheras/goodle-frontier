@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Input from '../../_components/input/input';
+import axios from '../../config/axios';
 
 import './CreateTask.scss';
 
@@ -14,9 +15,21 @@ class CreateTask extends Component {
     }
 
     componentWillMount() {
-        this.setState({
-            modify: true
-        })
+        if (this.props.match.params.taskId) {
+            axios.get(`/courses/${this.props.match.params.courseId}/subjects/${this.props.match.params.subjectId}/tasks/${this.props.match.params.taskId}`)
+                .then( response => {
+                    this.setState({
+                        modify: true,
+                        task: {
+                            taskName: response.data.title,
+                            taskDescription: response.data.text_content,
+                            taskFinishDate: response.data.finish_date
+                        }
+                    })
+                })
+
+
+        }
     }
 
     handleChange(e) {
@@ -36,9 +49,19 @@ class CreateTask extends Component {
         // Modificar o crear tarea (misma vista?) se le pasa un parametro modify ? true : false
 
         if (this.state.modify) {
-            // axios endpoint modify task
-        }else {
-            // axios endpoint create task
+            let data = {
+                current_user: JSON.parse(sessionStorage.getItem('user')).id,
+                title: this.state.task.taskName,
+                order: 1,
+                text_content: this.state.task.taskDescription,
+                finish_date: this.state.task.taskFinishDate
+            }
+            axios.put(`/courses/${this.props.match.params.courseId}/subjects/${this.props.match.params.subjectId}/tasks/${this.props.match.params.taskId}`, data)
+                .then(response => {
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
     }
 
@@ -48,12 +71,12 @@ class CreateTask extends Component {
     return (
         <div className={'create_task_view fade-in'}>
             <header>
-                <h2>Create a task</h2>
+                <h2>Update task</h2>
             </header>
             <form>
-                <Input type="text" class="task-name" name="task-name" id="task-name" label="Task name" handleChange={this.handleChange}/>
-                <Input type="text" class="task-description" name="task-description" id="task-description" label="Task description" handleChange={this.handleChange}/>
-                <Input type="date" class="task-finish-date active" name="task-finish-date" id="task-finish-date" label="Task finish date" handleChange={this.handleChange}/>
+                <Input type="text" class="taskName" name="taskName" id="taskName" label="Task name" handleChange={this.handleChange} value={ this.state.task.taskName }/>
+                <Input type="text" class="taskDescription" name="taskDescription" id="taskDescription" label="Task description" handleChange={this.handleChange} value={ this.state.task.taskDescription }/>
+                <Input type="date" class="taskFinishDate active" name="taskFinishDate" id="taskFinishDate" label="Task finish date" handleChange={this.handleChange}/>
 
                 <button className="confirm-button" onClick={this.handleCreateTask}>Confirm</button>
             </form>

@@ -260,25 +260,28 @@ class Course extends Component {
                         { _.map(this.state.task[subject.id], (task, iteration) => (
                           <div className="course-view__subjects__subject__tasks__task">
                             <div className="course-view__subjects__subject__tasks__task__title">
-                            { 
+                            {
                               (this.state.editMode) ?
-                              
+
                               <div>
-                                <input 
-                                type="text" 
+                                <input
+                                type="text"
                                 value={task}
                                 onChange={(e) => {
                                   this.handleSubjectChange(e, iteration, subject.id, 'taskName');
                                 }}
                                 />
                                 <input type="date"/>
+                                <Link to={`/app/courses/create_task/${this.props.match.params.id}/${subject.id}/${this.state.taskIds[subject.id][iteration]}`} key={iteration} className="course-view__subjects__subject__tasks__task__goin">
+                                  <FaPencil/>
+                                </Link>
                               </div>
                               :
                               <span>{task}</span>
-                              
+
                             }
                             </div>
-                            <Link to={`${this.props.match.params.id}/subject/${subject.id}/task/${this.state.taskIds[subject.id][iteration]}`} key='task' className="course-view__subjects__subject__tasks__task__goin">
+                            <Link to={`${this.props.match.params.id}/subject/${subject.id}/task/${this.state.taskIds[subject.id][iteration]}`} key={iteration} className="course-view__subjects__subject__tasks__task__goin">
                               <FaArrowRight/>
                             </Link>
                           </div>
