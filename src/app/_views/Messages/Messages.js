@@ -110,6 +110,10 @@ class Messages extends Component{
                             </header>
                             <div className="messages">
                                 {
+                                    (!this.state.messages.length) &&
+                                        <div>No messages</div>
+                                }
+                                {
                                 this.state.messages.map( (message, i) => (
                                     <div className={'message'} key={message.id} onClick={this.handleSelectMessage.bind(this, i)}>
                                         <CourseCard variant={'message-card'} data={message}/>
