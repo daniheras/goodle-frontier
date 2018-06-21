@@ -6,6 +6,7 @@ import Courses from '../../_views/Courses/Courses';
 import Course from '../../_views/Course/Course';
 import Task from '../../_views/Task/Task';
 import Messages from '../../_views/Messages/Messages';
+import Invite from '../../_views/invite/invite';
 import CreateCourse from '../../_views/CreateCourse/CreateCourse';
 import Header from '../../_components/_structure/header/header';
 import CreateTask from '../../_views/CreateTask/CreateTask'
@@ -120,6 +121,7 @@ class Full extends Component {
                                 <Route path={`${match.url}/courses/create_task/:courseId?/:subjectId?/:taskId?`} name="Create CourseTask" component={CreateTask}/>
                                 <Route path={`${match.url}/courses/:courseId/subject/:subjectId/task/:taskId`} name="Task" component={Task}/>
                                 <Route path={`${match.url}/cookies`} name="Cookies" component={CookiesPage}/>
+                                <Route path={`${match.url}/invite/:courseId`} name="Invite" component={Invite}/>
                                 <Route path={`${match.url}/courses/:id`} name="Course" component={Course}/>
                                 <Redirect from={`${match.url}`} to={`${match.url}/courses`}/>
                             </Switch>

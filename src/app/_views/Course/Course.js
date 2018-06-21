@@ -209,6 +209,23 @@ class Course extends Component {
             </div>
           </Fade>
 
+          {
+            ( this.state.course.admin ) &&
+            <div>
+              { (this.state.editMode) ?
+                <div className="invite">
+                  <Link to={`/app/invite/${this.props.match.params.id}`}className="course-view__subjects__subject__tasks__task__goin">
+                    Invite User
+                  </Link>
+                </div>
+                :
+                ""
+              }
+            </div>
+          }
+
+
+
           <Fade>
             <div className="course-view__subjects">
               { this.state.subjects.map( (subject, iteration) => (
