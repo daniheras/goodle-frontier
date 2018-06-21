@@ -43,10 +43,10 @@ class StepOne extends Component {
                                         <Input type="select" name="courseCategory" id="courseCategory" placeholder="Category" onChange={handleCategory}>
                                             <option value="">--Select Category--</option>
                                             <option value="Game Design">Game Design</option>
-                                            <option value="Programación">Programación</option>
+                                            <option value="Developing">Developing</option>
                                             <option value="Macramé">Macramé</option>
-                                            <option value="Administración de empresas">Administración de empresas</option>
-                                            <option value="Otro">Otro</option>
+                                            <option value="Bussiness">Bussiness</option>
+                                            <option value="Others">Others</option>
                                         </Input>
                                     </Col>
                                 </FormGroup>

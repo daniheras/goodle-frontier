@@ -5,7 +5,7 @@ $recents_sidebar_width: 300px;
 .courses_view{
 
   &__content{
-    width: calc( 100% - #{$recents_sidebar_width} );
+    width: 100vw;
     background: $gdle-bg-primary;
     float: left;
     height: calc(100vh - 50px);
@@ -123,6 +123,7 @@ $recents_sidebar_width: 300px;
 }
 
 .recents_sidebar{
+  display: none;
   width: $recents_sidebar_width;
   float: left;
   background: $gdle-bg-primary-darker;
