@@ -67,9 +67,18 @@ class Task extends Component {
 
 
     handleDrop = (files, event) => {
-        console.log(files, event);
+        console.log(files[0]);
         this.setState({
             dropMessage: 'Files succesfully uploaded'
+        })
+
+        var formData = new FormData();
+        var imagefile = document.querySelector('#file');
+        formData.append("image", imagefile.files[0]);
+        axios.post(`/courses/${}/subjects/1/tasks/1`, formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data'
+            }
         })
     }
 
